@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/services/bottomBar.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:covid_nepal/UI/neumorphicUI.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -10,45 +9,92 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("COVID NEPAL"),
-        ),
-        bottomNavigationBar: BottomBar(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: NeoMorphicUI(),
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(
+                height: 220,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40.0),
+                    bottomRight: Radius.circular(40.0),
+                  ),
+                  color: Color(0xFFC13939),
                 ),
-                Expanded(
-                  child: NeoMorphicUI(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Covid-19 Nepal',
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'Last Updated:',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ));
-  }
-}
-
-class NeoMorphicUI extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      width: 100,
-      margin: EdgeInsets.all(20.0),
-      child: Neumorphic(
-        boxShape: NeumorphicBoxShape.roundRect(
-          BorderRadius.circular(25),
-        ),
-        style: NeumorphicStyle(
-            shape: NeumorphicShape.concave,
-            depth: 10,
-            color: Color(0xFFE0E0E0)),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 180.0,
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: NeoMorphicUI(
+                        leftM: 30,
+                        topM: 0,
+                        rightM: 10,
+                        bottomM: 10,
+                      ),
+                    ),
+                    Expanded(
+                      child: NeoMorphicUI(
+                        leftM: 10,
+                        topM: 0,
+                        rightM: 30,
+                        bottomM: 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: NeoMorphicUI(
+                  leftM: 30,
+                  topM: 10,
+                  rightM: 10,
+                  bottomM: 20,
+                ),
+              ),
+              Expanded(
+                child: NeoMorphicUI(
+                  leftM: 10,
+                  topM: 10,
+                  rightM: 30,
+                  bottomM: 20,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

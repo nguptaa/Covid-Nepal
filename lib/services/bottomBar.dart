@@ -31,7 +31,7 @@ class _BottomBarState extends State<BottomBar> {
       iconSize: 25,
       borderRadius: BorderRadius.vertical(
           top: Radius.circular(
-              20)), //border radius doesn't work when the notch is enabled.
+              18)), //border radius doesn't work when the notch is enabled.
       elevation: 8,
       items: <BubbleBottomBarItem>[
         BubbleBottomBarItem(
