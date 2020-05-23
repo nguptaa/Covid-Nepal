@@ -5,7 +5,7 @@ import 'services/bottomBar.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: false,
+        enabled: true,
         builder: (context) => MyApp(),
       ),
     );
@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text("COVID NEPAL"),
-        // ),
+        appBar: AppBar(
+          title: Text("COVID NEPAL"),
+        ),
         body: HomeView(),
         bottomNavigationBar: BottomBar(),
       ),

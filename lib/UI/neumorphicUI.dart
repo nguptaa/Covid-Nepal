@@ -16,7 +16,7 @@ class NeoMorphicUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: MediaQuery.of(context).size.height * 0.1,
       padding: EdgeInsets.fromLTRB(leftM, topM, rightM, bottomM),
       child: Neumorphic(
         boxShape: NeumorphicBoxShape.roundRect(
