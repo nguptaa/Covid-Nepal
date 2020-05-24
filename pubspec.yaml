@@ -16,6 +16,9 @@ dependencies:
   device_preview: ^0.4.5
   bubble_bottom_bar: ^1.2.0
   flutter_neumorphic: ^2.0.1
+  http: ^0.12.1
+  font_awesome_flutter: ^8.8.1
+  shimmer: ^1.1.1
 
 dev_dependencies:
   flutter_test:
