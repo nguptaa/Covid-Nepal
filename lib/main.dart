@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/home/homeView.dart';
 import 'UI/bottomBar.dart';
 
+
 void main() => runApp(
       DevicePreview(
         enabled: true,

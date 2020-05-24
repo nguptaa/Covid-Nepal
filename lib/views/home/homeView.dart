@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:covid_nepal/UI/neumorphicUI.dart';
 import 'package:covid_nepal/services/getCovidNepal.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:time/time.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Stack(
           overflow: Overflow.visible,
@@ -35,19 +36,39 @@ class _HomeViewState extends State<HomeView> {
                   Text(
                     'Covid-19 Nepal',
                     style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w800,
+                      fontSize: MediaQuery.of(context).size.height * 0.035,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 5,
                   ),
-                  Text(
-                    'Last Updated:',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  FutureBuilder(
+                    future: covidNepal.getCovidStats(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      return snapshot.hasData
+                          ? Text(
+                              'Last Updated: ' +
+                                  DateTime.now()
+                                      .difference(DateTime.parse(
+                                          snapshot.data['nepal']['updated_at']))
+                                      .inHours
+                                      .toString() + ' hrs ago',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.018,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            )
+                          : Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
+                              ),
+                            );
+                    },
                   ),
                 ],
               ),
@@ -61,27 +82,21 @@ class _HomeViewState extends State<HomeView> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: FutureBuilder(
-                          future: covidNepal.getCovidStats(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            return snapshot.hasData
-                                ? NeoMorphicUI(
-                                    cardIcon: FontAwesomeIcons.ad,
-                                    cardText: snapshot.data['nepal']['positive'],
-                                    leftM: 30,
-                                    topM: 5,
-                                    rightM: 10,
-                                    bottomM: 10,
-                                  )
-                                : CircularProgressIndicator();
-                          },
+                        child: NeoMorphicUI(
+                          cardIcon: FontAwesomeIcons.addressBook,
+                          cardText: 'SAMPLES\n TESTED',
+                          cardCount: 'samples_tested',
+                          leftM: 30,
+                          topM: 5,
+                          rightM: 10,
+                          bottomM: 10,
                         ),
                       ),
                       Expanded(
                         child: NeoMorphicUI(
                           cardIcon: FontAwesomeIcons.ad,
-                          cardText: 'helo',
+                          cardText: 'POSITIVE',
+                          cardCount: 'positive',
                           leftM: 10,
                           topM: 5,
                           rightM: 30,
@@ -95,24 +110,33 @@ class _HomeViewState extends State<HomeView> {
                       Expanded(
                         child: NeoMorphicUI(
                           cardIcon: FontAwesomeIcons.ad,
-                          cardText: 'helo',
+                          cardText: 'RECOVERED',
+                          cardCount: 'extra1',
                           leftM: 30,
                           topM: 10,
                           rightM: 10,
-                          bottomM: 5,
+                          bottomM: 0,
                         ),
                       ),
                       Expanded(
                         child: NeoMorphicUI(
                           cardIcon: FontAwesomeIcons.ad,
-                          cardText: 'helo',
+                          cardText: 'DEATHS',
+                          cardCount: 'deaths',
                           leftM: 10,
                           topM: 10,
                           rightM: 30,
-                          bottomM: 5,
+                          bottomM: 0,
                         ),
                       ),
                     ],
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    height: MediaQuery.of(context).size.height * 0.375,
+                    child: Image.asset(
+                      'assets/images/socialDist.png',
+                    ),
                   ),
                 ],
               ),

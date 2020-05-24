@@ -8,12 +8,17 @@ class NetworkHelperNepal {
   final String url;
 
   Future getData() async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body);
-      return jsonResponse;
-    } else {
-      print(response.statusCode);
+    try {
+      http.Response response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        return jsonResponse;
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print("No Internet");
     }
   }
 }
