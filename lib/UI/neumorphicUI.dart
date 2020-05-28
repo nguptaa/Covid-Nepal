@@ -12,6 +12,7 @@ class NeoMorphicUI extends StatelessWidget {
       {@required this.cardIcon,
       @required this.cardText,
       @required this.cardCount,
+      @required this.cardColor,
       @required this.leftM,
       @required this.topM,
       @required this.rightM,
@@ -24,6 +25,7 @@ class NeoMorphicUI extends StatelessWidget {
   final IconData cardIcon;
   final String cardText;
   final String cardCount;
+  final Color cardColor;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class NeoMorphicUI extends StatelessWidget {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             return snapshot.hasData
                 ? CardContent(
+                  cardColor: cardColor,
                     faIcon: cardIcon,
                     cardText: cardText,
                     cardCount: snapshot.data['nepal'][cardCount],

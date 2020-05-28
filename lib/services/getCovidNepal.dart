@@ -7,5 +7,7 @@ class CovidNepal {
 
     var covidData = await networkHelper.getData();
     return covidData;
+    
   }
 }
+

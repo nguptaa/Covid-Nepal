@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class BottomBar extends StatefulWidget {
 
@@ -36,45 +38,45 @@ class _BottomBarState extends State<BottomBar> {
       items: <BubbleBottomBarItem>[
         BubbleBottomBarItem(
             backgroundColor: Colors.red,
-            icon: Icon(
-              Icons.dashboard,
+            icon: FaIcon(
+              FontAwesomeIcons.th,
               color: Colors.black,
             ),
-            activeIcon: Icon(
-              Icons.dashboard,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.th,
               color: Colors.red,
             ),
-            title: Text("Home")),
+            title: Text("Nepal")),
         BubbleBottomBarItem(
             backgroundColor: Colors.deepPurple,
-            icon: Icon(
-              Icons.access_time,
+            icon: FaIcon(
+              FontAwesomeIcons.globe,
               color: Colors.black,
             ),
-            activeIcon: Icon(
-              Icons.access_time,
-              color: Colors.deepPurple,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.globe,
+              color: Colors.deepPurple
             ),
-            title: Text("Logs")),
+            title: Text("World")),
         BubbleBottomBarItem(
             backgroundColor: Colors.indigo,
-            icon: Icon(
-              Icons.folder_open,
+            icon: FaIcon(
+              FontAwesomeIcons.newspaper,
               color: Colors.black,
             ),
-            activeIcon: Icon(
-              Icons.folder_open,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.newspaper,
               color: Colors.indigo,
             ),
-            title: Text("Folders")),
+            title: Text("News")),
         BubbleBottomBarItem(
             backgroundColor: Colors.green,
-            icon: Icon(
-              Icons.menu,
+            icon: FaIcon(
+              FontAwesomeIcons.bars,
               color: Colors.black,
             ),
-            activeIcon: Icon(
-              Icons.menu,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.bars,
               color: Colors.green,
             ),
             title: Text("Menu"))
