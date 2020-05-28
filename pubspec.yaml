@@ -18,7 +18,8 @@ dependencies:
   flutter_neumorphic: ^2.0.1
   http: ^0.12.1
   font_awesome_flutter: ^8.8.1
-  pull_to_refresh: ^1.5.7
+  flutter_svg: ^0.17.4
+  liquid_pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:
