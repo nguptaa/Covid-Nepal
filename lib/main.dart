@@ -14,16 +14,14 @@ void main() => runApp(
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  RefreshController _refreshController =
+  final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
-
-  Future<void> _handleRefresh() async{
+  void _handleRefresh() async {
     await Future.delayed(Duration(milliseconds: 1000));
     print("hello");
 
     _refreshController.refreshCompleted();
-
   }
 
   @override
@@ -35,12 +33,19 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
       home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Covid-19 Nepal',
+          ),
+          elevation: 0.0,
+        ),
         body: SmartRefresher(
+          // body: RefreshIndicator(
           enablePullDown: true,
-        // enablePullUp: true,
-        header: MaterialClassicHeader(),
-          onRefresh: () => _handleRefresh(),
+          // enablePullUp: true,
+          header: MaterialClassicHeader(),
           controller: _refreshController,
+          onRefresh: _handleRefresh,
           child: HomeView(),
         ),
         bottomNavigationBar: BottomBar(),
@@ -48,4 +53,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

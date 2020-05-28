@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
             overflow: Overflow.visible,
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.25,
+                height: MediaQuery.of(context).size.height * 0.18,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -31,17 +31,10 @@ class _HomeViewState extends State<HomeView> {
                   color: Color(0xFFC13939),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Covid-19 Nepal',
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * 0.035,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     SizedBox(
-                      height: 5,
+                      height: 20.0,
                     ),
                     FutureBuilder(
                       future: covidNepal.getCovidStats(),
@@ -70,7 +63,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.2,
+                top: MediaQuery.of(context).size.height * 0.1,
                 right: 0,
                 left: 0,
                 child: Column(
