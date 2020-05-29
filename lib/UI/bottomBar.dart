@@ -1,10 +1,10 @@
+import 'package:covid_nepal/views/home/homeView.dart';
+import 'package:covid_nepal/views/world/worldView.dart';
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class BottomBar extends StatefulWidget {
-
   @override
   _BottomBarState createState() => _BottomBarState();
 }
@@ -25,12 +25,14 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return BubbleBottomBar(
       // hasNotch: true,
       opacity: .3,
       currentIndex: currentIndex,
       onTap: changePage,
-      iconSize: 25,
+      iconSize: size.height * 0.035,
       borderRadius: BorderRadius.vertical(
           top: Radius.circular(
               18)), //border radius doesn't work when the notch is enabled.
@@ -38,9 +40,19 @@ class _BottomBarState extends State<BottomBar> {
       items: <BubbleBottomBarItem>[
         BubbleBottomBarItem(
             backgroundColor: Colors.red,
-            icon: FaIcon(
-              FontAwesomeIcons.th,
-              color: Colors.black,
+            icon: GestureDetector(
+              onTap: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeView(),
+                  ),
+                ),
+              },
+              child: FaIcon(
+                FontAwesomeIcons.th,
+                color: Colors.black,
+              ),
             ),
             activeIcon: FaIcon(
               FontAwesomeIcons.th,
@@ -49,14 +61,22 @@ class _BottomBarState extends State<BottomBar> {
             title: Text("Nepal")),
         BubbleBottomBarItem(
             backgroundColor: Colors.deepPurple,
-            icon: FaIcon(
-              FontAwesomeIcons.globe,
-              color: Colors.black,
+            icon: GestureDetector(
+              onTap: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WorldView(),
+                  ),
+                ),
+              },
+              child: FaIcon(
+                FontAwesomeIcons.globe,
+                color: Colors.black,
+              ),
             ),
-            activeIcon: FaIcon(
-              FontAwesomeIcons.globe,
-              color: Colors.deepPurple
-            ),
+            activeIcon:
+                FaIcon(FontAwesomeIcons.globe, color: Colors.deepPurple),
             title: Text("World")),
         BubbleBottomBarItem(
             backgroundColor: Colors.indigo,
@@ -84,4 +104,3 @@ class _BottomBarState extends State<BottomBar> {
     );
   }
 }
-

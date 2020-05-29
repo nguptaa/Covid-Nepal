@@ -2,12 +2,10 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/home/homeView.dart';
 import 'UI/bottomBar.dart';
-// import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: true,
+        enabled: false,
         builder: (context) => MyApp(),
       ),
     );
@@ -30,17 +28,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
       home: Scaffold(
-        // appBar: AppBar(elevation: 0,),
-        body: LiquidPullToRefresh(
-          onRefresh: _onRefresh,
-          showChildOpacityTransition: false,
-          color: Color(0xFFC13939),
-          backgroundColor: Color(0xFFE0E0E0),
-          springAnimationDurationInMilliseconds: 100,
-          height: 50.0,
-          animSpeedFactor: 2,
-          child: HomeView(),),
-        // body: HomeView(),
+        body: HomeView(),
         bottomNavigationBar: BottomBar(),
       ),
     );

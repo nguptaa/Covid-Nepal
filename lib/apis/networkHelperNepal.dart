@@ -2,8 +2,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class NetworkHelperNepal {
-  NetworkHelperNepal(this.url);
+class NetworkHelper {
+  NetworkHelper(this.url);
 
   final String url;
 
