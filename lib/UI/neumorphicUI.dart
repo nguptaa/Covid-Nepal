@@ -16,7 +16,8 @@ class NeoMorphicUI extends StatelessWidget {
       @required this.leftM,
       @required this.topM,
       @required this.rightM,
-      @required this.bottomM});
+      @required this.bottomM,
+      this.lightSource});
 
   final double leftM;
   final double topM;
@@ -26,6 +27,7 @@ class NeoMorphicUI extends StatelessWidget {
   final String cardText;
   final String cardCount;
   final Color cardColor;
+  LightSource lightSource;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +56,8 @@ class NeoMorphicUI extends StatelessWidget {
           BorderRadius.circular(20),
         ),
         style: NeumorphicStyle(
-          lightSource: LightSource.bottomRight,
+          lightSource: lightSource,
           shape: NeumorphicShape.concave,
-          depth: 8,
           color: Color(0xFFE0E0E0),
         ),
       ),

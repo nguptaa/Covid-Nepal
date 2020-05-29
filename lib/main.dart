@@ -7,7 +7,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: false,
+        enabled: true,
         builder: (context) => MyApp(),
       ),
     );
@@ -30,16 +30,17 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
       home: Scaffold(
-        // body: LiquidPullToRefresh(
-        //   onRefresh: _onRefresh,
-        //   showChildOpacityTransition: false,
-        //   color: Color(0xFFC13939),
-        //   backgroundColor: Color(0xFFE0E0E0),
-        //   springAnimationDurationInMilliseconds: 100,
-        //   height: 75.0,
-        //   animSpeedFactor: 2,
-        //   child: HomeView2(),
-          body: HomeView(),
+        // appBar: AppBar(elevation: 0,),
+        body: LiquidPullToRefresh(
+          onRefresh: _onRefresh,
+          showChildOpacityTransition: false,
+          color: Color(0xFFC13939),
+          backgroundColor: Color(0xFFE0E0E0),
+          springAnimationDurationInMilliseconds: 100,
+          height: 50.0,
+          animSpeedFactor: 2,
+          child: HomeView(),),
+        // body: HomeView(),
         bottomNavigationBar: BottomBar(),
       ),
     );
