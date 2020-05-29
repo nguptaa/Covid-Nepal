@@ -15,6 +15,8 @@ class CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,25 +24,25 @@ class CardContent extends StatelessWidget {
         FaIcon(
           faIcon,
           color: cardColor,
-          size: MediaQuery.of(context).size.height * 0.035,
+          size: size.height * 0.035,
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.015,
+          height: size.height * 0.015,
         ),
         Text(
           cardText,
           style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * 0.015,
+            fontSize: size.height * 0.015,
             color: Color(0xFF303030),
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.01,
+          height: size.height * 0.01,
         ),
         Text(
           cardCount,
           style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * 0.03,
+            fontSize: size.height * 0.03,
             fontWeight: FontWeight.bold,
             color: cardColor,
           ),

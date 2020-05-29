@@ -1,7 +1,7 @@
+
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/home/homeView.dart';
-import 'UI/bottomBar.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -27,10 +27,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFFC13939),
         scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
-      home: Scaffold(
-        body: HomeView(),
-        bottomNavigationBar: BottomBar(),
-      ),
+      home: HomeView(),
     );
   }
 }

@@ -19,7 +19,7 @@ dependencies:
   http: ^0.12.1
   font_awesome_flutter: ^8.8.1
   flutter_svg: ^0.17.4
-  liquid_pull_to_refresh: ^2.0.0
+  country_icons: ^1.1.1
 
 dev_dependencies:
   flutter_test:

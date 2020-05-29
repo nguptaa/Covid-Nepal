@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:covid_nepal/services/getCovidNepal.dart';
-
 import 'cardContent.dart';
 
 class NeoMorphicUI extends StatelessWidget {
@@ -27,7 +26,7 @@ class NeoMorphicUI extends StatelessWidget {
   final String cardText;
   final String cardCount;
   final Color cardColor;
-  LightSource lightSource;
+  final LightSource lightSource;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class NeoMorphicUI extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(leftM, topM, rightM, bottomM),
       child: Neumorphic(
         child: FutureBuilder(
-          future: covidNepal.getCovidStats(),
+          future: covidNepal.getCovidNepalStats(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             return snapshot.hasData
                 ? CardContent(
