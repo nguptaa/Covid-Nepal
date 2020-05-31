@@ -40,8 +40,11 @@ class CardContent extends StatelessWidget {
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerRight,
-                    child: Image.network(
-                      snapshot.data[index].flag,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.network(
+                        snapshot.data[index].flag,
+                      ),
                     ),
                   ),
                 ),
