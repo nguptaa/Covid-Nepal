@@ -5,12 +5,12 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ContactsView extends StatefulWidget {
+class InfoView extends StatefulWidget {
   @override
-  _ContactsViewState createState() => _ContactsViewState();
+  _InfoViewState createState() => _InfoViewState();
 }
 
-class _ContactsViewState extends State<ContactsView> {
+class _InfoViewState extends State<InfoView> {
   final CovidWorld covidWorld = CovidWorld();
 
   @override
@@ -20,14 +20,14 @@ class _ContactsViewState extends State<ContactsView> {
     return Stack(
       children: <Widget>[
         Container(
-          height: size.height * 0.25,
+          height: size.height * 0.12,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30.0),
               bottomRight: Radius.circular(30.0),
             ),
-            color: Colors.green,
+            color: Color(0xFFC13939),
           ),
         ),
       ],
