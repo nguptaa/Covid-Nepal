@@ -19,47 +19,50 @@ class CardContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          AutoSizeText(
             (index + 1).toString() +
                 '. ' +
                 snapshot.data[index].title.toString(),
             style: TextStyle(
                 color: Colors.grey[800],
-                fontSize: size.longestSide * 0.03,
-                fontWeight: FontWeight.bold),
+                fontSize: size.longestSide* 0.03,
+                fontWeight: FontWeight.bold,),
           ),
           AutoSizeText(
             snapshot.data[index].source.toString(),
+            textAlign: TextAlign.start,
             style: TextStyle(
-              color: Colors.grey[800],
-              fontSize: size.longestSide * 0.03,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: 
-            Container(
-              alignment: AlignmentDirectional.center,
-              child: ClipRRect(
-    borderRadius: BorderRadius.circular(20.0),
-    child: Image.network(
-                snapshot.data[index].imageUrl,
-              ),
-          ),
-            ),),
-          AutoSizeText(
-            snapshot.data[index].summary.toString(),
-            style: TextStyle(
-              color: Colors.grey[800],
-              fontSize: size.longestSide * 0.03,
+              color: Colors.grey[600],
+              fontSize: size.longestSide * 0.02,
+              fontWeight: FontWeight.bold,
             ),
           ),
           AutoSizeText(
             DateFormat.yMMMMd()
                 .format(snapshot.data[index].dateCreated.toLocal()),
             style: TextStyle(
-              color: Colors.grey[800],
-              fontSize: size.longestSide * 0.02,
+              color: Colors.grey[600],
+              fontSize: size.longestSide * 0.015,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              alignment: AlignmentDirectional.center,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: Image.network(
+                  snapshot.data[index].imageUrl,
+                  height: size.longestSide * 0.20,
+                ),
+              ),
+            ),
+          ),
+          AutoSizeText(
+            snapshot.data[index].summary.toString(),
+            style: TextStyle(
+              color: Colors.grey[700],
+              fontSize: size.longestSide * 0.023,
             ),
           ),
         ],
