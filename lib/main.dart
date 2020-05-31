@@ -1,4 +1,4 @@
-
+import 'package:covid_nepal/views/info/components/faqs.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/home/homeView.dart';
@@ -23,7 +23,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       builder: DevicePreview.appBuilder,
-      theme: ThemeData.dark().copyWith(
+      routes: {
+        '/faqs': (context) => FAQs(),
+      },
+      theme: ThemeData.light().copyWith(
         primaryColor: Color(0xFFC13939),
         scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
