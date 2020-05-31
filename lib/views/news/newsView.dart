@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/services/getCovidWorld.dart';
+// import 'package:covid_nepal/views/news/UI/neumorphicUI.dart';
+
+import 'package:covid_nepal/services/getCovidNews.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class NewsView extends StatefulWidget {
   @override
@@ -10,25 +10,52 @@ class NewsView extends StatefulWidget {
 }
 
 class _NewsViewState extends State<NewsView> {
-  final CovidWorld covidWorld = CovidWorld();
+  final CovidNews covidNews = CovidNews();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    covidNews.getCovidNewsStats().then((value) => print(value));
     return Stack(
       children: <Widget>[
         Container(
-          height: size.height * 0.25,
+          height: size.height * 0.12,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30.0),
               bottomRight: Radius.circular(30.0),
             ),
-            color: Colors.blue,
+            color: Color(0xFFC13939),
           ),
         ),
+        // SafeArea(
+        //   child: Container(
+         //   // margin: EdgeInsets.all(15),
+        //     child: FutureBuilder(
+        //       future: covidNews.getCovidNewsStats(),
+        //       builder: (BuildContext context, AsyncSnapshot snapshot) {
+        //         return snapshot.hasData
+        //             ? ListView.builder(
+        //                 padding: EdgeInsets.all(30),
+        //                 itemCount: snapshot.data.length,
+        //                 itemBuilder: (context, index) {
+        //                   return NeumorphicUI(
+        //                     snapshot: snapshot,
+        //                     index: index,
+        //                   );
+        //                 },
+        //               )
+        //             : Center(
+        //                 child: CircularProgressIndicator(
+        //                   valueColor:
+        //                       AlwaysStoppedAnimation<Color>(Color(0xFFC13939)),
+        //                 ),
+        //               );
+        //       },
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

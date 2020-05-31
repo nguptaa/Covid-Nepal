@@ -1,7 +1,6 @@
 import 'package:covid_nepal/views/world/UI/neumorphicUI.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidWorld.dart';
-// import 'package:covid_nepal/UI/neumorphicUI.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class WorldView extends StatefulWidget {

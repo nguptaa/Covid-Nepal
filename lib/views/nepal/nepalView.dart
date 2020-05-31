@@ -103,10 +103,10 @@ class _NepalViewState extends State<NepalView> {
                     children: <Widget>[
                       Expanded(
                         child: NeoMorphicUI(
-                          cardIcon: FontAwesomeIcons.history,
-                          cardText: 'RECOVERED',
-                          cardCount: 'extra1',
-                          cardColor: Colors.green[900],
+                          cardIcon: FontAwesomeIcons.heartbeat,
+                          cardText: 'DEATHS',
+                          cardCount: 'deaths',
+                          cardColor: Colors.red[900],
                           leftM: 30,
                           topM: 10,
                           rightM: 10,
@@ -116,10 +116,10 @@ class _NepalViewState extends State<NepalView> {
                       ),
                       Expanded(
                         child: NeoMorphicUI(
-                          cardIcon: FontAwesomeIcons.heartbeat,
-                          cardText: 'DEATHS',
-                          cardCount: 'deaths',
-                          cardColor: Colors.red[900],
+                          cardIcon: FontAwesomeIcons.history,
+                          cardText: 'RECOVERED',
+                          cardCount: 'extra1',
+                          cardColor: Colors.green[900],
                           leftM: 10,
                           topM: 10,
                           rightM: 30,

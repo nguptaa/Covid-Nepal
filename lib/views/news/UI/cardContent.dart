@@ -1,53 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:covid_nepal/utils/appConstants.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class CardContent extends StatelessWidget {
-  CardContent(
-      {@required this.faIcon,
-      @required this.cardText,
-      @required this.cardCount,
-      @required this.cardColor});
-  final IconData faIcon;
-  final String cardText;
-  final String cardCount;
-  final Color cardColor;
+  const CardContent({
+    @required this.snapshot,
+    @required this.index,
+  });
+
+  final AsyncSnapshot snapshot;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
+    // Size size = MediaQuery.of(context).size;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        FaIcon(
-          faIcon,
-          color: cardColor,
-          size: size.height * 0.035,
+        CovidStatsText(
+          title: '',
+          snapshotData: snapshot.data[index].title.toString(),
         ),
-        SizedBox(
-          height: size.height * 0.015,
+        CovidStatsText(
+          title: '',
+          snapshotData: snapshot.data[index].source.toString(),
         ),
-        Text(
-          cardText,
-          style: TextStyle(
-            fontSize: size.height * 0.015,
-            color: Color(0xFF303030),
-          ),
+        // CovidStatsText(
+        //   title: '',
+        //   snapshotData: snapshot.data[index].imageUrl.toString(),
+        // ),
+        CovidStatsText(
+          title: '',
+          snapshotData: snapshot.data[index].summary.toString(),
         ),
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        Text(
-          cardCount,
-          style: TextStyle(
-            fontSize: size.height * 0.03,
-            fontWeight: FontWeight.bold,
-            color: cardColor,
-          ),
+        CovidStatsText(
+          title: 'Date: ',
+          snapshotData: snapshot.data[index].dateCreated.toString(),
         ),
       ],
+    );
+  }
+}
+
+class CovidStatsText extends StatelessWidget {
+  const CovidStatsText({
+    Key key,
+    @required this.snapshotData,
+    @required this.title,
+  });
+
+  final String snapshotData;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: AutoSizeText(
+        title + snapshotData,
+        minFontSize: 5,
+        maxFontSize: 35,
+        style: TextStyle(
+          fontSize: 35,
+          color: Colors.grey[700],
+        ),
+      ),
     );
   }
 }

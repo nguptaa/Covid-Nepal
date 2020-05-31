@@ -3,33 +3,39 @@ import 'package:covid_nepal/apis/networkHelperNepal.dart';
 class CovidWorld {
   Future<List<CovidWorldStat>> getCovidWorldStats() async {
     NetworkHelper networkHelper =
-        NetworkHelper('https://api.coronatracker.com/v2/analytics/country');
+        NetworkHelper('https://nepalcorona.info/api/v1/data/world');
 
     var covidData = await networkHelper.getData();
     // return covidData;
     List<CovidWorldStat> covidWorldStats = [];
     for (var i in covidData) {
-      CovidWorldStat covidWorldStat = CovidWorldStat(
-          i['countryCode'],
-          i['countryName'],
-          i['confirmed'],
-          i['deaths'],
-          i['recovered'],
-          i['dateAsOf']);
+      if (i['countryInfo'] != null) {
+        CovidWorldStat covidWorldStat = CovidWorldStat(
+          i['country'],
+          i['totalCases'],
+          i['activeCases'],
+          i['totalDeaths'],
+          i['totalRecovered'],
+          i['countryInfo']['flag'],
+          i['updated'],
+        );
 
-      covidWorldStats.add(covidWorldStat);
+        covidWorldStats.add(covidWorldStat);
+      }
     }
     return covidWorldStats;
   }
 }
 
 class CovidWorldStat {
-  final String countryCode;
-  final String countryName;
-  final int confirmed;
-  final int deaths;
-  final int recovered;
-  final String dateAsOf;
-  CovidWorldStat(this.countryCode, this.countryName, this.confirmed,
-      this.deaths, this.recovered, this.dateAsOf);
+  final String country;
+  final int totCases;
+  final int activeCases;
+  final int totDeaths;
+  final int totRecovered;
+  final String flag;
+  final String updated;
+
+  CovidWorldStat(this.country, this.totCases, this.activeCases, this.totDeaths,
+      this.totRecovered, this.flag, this.updated);
 }
