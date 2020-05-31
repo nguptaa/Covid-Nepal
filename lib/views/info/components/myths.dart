@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidMyths.dart';
+import 'package:intl/intl.dart';
 
 class Myths extends StatefulWidget {
   @override
@@ -64,8 +65,11 @@ class _MythsState extends State<Myths> {
                                 padding: EdgeInsets.all(15),
                                 child: Text(
                                   snapshot.data[index].realityNp
-                                      .replaceAll("\n", "")
-                                      .replaceAll(RegExp(' {2,}'), ' '),
+                                          .replaceAll("\n", "")
+                                          .replaceAll(RegExp(' {2,}'), ' ') +
+                                      '\n\nSource: ' +
+                                      toBeginningOfSentenceCase(
+                                          snapshot.data[index].sourceName),
                                   style: TextStyle(
                                     color: Colors.grey[600],
                                   ),

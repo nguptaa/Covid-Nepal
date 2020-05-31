@@ -15,8 +15,14 @@ class _InfoViewState extends State<InfoView> {
     return ListView(
       children: <Widget>[
         InfoCardList(
+          routeName: '/hospitalsNep',
+          iconName: FontAwesomeIcons.hospital,
+          cardTitle: "Hospitals in Nepal",
+          cardSubtitle: "Hospital details all over Nepal",
+        ),
+        InfoCardList(
           routeName: '/faqs',
-          iconName: FontAwesomeIcons.viruses,
+          iconName: FontAwesomeIcons.virus,
           cardTitle: "Corona FAQs",
           cardSubtitle: "Frequently Asked Questions on Corona",
         ),
@@ -26,12 +32,6 @@ class _InfoViewState extends State<InfoView> {
           cardTitle: "Corona Myths",
           cardSubtitle: "Myths about Corona",
         ),
-        // InfoCardList(
-        //   routeName: '/faqs',
-        //   iconName: FontAwesomeIcons.viruses,
-        //   cardTitle: "Corona FAQs",
-        //   cardSubtitle: "Frequently Asked Questions on corona",
-        // ),
       ],
     );
   }

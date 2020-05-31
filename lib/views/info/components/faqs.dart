@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
+import 'package:intl/intl.dart';
 
 class FAQs extends StatefulWidget {
   @override
@@ -64,8 +65,10 @@ class _FAQsState extends State<FAQs> {
                                 padding: EdgeInsets.all(15),
                                 child: Text(
                                   snapshot.data[index].answerEn
-                                      .replaceAll("\n", " ")
-                                      .replaceAll(RegExp(' {2,}'), ' '),
+                                          .replaceAll("\n", " ")
+                                          .replaceAll(RegExp(' {2,}'), ' ') +
+                                      '\n\nTag: ' +
+                                      toBeginningOfSentenceCase(snapshot.data[index].questionTag),
                                   style: TextStyle(
                                     color: Colors.grey[600],
                                   ),

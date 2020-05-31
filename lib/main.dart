@@ -1,4 +1,5 @@
 import 'package:covid_nepal/views/info/components/faqs.dart';
+import 'package:covid_nepal/views/info/components/hospitalsNep.dart';
 import 'package:covid_nepal/views/info/components/myths.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/faqs': (context) => FAQs(),
         '/myths': (context) => Myths(),
-        // '/hospitalsNep': (context) => (),
+        '/hospitalsNep': (context) => HospitalsNep(),
 
       },
       theme: ThemeData.light().copyWith(
