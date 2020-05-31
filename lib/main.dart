@@ -1,4 +1,5 @@
 import 'package:covid_nepal/views/info/components/faqs.dart';
+import 'package:covid_nepal/views/info/components/myths.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/home/homeView.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       routes: {
         '/faqs': (context) => FAQs(),
+        '/myths': (context) => Myths(),
+        // '/hospitalsNep': (context) => (),
+
       },
       theme: ThemeData.light().copyWith(
         primaryColor: Color(0xFFC13939),

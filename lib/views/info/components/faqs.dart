@@ -35,36 +35,44 @@ class _FAQsState extends State<FAQs> {
                         elevation: 8.0,
                         margin: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
-                        child: ExpansionTile(
-                          leading: CircleAvatar(
-                              backgroundColor: Color(0xFFC13939),
-                              child: Center(
-                                child: Text(
-                                  (index + 1).toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              )),
-                          title: Text(
-                            snapshot.data[index].questionEn,
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                            ),
+                        child: Theme(
+                          data: ThemeData(
+                            unselectedWidgetColor: Color(0xFFC13939),
+                            accentColor: Colors.grey[800],
                           ),
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(15),
-                              child: Text(
-                                snapshot.data[index].answerEn
-                                    .replaceAll("\n", ""),
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey[600],
-                                ),
+                          child: ExpansionTile(
+                            leading: CircleAvatar(
+                                backgroundColor: Color(0xFFC13939),
+                                child: Center(
+                                  child: Text(
+                                    (index + 1).toString(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )),
+                            title: Text(
+                              snapshot.data[index].questionEn
+                                  .replaceAll("\n", " ")
+                                  .replaceAll(RegExp(' {2,}'), ' '),
+                              style: TextStyle(
+                                color: Colors.grey[800],
                               ),
                             ),
-                          ],
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.all(15),
+                                child: Text(
+                                  snapshot.data[index].answerEn
+                                      .replaceAll("\n", " ")
+                                      .replaceAll(RegExp(' {2,}'), ' '),
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

@@ -18,8 +18,20 @@ class _InfoViewState extends State<InfoView> {
           routeName: '/faqs',
           iconName: FontAwesomeIcons.viruses,
           cardTitle: "Corona FAQs",
-          cardSubtitle: "Frequently Asked Questions on corona",
+          cardSubtitle: "Frequently Asked Questions on Corona",
         ),
+        InfoCardList(
+          routeName: '/myths',
+          iconName: FontAwesomeIcons.timesCircle,
+          cardTitle: "Corona Myths",
+          cardSubtitle: "Myths about Corona",
+        ),
+        // InfoCardList(
+        //   routeName: '/faqs',
+        //   iconName: FontAwesomeIcons.viruses,
+        //   cardTitle: "Corona FAQs",
+        //   cardSubtitle: "Frequently Asked Questions on corona",
+        // ),
       ],
     );
   }
