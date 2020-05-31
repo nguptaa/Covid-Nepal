@@ -1,4 +1,4 @@
-import 'package:covid_nepal/views/contacts/contactsView.dart';
+import 'package:covid_nepal/views/info/infoView.dart';
 import 'package:covid_nepal/views/nepal/nepalView.dart';
 import 'package:covid_nepal/views/news/newsView.dart';
 import 'package:covid_nepal/views/world/worldView.dart';
@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
     NepalView(),
     WorldView(),
     NewsView(),
-    ContactsView()
+    InfoView()
   ];
 
   @override
@@ -42,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
         opacity: .3,
         currentIndex: currentIndex,
         onTap: changePage,
-        iconSize: size.height * 0.035,
+        iconSize: size.height * 0.03,
         borderRadius: BorderRadius.vertical(
             top: Radius.circular(
                 18)), //border radius doesn't work when the notch is enabled.
@@ -51,11 +51,11 @@ class _HomeViewState extends State<HomeView> {
           BubbleBottomBarItem(
               backgroundColor: Color(0xFFC13939),
               icon: FaIcon(
-                FontAwesomeIcons.th,
+                FontAwesomeIcons.thLarge,
                 color: Colors.black,
               ),
               activeIcon: FaIcon(
-                FontAwesomeIcons.th,
+                FontAwesomeIcons.thLarge,
                 color: Color(0xFFC13939),
               ),
               title: Text("Nepal")),
@@ -84,14 +84,14 @@ class _HomeViewState extends State<HomeView> {
           BubbleBottomBarItem(
               backgroundColor: Color(0xFFC13939),
               icon: FaIcon(
-                FontAwesomeIcons.phone,
+                FontAwesomeIcons.infoCircle,
                 color: Colors.black,
               ),
               activeIcon: FaIcon(
-                FontAwesomeIcons.phone,
+                FontAwesomeIcons.infoCircle,
                 color: Color(0xFFC13939),
               ),
-              title: Text("Contacts"))
+              title: Text("Info"))
         ],
       ),
     );
