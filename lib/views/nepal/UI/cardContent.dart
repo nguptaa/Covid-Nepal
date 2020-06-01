@@ -31,7 +31,7 @@ class CardContent extends StatelessWidget {
           cardText,
           style: TextStyle(
             fontSize: size.height * 0.015,
-            color: Color(0xFF303030),
+            // color: Color(0xFF303030),
           ),
         ),
         SizedBox(

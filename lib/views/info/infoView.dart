@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InfoView extends StatefulWidget {
@@ -10,28 +11,49 @@ class _InfoViewState extends State<InfoView> {
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
-
-    return ListView(
-      children: <Widget>[
-        InfoCardList(
-          routeName: '/hospitalsNep',
-          iconName: FontAwesomeIcons.hospital,
-          cardTitle: "Hospitals in Nepal",
-          cardSubtitle: "Hospitals details all over Nepal",
-        ),
-        InfoCardList(
-          routeName: '/faqs',
-          iconName: FontAwesomeIcons.virus,
-          cardTitle: "Corona FAQs",
-          cardSubtitle: "Frequently Asked Questions on Corona",
-        ),
-        InfoCardList(
-          routeName: '/myths',
-          iconName: FontAwesomeIcons.timesCircle,
-          cardTitle: "Corona Myths",
-          cardSubtitle: "Myths about Corona",
-        ),
-      ],
+    return SafeArea(
+      child: ListView(
+        children: <Widget>[
+          InfoCardList(
+            routeName: '/hospitalsNep',
+            iconName: FontAwesomeIcons.hospitalSymbol,
+            cardTitle: "Hospitals in Nepal",
+            cardSubtitle: "Hospitals details all over Nepal",
+          ),
+          InfoCardList(
+            routeName: '/faqs',
+            iconName: FontAwesomeIcons.virus,
+            cardTitle: "Corona FAQs",
+            cardSubtitle: "Frequently Asked Questions on Corona",
+          ),
+          InfoCardList(
+            routeName: '/myths',
+            iconName: FontAwesomeIcons.timesCircle,
+            cardTitle: "Corona Myths",
+            cardSubtitle: "Myths about Corona",
+          ),
+          Card(
+            elevation: 0,
+            color: Colors.transparent,
+            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Text(
+              'Made with ❤️ in Nepal',
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
+      ),
+      // Expanded(
+      //   child: Container(
+      //     child: SvgPicture.asset(
+      //       'assets/images/socialDis.svg',
+      //       height: size.height * 0.35,
+      //     ),
+      //   ),
+      // ),
+      // Expanded(
+      //   child: Text('Made with ❤️ in Nepal By Nikhil Gupta'),
+      // ),
     );
   }
 }
@@ -53,7 +75,7 @@ class InfoCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 8.0,
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 6.0),
+      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: ListTile(
         onTap: () {
           Navigator.pushNamed(context, routeName);
@@ -61,9 +83,10 @@ class InfoCardList extends StatelessWidget {
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(
           padding: EdgeInsets.only(right: 12.0),
-          decoration: new BoxDecoration(
-            border: new Border(
-              right: new BorderSide(
+          decoration: BoxDecoration(
+            // color: ,
+            border: Border(
+              right: BorderSide(
                 width: 1.0,
               ),
             ),
@@ -71,6 +94,7 @@ class InfoCardList extends StatelessWidget {
           child: FaIcon(
             iconName,
             size: 35,
+            color: Colors.red[600],
           ),
         ),
         title: Text(cardTitle),

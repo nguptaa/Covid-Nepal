@@ -29,13 +29,30 @@ class _HomeViewState extends State<HomeView> {
     NepalView(),
     WorldView(),
     NewsView(),
-    InfoView()
+    InfoView(),
+  ];
+
+  final List<String> _tabs = [
+    "Covid Nepal",
+    "Covid World",
+    "Covid News Nepal",
+    "Covid Info"
   ];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_tabs[currentIndex]),
+        elevation: 0,
+        shape: currentIndex != 0 ? RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30.0),
+            bottomRight: Radius.circular(30.0),
+          ),
+        ): null,
+      ),
       body: _views[currentIndex],
       bottomNavigationBar: BubbleBottomBar(
         // hasNotch: true,
@@ -49,47 +66,47 @@ class _HomeViewState extends State<HomeView> {
         elevation: 8,
         items: <BubbleBottomBarItem>[
           BubbleBottomBarItem(
-              backgroundColor: Color(0xFFC13939),
+              backgroundColor: Colors.red[600],
               icon: FaIcon(
                 FontAwesomeIcons.thLarge,
                 color: Colors.black,
               ),
               activeIcon: FaIcon(
                 FontAwesomeIcons.thLarge,
-                color: Color(0xFFC13939),
+                color: Colors.red[600],
               ),
               title: Text("Nepal")),
           BubbleBottomBarItem(
-              backgroundColor: Color(0xFFC13939),
+              backgroundColor: Colors.red[600],
               icon: FaIcon(
                 FontAwesomeIcons.globe,
                 color: Colors.black,
               ),
               activeIcon: FaIcon(
                 FontAwesomeIcons.globe,
-                color: Color(0xFFC13939),
+                color: Colors.red[600],
               ),
               title: Text("World")),
           BubbleBottomBarItem(
-              backgroundColor: Color(0xFFC13939),
+              backgroundColor: Colors.red[600],
               icon: FaIcon(
                 FontAwesomeIcons.newspaper,
                 color: Colors.black,
               ),
               activeIcon: FaIcon(
                 FontAwesomeIcons.newspaper,
-                color: Color(0xFFC13939),
+                color: Colors.red[600],
               ),
               title: Text("News")),
           BubbleBottomBarItem(
-              backgroundColor: Color(0xFFC13939),
+              backgroundColor: Colors.red[600],
               icon: FaIcon(
                 FontAwesomeIcons.infoCircle,
                 color: Colors.black,
               ),
               activeIcon: FaIcon(
                 FontAwesomeIcons.infoCircle,
-                color: Color(0xFFC13939),
+                color: Colors.red[600],
               ),
               title: Text("Info"))
         ],

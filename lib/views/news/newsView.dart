@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/views/news/UI/neumorphicUI.dart';
+import 'package:covid_nepal/views/news/UI/cardUI.dart';
 import 'package:covid_nepal/services/getCovidNews.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class NewsView extends StatefulWidget {
   @override
@@ -13,54 +12,38 @@ class _NewsViewState extends State<NewsView> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    // covidNews.getCovidNewsStats().then((value) => print(value));
-    return Stack(
-      children: <Widget>[
-        Container(
-          height: size.height * 0.12,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.0),
-              bottomRight: Radius.circular(30.0),
-            ),
-            color: Color(0xFFC13939),
-          ),
-        ),
-        SafeArea(
-          child: Container(
-            child: FutureBuilder(
-              future: covidNews.getCovidNewsStats(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                return snapshot.hasData
-                    ? ListView.builder(
-                        padding: EdgeInsets.all(20),
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 10,
-                            ),
-                            child: NeumorphicUI(
-                              snapshot: snapshot,
-                              index: index,
-                            ),
-                          );
-                        },
-                      )
-                    : Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Color(0xFFC13939)),
+    // Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Container(
+        child: FutureBuilder(
+          future: covidNews.getCovidNewsStats(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return snapshot.hasData
+                ? ListView.builder(
+                    padding: EdgeInsets.all(20),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5,
+                          horizontal: 5,
+                        ),
+                        child: CardUI(
+                          snapshot: snapshot,
+                          index: index,
                         ),
                       );
-              },
-            ),
-          ),
+                    },
+                  )
+                : Center(
+                    child: CircularProgressIndicator(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(Colors.red[600]),
+                    ),
+                  );
+          },
         ),
-      ],
+      ),
     );
   }
 }

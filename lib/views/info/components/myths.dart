@@ -36,37 +36,28 @@ class _MythsState extends State<Myths> {
                         elevation: 5.0,
                         margin: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
-                        child: Theme(
-                          data: ThemeData(
-                            unselectedWidgetColor: Color(0xFFC13939),
-                            accentColor: Colors.grey[800],
-                          ),
-                          child: ExpansionTile(
-                            leading: CircleAvatar(
-                                backgroundColor: Color(0xFFC13939),
-                                child: Center(
-                                  child: Text(
-                                    (index + 1).toString(),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
+                        child: ExpansionTile(
+                          leading: CircleAvatar(
+                              backgroundColor: Colors.red[600],
+                              child: Center(
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
                                   ),
-                                )),
-                            title: Text(
-                              snapshot.data[index].mythNp
-                                  .replaceAll("\n", " ")
-                                  .replaceAll(RegExp(' {2,}'), ' '),
-                              style: TextStyle(
-                                color: Colors.grey[900],
-                              ),
-                            ),
-                            children: <Widget>[
-                              MythsCardChildren(
-                                snapshotData: snapshot,
-                                index: index,
-                              ),
-                            ],
+                                ),
+                              )),
+                          title: Text(
+                            snapshot.data[index].mythNp
+                                .replaceAll("\n", " ")
+                                .replaceAll(RegExp(' {2,}'), ' '),
                           ),
+                          children: <Widget>[
+                            MythsCardChildren(
+                              snapshotData: snapshot,
+                              index: index,
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -74,7 +65,7 @@ class _MythsState extends State<Myths> {
                 : Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
+                        Colors.red[600],
                       ),
                     ),
                   );
@@ -101,16 +92,10 @@ class MythsCardChildren extends StatelessWidget {
             snapshotData.data[index].realityNp
                 .replaceAll("\n", "")
                 .replaceAll(RegExp(' {2,}'), ' '),
-            style: TextStyle(
-              color: Colors.grey[600],
-            ),
           ),
           Text(
             '\nSource: ' +
                 toBeginningOfSentenceCase(snapshotData.data[index].sourceName),
-            style: TextStyle(
-              color: Colors.grey[900],
-            ),
           ),
         ],
       ),

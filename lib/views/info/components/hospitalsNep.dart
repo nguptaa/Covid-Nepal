@@ -38,12 +38,12 @@ class _HospitalsNepState extends State<HospitalsNep> {
                             horizontal: 20.0, vertical: 8.0),
                         child: Theme(
                           data: ThemeData(
-                            unselectedWidgetColor: Color(0xFFC13939),
+                            unselectedWidgetColor: Colors.red[600],
                             accentColor: Colors.grey[800],
                           ),
                           child: ExpansionTile(
                             leading: CircleAvatar(
-                                backgroundColor: Color(0xFFC13939),
+                                backgroundColor: Colors.red[600],
                                 child: Center(
                                   child: Text(
                                     (index + 1).toString(),

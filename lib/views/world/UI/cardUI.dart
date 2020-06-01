@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'cardContent.dart';
 
-class NeumorphicUI extends StatelessWidget {
-  NeumorphicUI({
+class CardUI extends StatelessWidget {
+  CardUI({
     @required this.snapshot,
     @required this.index,
   });
