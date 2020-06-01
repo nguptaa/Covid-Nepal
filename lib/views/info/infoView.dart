@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InfoView extends StatefulWidget {
@@ -18,7 +17,7 @@ class _InfoViewState extends State<InfoView> {
           routeName: '/hospitalsNep',
           iconName: FontAwesomeIcons.hospital,
           cardTitle: "Hospitals in Nepal",
-          cardSubtitle: "Hospital details all over Nepal",
+          cardSubtitle: "Hospitals details all over Nepal",
         ),
         InfoCardList(
           routeName: '/faqs',

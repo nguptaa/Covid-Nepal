@@ -9,19 +9,67 @@ class HospitalsNp {
     // return covidData;
     List<HospitalsNpStat> hospitalsNpStats = [];
     for (var i in covidData['data']) {
-        HospitalsNpStat hospitalsNpStat = HospitalsNpStat(
-          i['name'],
-        );
+      HospitalsNpStat hospitalsNpStat = HospitalsNpStat(
+        i['is_full'],
+        i['government_approved'],
+        i['name'],
+        i['contact_person'],
+        i['contact_person_number'],
+        i['address'],
+        i['phone'],
+        i['website'],
+        i['email'],
+        i['notes'],
+        i['state'],
+        i['capacity']['beds'],
+        i['capacity']['ventilators'],
+        i['capacity']['isolation_beds'],
+        i['capacity']['occupied_beds'],
+        i['capacity']['doctors'],
+        i['capacity']['nurses'],
+      );
 
-        hospitalsNpStats.add(hospitalsNpStat);
+      hospitalsNpStats.add(hospitalsNpStat);
     }
     return hospitalsNpStats;
   }
 }
 
 class HospitalsNpStat {
+  final bool isFull;
+  final bool isGovtApproved;
   final String name;
+  final String contactP;
+  final String contactPN;
+  final String address;
+  final String phone;
+  final String website;
+  final String email;
+  final String notes;
+  final String state;
+  final String beds;
+  final String ventilators;
+  final String isoBeds;
+  final String occuBeds;
+  final String doctors;
+  final String nurses;
 
-
-  HospitalsNpStat(this.name);
+  HospitalsNpStat(
+      this.isFull,
+      this.isGovtApproved,
+      this.name,
+      this.contactP,
+      this.contactPN,
+      this.address,
+      this.phone,
+      this.website,
+      this.email,
+      this.notes,
+      this.state,
+      this.beds,
+      this.ventilators,
+      this.isoBeds,
+      this.occuBeds,
+      this.doctors,
+      this.nurses);
 }

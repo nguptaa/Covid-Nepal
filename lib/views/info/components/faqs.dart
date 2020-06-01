@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 class FAQs extends StatefulWidget {
@@ -33,7 +34,7 @@ class _FAQsState extends State<FAQs> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        elevation: 8.0,
+                        elevation: 5.0,
                         margin: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
                         child: Theme(
@@ -57,22 +58,13 @@ class _FAQsState extends State<FAQs> {
                                   .replaceAll("\n", " ")
                                   .replaceAll(RegExp(' {2,}'), ' '),
                               style: TextStyle(
-                                color: Colors.grey[800],
+                                color: Colors.grey[900],
                               ),
                             ),
                             children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Text(
-                                  snapshot.data[index].answerEn
-                                          .replaceAll("\n", " ")
-                                          .replaceAll(RegExp(' {2,}'), ' ') +
-                                      '\n\nTag: ' +
-                                      toBeginningOfSentenceCase(snapshot.data[index].questionTag),
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
+                              FAQsCardChildren(
+                                snapshotData: snapshot,
+                                index: index,
                               ),
                             ],
                           ),
@@ -89,6 +81,39 @@ class _FAQsState extends State<FAQs> {
                   );
           },
         ),
+      ),
+    );
+  }
+}
+
+class FAQsCardChildren extends StatelessWidget {
+  FAQsCardChildren({@required this.snapshotData, @required this.index});
+  final AsyncSnapshot snapshotData;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            snapshotData.data[index].answerEn
+                .replaceAll("\n", " ")
+                .replaceAll(RegExp(' {2,}'), ' '),
+            style: TextStyle(
+              color: Colors.grey[600],
+            ),
+          ),
+          Text(
+            '\nCategory: ' +
+                toBeginningOfSentenceCase(snapshotData.data[index].questionTag),
+            style: TextStyle(
+              color: Colors.grey[900],
+            ),
+          ),
+        ],
       ),
     );
   }

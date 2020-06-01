@@ -33,7 +33,7 @@ class _MythsState extends State<Myths> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        elevation: 8.0,
+                        elevation: 5.0,
                         margin: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
                         child: Theme(
@@ -57,23 +57,13 @@ class _MythsState extends State<Myths> {
                                   .replaceAll("\n", " ")
                                   .replaceAll(RegExp(' {2,}'), ' '),
                               style: TextStyle(
-                                color: Colors.grey[800],
+                                color: Colors.grey[900],
                               ),
                             ),
                             children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Text(
-                                  snapshot.data[index].realityNp
-                                          .replaceAll("\n", "")
-                                          .replaceAll(RegExp(' {2,}'), ' ') +
-                                      '\n\nSource: ' +
-                                      toBeginningOfSentenceCase(
-                                          snapshot.data[index].sourceName),
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
+                              MythsCardChildren(
+                                snapshotData: snapshot,
+                                index: index,
                               ),
                             ],
                           ),
@@ -90,6 +80,39 @@ class _MythsState extends State<Myths> {
                   );
           },
         ),
+      ),
+    );
+  }
+}
+
+class MythsCardChildren extends StatelessWidget {
+  MythsCardChildren({@required this.snapshotData, @required this.index});
+  final AsyncSnapshot snapshotData;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            snapshotData.data[index].realityNp
+                .replaceAll("\n", "")
+                .replaceAll(RegExp(' {2,}'), ' '),
+            style: TextStyle(
+              color: Colors.grey[600],
+            ),
+          ),
+          Text(
+            '\nSource: ' +
+                toBeginningOfSentenceCase(snapshotData.data[index].sourceName),
+            style: TextStyle(
+              color: Colors.grey[900],
+            ),
+          ),
+        ],
       ),
     );
   }

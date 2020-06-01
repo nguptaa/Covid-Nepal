@@ -31,7 +31,7 @@ class CardContent extends StatelessWidget {
                     minFontSize: 5,
                     maxFontSize: 40,
                     style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ),
@@ -113,7 +113,7 @@ class CovidStatsText extends StatelessWidget {
         maxFontSize: 35,
         style: TextStyle(
           fontSize: 35,
-          color: Colors.grey[700],
+          // color: Colors.grey[700],
         ),
       ),
     );

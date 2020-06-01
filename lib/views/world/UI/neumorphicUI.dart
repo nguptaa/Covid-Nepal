@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'cardContent.dart';
 
 class NeumorphicUI extends StatelessWidget {
-  NeumorphicUI(
-      {@required this.snapshot,
-      @required this.index,});
+  NeumorphicUI({
+    @required this.snapshot,
+    @required this.index,
+  });
 
   final AsyncSnapshot snapshot;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Neumorphic(
-      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
-      style: NeumorphicStyle(
-        shape: NeumorphicShape.concave,
-        color: Color(0xFFE0E0E0),
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
       ),
       child: CardContent(
         snapshot: snapshot,

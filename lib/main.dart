@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
         '/hospitalsNep': (context) => HospitalsNep(),
 
       },
-      theme: ThemeData.light().copyWith(
+      theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFFC13939),
-        scaffoldBackgroundColor: Color(0xFFE0E0E0),
+        // scaffoldBackgroundColor: Color(0xFFE0E0E0),
       ),
       home: HomeView(),
     );
