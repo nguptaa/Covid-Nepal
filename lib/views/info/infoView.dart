@@ -10,7 +10,7 @@ class InfoView extends StatefulWidget {
 class _InfoViewState extends State<InfoView> {
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: ListView(
         children: <Widget>[
@@ -36,24 +36,22 @@ class _InfoViewState extends State<InfoView> {
             elevation: 0,
             color: Colors.transparent,
             margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: SvgPicture.asset(
+              'assets/images/socialDis.svg',
+              height: size.height * 0.35,
+            ),
+          ),
+          Card(
+            elevation: 0,
+            color: Colors.transparent,
+            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: Text(
               'Made with ❤️ in Nepal',
               textAlign: TextAlign.center,
             ),
-          )
+          ),
         ],
       ),
-      // Expanded(
-      //   child: Container(
-      //     child: SvgPicture.asset(
-      //       'assets/images/socialDis.svg',
-      //       height: size.height * 0.35,
-      //     ),
-      //   ),
-      // ),
-      // Expanded(
-      //   child: Text('Made with ❤️ in Nepal By Nikhil Gupta'),
-      // ),
     );
   }
 }
