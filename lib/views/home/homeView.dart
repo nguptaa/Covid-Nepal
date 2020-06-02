@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
   final List<String> _tabs = [
     "Covid Nepal",
     "Covid World",
-    "Covid News Nepal",
+    "Covid News",
     "Covid Info"
   ];
 
@@ -44,14 +44,21 @@ class _HomeViewState extends State<HomeView> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(_tabs[currentIndex]),
-        elevation: 0,
-        shape: currentIndex != 0 ? RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30.0),
-            bottomRight: Radius.circular(30.0),
+        title: Text(
+          _tabs[currentIndex],
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-        ): null,
+        ),
+        elevation: 0,
+        shape: currentIndex != 0
+            ? RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.0),
+                  bottomRight: Radius.circular(30.0),
+                ),
+              )
+            : null,
       ),
       body: _views[currentIndex],
       bottomNavigationBar: BubbleBottomBar(

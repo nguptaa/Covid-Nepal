@@ -39,6 +39,13 @@ class _InfoViewState extends State<InfoView> {
             child: SvgPicture.asset(
               'assets/images/socialDis.svg',
               height: size.height * 0.35,
+              placeholderBuilder: (BuildContext context) => Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.red[600],
+                  ),
+                ),
+              ),
             ),
           ),
           Card(

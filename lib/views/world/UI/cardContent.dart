@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -13,6 +14,15 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final cachedFlag = CachedNetworkImage(
+      imageUrl: snapshot.data[index].flag,
+      placeholder: (context, url) => CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(
+          Colors.red[600],
+        ),
+      ),
+      errorWidget: (context, url, error) => Icon(Icons.error),
+    );
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
@@ -28,7 +38,6 @@ class CardContent extends StatelessWidget {
                     minFontSize: 5,
                     maxFontSize: 40,
                     style: TextStyle(
-                      // color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ),
@@ -39,9 +48,7 @@ class CardContent extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
-                      child: Image.network(
-                        snapshot.data[index].flag,
-                      ),
+                      child: cachedFlag,
                     ),
                   ),
                 ),
@@ -110,7 +117,6 @@ class CovidStatsText extends StatelessWidget {
         maxFontSize: 35,
         style: TextStyle(
           fontSize: 35,
-          // color: Colors.grey[700],
         ),
       ),
     );

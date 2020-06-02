@@ -90,8 +90,9 @@ class HospitalsNepCardChildren extends StatelessWidget {
           children: <Widget>[
             Text(
               'Notice: ' +
-                  snapshotData.data[index].notes +
-                  '.' +
+                  (snapshotData.data[index].notes.length != 0
+                      ? snapshotData.data[index].notes + '.'
+                      : '') +
                   '\nContact Person: ' +
                   snapshotData.data[index].contactP +
                   '\nNumber: ' +

@@ -20,18 +20,11 @@ class _NewsViewState extends State<NewsView> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             return snapshot.hasData
                 ? ListView.builder(
-                    padding: EdgeInsets.all(20),
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 5,
-                        ),
-                        child: CardUI(
-                          snapshot: snapshot,
-                          index: index,
-                        ),
+                      return CardUI(
+                        snapshot: snapshot,
+                        index: index,
                       );
                     },
                   )
