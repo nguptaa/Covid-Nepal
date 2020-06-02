@@ -3,7 +3,7 @@ import 'package:covid_nepal/apis/networkHelperNepal.dart';
 class CovidMyths {
   Future<List<CovidMythsStat>> getCovidMythsStats() async {
     NetworkHelper networkHelper =
-        NetworkHelper('https://nepalcorona.info/api/v1/myths?limit=10');
+        NetworkHelper('https://nepalcorona.info/api/v1/myths?limit=30');
 
     var covidData = await networkHelper.getData();
     // return covidData;
