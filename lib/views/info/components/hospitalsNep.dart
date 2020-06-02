@@ -33,50 +33,29 @@ class _HospitalsNepState extends State<HospitalsNep> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        elevation: 8.0,
+                        elevation: 5.0,
                         margin: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
-                        child: Theme(
-                          data: ThemeData(
-                            unselectedWidgetColor: Colors.red[600],
-                            accentColor: Colors.grey[800],
-                          ),
-                          child: ExpansionTile(
-                            leading: CircleAvatar(
-                                backgroundColor: Colors.red[600],
-                                child: Center(
-                                  child: Text(
-                                    (index + 1).toString(),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )),
-                            title: Text(
-                              snapshot.data[index].name
-                                  .replaceAll("\n", " ")
-                                  .replaceAll(RegExp(' {2,}'), ' '),
-                              style: TextStyle(
-                                color: Colors.grey[800],
-                              ),
-                            ),
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.all(15),
+                        child: ExpansionTile(
+                          leading: CircleAvatar(
+                              backgroundColor: Colors.red[600],
+                              child: Center(
                                 child: Text(
-                                  snapshot.data[index].name
-                                          .replaceAll("\n", "")
-                                          .replaceAll(RegExp(' {2,}'), ' ') +
-                                      '\n\nSource: ' +
-                                      toBeginningOfSentenceCase(
-                                          snapshot.data[index].name),
+                                  (index + 1).toString(),
                                   style: TextStyle(
-                                    color: Colors.grey[600],
+                                    color: Colors.white,
                                   ),
                                 ),
-                              ),
-                            ],
+                              )),
+                          title: Text(
+                            snapshot.data[index].name,
                           ),
+                          children: <Widget>[
+                            HospitalsNepCardChildren(
+                              snapshotData: snapshot,
+                              index: index,
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -84,11 +63,70 @@ class _HospitalsNepState extends State<HospitalsNep> {
                 : Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
+                        Colors.red[600],
                       ),
                     ),
                   );
           },
+        ),
+      ),
+    );
+  }
+}
+
+class HospitalsNepCardChildren extends StatelessWidget {
+  HospitalsNepCardChildren({@required this.snapshotData, @required this.index});
+  final AsyncSnapshot snapshotData;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Container(
+        alignment: AlignmentDirectional.centerStart,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Notice: ' +
+                  snapshotData.data[index].notes +
+                  '.' +
+                  '\nContact Person: ' +
+                  snapshotData.data[index].contactP +
+                  '\nNumber: ' +
+                  snapshotData.data[index].contactPN +
+                  '\nAddress: ' +
+                  snapshotData.data[index].address +
+                  '\nPhone: ' +
+                  snapshotData.data[index].phone +
+                  '\nWebsite: ' +
+                  snapshotData.data[index].website +
+                  '\nEmail: ' +
+                  snapshotData.data[index].email +
+                  '\nProvince No: ' +
+                  snapshotData.data[index].state +
+                  '\nBeds: ' +
+                  snapshotData.data[index].beds +
+                  '\nVentilators: ' +
+                  snapshotData.data[index].ventilators +
+                  '\nIsolation Beds: ' +
+                  snapshotData.data[index].isoBeds +
+                  '\nOccupied Beds: ' +
+                  snapshotData.data[index].occuBeds +
+                  '\nDoctors: ' +
+                  snapshotData.data[index].doctors +
+                  '\nNurses: ' +
+                  snapshotData.data[index].nurses,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              '\nSource: ' +
+                  toBeginningOfSentenceCase(snapshotData.data[index].source),
+            ),
+          ],
         ),
       ),
     );

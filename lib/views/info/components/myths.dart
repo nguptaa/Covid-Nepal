@@ -84,20 +84,24 @@ class MythsCardChildren extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            snapshotData.data[index].realityNp
-                .replaceAll("\n", "")
-                .replaceAll(RegExp(' {2,}'), ' '),
-          ),
-          Text(
-            '\nSource: ' +
-                toBeginningOfSentenceCase(snapshotData.data[index].sourceName),
-          ),
-        ],
+      padding: EdgeInsets.all(15.0),
+      child: Container(
+        alignment: AlignmentDirectional.centerStart,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              snapshotData.data[index].realityNp
+                  .replaceAll("\n", "")
+                  .replaceAll(RegExp(' {2,}'), ' '),
+            ),
+            Text(
+              '\nSource: ' +
+                  toBeginningOfSentenceCase(
+                      snapshotData.data[index].sourceName),
+            ),
+          ],
+        ),
       ),
     );
   }

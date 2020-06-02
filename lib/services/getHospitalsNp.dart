@@ -21,6 +21,7 @@ class HospitalsNp {
         i['email'],
         i['notes'],
         i['state'],
+        i['source'],
         i['capacity']['beds'],
         i['capacity']['ventilators'],
         i['capacity']['isolation_beds'],
@@ -47,6 +48,7 @@ class HospitalsNpStat {
   final String email;
   final String notes;
   final String state;
+  final String source;
   final String beds;
   final String ventilators;
   final String isoBeds;
@@ -66,6 +68,7 @@ class HospitalsNpStat {
       this.email,
       this.notes,
       this.state,
+      this.source,
       this.beds,
       this.ventilators,
       this.isoBeds,

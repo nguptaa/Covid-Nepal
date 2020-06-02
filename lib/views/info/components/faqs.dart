@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 class FAQs extends StatefulWidget {
@@ -86,19 +85,23 @@ class FAQsCardChildren extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            snapshotData.data[index].answerEn
-                .replaceAll("\n", " ")
-                .replaceAll(RegExp(' {2,}'), ' '),
-          ),
-          Text(
-            '\nCategory: ' +
-                toBeginningOfSentenceCase(snapshotData.data[index].questionTag),
-          ),
-        ],
+      child: Container(
+        alignment: AlignmentDirectional.centerStart,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              snapshotData.data[index].answerEn
+                  .replaceAll("\n", " ")
+                  .replaceAll(RegExp(' {2,}'), ' '),
+            ),
+            Text(
+              '\nCategory: ' +
+                  toBeginningOfSentenceCase(
+                      snapshotData.data[index].questionTag),
+            ),
+          ],
+        ),
       ),
     );
   }
