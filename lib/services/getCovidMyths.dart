@@ -9,27 +9,29 @@ class CovidMyths {
     // return covidData;
     List<CovidMythsStat> covidMythsStats = [];
     for (var i in covidData['data']) {
-        CovidMythsStat covidMythsStat = CovidMythsStat(
-          i['myth'],
-          i['reality'],
-          i['myth_np'],
-          i['reality_np'],
-          i['source_name'],
-        );
+      CovidMythsStat covidMythsStat = CovidMythsStat(
+        i['lang'],
+        i['myth'],
+        i['reality'],
+        i['myth_np'],
+        i['reality_np'],
+        i['source_name'],
+      );
 
-        covidMythsStats.add(covidMythsStat);
+      covidMythsStats.add(covidMythsStat);
     }
     return covidMythsStats;
   }
 }
 
 class CovidMythsStat {
+  final String lang;
   final String mythEn;
   final String realityEn;
   final String mythNp;
   final String realityNp;
   final String sourceName;
 
-  CovidMythsStat(this.mythEn, this.realityEn, this.mythNp, this.realityNp,
-      this.sourceName);
+  CovidMythsStat(this.lang, this.mythEn, this.realityEn, this.mythNp,
+      this.realityNp, this.sourceName);
 }

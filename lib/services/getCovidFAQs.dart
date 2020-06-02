@@ -9,27 +9,29 @@ class CovidFAQs {
     // return covidData;
     List<CovidFAQsStat> covidFAQsStats = [];
     for (var i in covidData['data']) {
-        CovidFAQsStat covidFAQsStat = CovidFAQsStat(
-          i['question'],
-          i['answer'],
-          i['question_np'],
-          i['answer_np'],
-          i['category'],
-        );
+      CovidFAQsStat covidFAQsStat = CovidFAQsStat(
+        i['lang'],
+        i['question'],
+        i['answer'],
+        i['question_np'],
+        i['answer_np'],
+        i['category'],
+      );
 
-        covidFAQsStats.add(covidFAQsStat);
+      covidFAQsStats.add(covidFAQsStat);
     }
     return covidFAQsStats;
   }
 }
 
 class CovidFAQsStat {
+  final String lang;
   final String questionEn;
   final String answerEn;
   final String questionNp;
   final String answerNp;
   final String questionTag;
 
-  CovidFAQsStat(this.questionEn, this.answerEn, this.questionNp, this.answerNp,
-      this.questionTag);
+  CovidFAQsStat(this.lang, this.questionEn, this.answerEn, this.questionNp,
+      this.answerNp, this.questionTag);
 }

@@ -9,6 +9,7 @@ class CovidNews {
     List<CovidNewsStat> covidNewsStats = [];
     for (var i in covidData['data']) {
       CovidNewsStat covidNewsStat = CovidNewsStat(
+        i['lang'],
         i['title'],
         i['source'],
         i['image_url'],
@@ -21,7 +22,9 @@ class CovidNews {
     return covidNewsStats;
   }
 }
+
 class CovidNewsStat {
+  final String lang;
   final String title;
   final String source;
   final String imageUrl;
@@ -29,6 +32,6 @@ class CovidNewsStat {
   final String newsUrl;
   DateTime dateCreated;
 
-  CovidNewsStat(this.title, this.source, this.imageUrl, this.summary,
+  CovidNewsStat(this.lang, this.title, this.source, this.imageUrl, this.summary,
       this.newsUrl, this.dateCreated);
 }
