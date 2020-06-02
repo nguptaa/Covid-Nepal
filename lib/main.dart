@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/hospitalsNep': (context) => HospitalsNep(),
 
       },
-      theme: ThemeData.light().copyWith(
+      theme: ThemeData.dark().copyWith(
         primaryColor: Colors.red[600],
         accentColor: Colors.red[600],
       ),

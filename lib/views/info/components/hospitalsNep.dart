@@ -17,7 +17,12 @@ class _HospitalsNepState extends State<HospitalsNep> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('HospitalsNep'),
+        title: Text(
+          'HospitalsNep',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30.0),

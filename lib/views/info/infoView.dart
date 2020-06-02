@@ -1,7 +1,7 @@
+import 'package:covid_nepal/services/getPackageInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:package_info/package_info.dart';
 
 class InfoView extends StatefulWidget {
   @override
@@ -9,20 +9,10 @@ class InfoView extends StatefulWidget {
 }
 
 class _InfoViewState extends State<InfoView> {
+  final AppInfo appInfo = AppInfo();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-  String appName = packageInfo.appName;
-  String packageName = packageInfo.packageName;
-  String version = packageInfo.version;
-  String buildNumber = packageInfo.buildNumber;
-  print(appName);
-  print(packageName);
-  print(version);
-  print(buildNumber);
-
-});
     return SafeArea(
       child: ListView(
         children: <Widget>[
@@ -50,7 +40,7 @@ class _InfoViewState extends State<InfoView> {
             margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: SvgPicture.asset(
               'assets/images/socialDis.svg',
-              height: size.height * 0.35,
+              height: size.height * 0.30,
               placeholderBuilder: (BuildContext context) => Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
@@ -67,6 +57,29 @@ class _InfoViewState extends State<InfoView> {
             child: Text(
               'Made with ❤️ in Nepal',
               textAlign: TextAlign.center,
+            ),
+          ),
+          Card(
+            elevation: 0,
+            color: Colors.transparent,
+            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: FutureBuilder(
+              future: appInfo.getAppInfo(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return snapshot.hasData
+                    ? Text(
+                      'Version: '+
+                        snapshot.data[0].version,
+                        textAlign: TextAlign.center,
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.red[600],
+                          ),
+                        ),
+                      );
+              },
             ),
           ),
         ],

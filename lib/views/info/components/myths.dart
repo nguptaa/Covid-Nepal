@@ -12,11 +12,14 @@ class _MythsState extends State<Myths> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Myths'),
+        title: Text(
+          'Myths',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
 import 'package:intl/intl.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class FAQs extends StatefulWidget {
   @override
@@ -12,11 +13,14 @@ class _FAQsState extends State<FAQs> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('FAQs'),
+        title: Text(
+          'FAQs',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30.0),
@@ -25,51 +29,72 @@ class _FAQsState extends State<FAQs> {
         ),
       ),
       body: SafeArea(
-        child: FutureBuilder(
-          future: covidFAQs.getCovidFAQsStats(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return snapshot.hasData
-                ? ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        elevation: 5.0,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 8.0),
-                        child: ExpansionTile(
-                          leading: CircleAvatar(
-                              backgroundColor: Colors.red[600],
-                              child: Center(
-                                child: Text(
-                                  (index + 1).toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+              child: ToggleSwitch(
+                minWidth: 90.0,
+                initialLabelIndex: 0,
+                activeBgColor: Colors.red[600],
+                activeTextColor: Colors.white,
+                inactiveBgColor: Colors.grey[600],
+                inactiveTextColor: Colors.white60,
+                labels: ['Nepali', 'English'],
+                onToggle: (index) {
+                  print('switched to: $index');
+                },
+              ),
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: covidFAQs.getCovidFAQsStats(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return snapshot.hasData
+                      ? ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              elevation: 5.0,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 8.0),
+                              child: ExpansionTile(
+                                leading: CircleAvatar(
+                                    backgroundColor: Colors.red[600],
+                                    child: Center(
+                                      child: Text(
+                                        (index + 1).toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    )),
+                                title: Text(
+                                  snapshot.data[index].questionEn
+                                      .replaceAll("\n", " ")
+                                      .replaceAll(RegExp(' {2,}'), ' '),
                                 ),
-                              )),
-                          title: Text(
-                            snapshot.data[index].questionEn
-                                .replaceAll("\n", " ")
-                                .replaceAll(RegExp(' {2,}'), ' '),
-                          ),
-                          children: <Widget>[
-                            FAQsCardChildren(
-                              snapshotData: snapshot,
-                              index: index,
+                                children: <Widget>[
+                                  FAQsCardChildren(
+                                    snapshotData: snapshot,
+                                    index: index,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        )
+                      : Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.red[600],
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                  )
-                : Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.red[600],
-                      ),
-                    ),
-                  );
-          },
+                          ),
+                        );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
