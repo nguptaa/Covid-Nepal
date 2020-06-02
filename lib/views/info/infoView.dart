@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:package_info/package_info.dart';
 
 class InfoView extends StatefulWidget {
   @override
@@ -11,6 +12,17 @@ class _InfoViewState extends State<InfoView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+  String appName = packageInfo.appName;
+  String packageName = packageInfo.packageName;
+  String version = packageInfo.version;
+  String buildNumber = packageInfo.buildNumber;
+  print(appName);
+  print(packageName);
+  print(version);
+  print(buildNumber);
+
+});
     return SafeArea(
       child: ListView(
         children: <Widget>[

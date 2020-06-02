@@ -21,7 +21,8 @@ class _WorldViewState extends State<WorldView> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             return snapshot.hasData
                 ? GridView.builder(
-                    padding: EdgeInsets.all(30),
+                    padding: EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 12.0),
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       return CardUI(

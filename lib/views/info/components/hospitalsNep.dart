@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getHospitalsNp.dart';
 import 'package:intl/intl.dart';
@@ -47,7 +48,7 @@ class _HospitalsNepState extends State<HospitalsNep> {
                                   ),
                                 ),
                               )),
-                          title: Text(
+                          title: AutoSizeText(
                             snapshot.data[index].name,
                           ),
                           children: <Widget>[
