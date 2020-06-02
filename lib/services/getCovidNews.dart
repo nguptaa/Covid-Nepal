@@ -3,7 +3,7 @@ import 'package:covid_nepal/apis/networkHelperNepal.dart';
 class CovidNews {
   Future<List<CovidNewsStat>> getCovidNewsStats() async {
     NetworkHelper networkHelper =
-        NetworkHelper('https://nepalcorona.info/api/v1/news?limit=10');
+        NetworkHelper('https://nepalcorona.info/api/v1/news?limit=12');
 
     var covidData = await networkHelper.getData();
     List<CovidNewsStat> covidNewsStats = [];

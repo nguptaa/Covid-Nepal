@@ -41,7 +41,7 @@ class _FAQsState extends State<FAQs> {
                 activeTextColor: Colors.white,
                 inactiveBgColor: Colors.grey[600],
                 inactiveTextColor: Colors.white60,
-                labels: ['Nepali', 'English'],
+                labels: ['नेपाली', 'English'],
                 onToggle: (index) {
                   setState(() {
                     (index == 1) ? language = 'En' : language = 'Np';
