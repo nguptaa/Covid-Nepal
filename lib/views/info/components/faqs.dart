@@ -8,9 +8,10 @@ class FAQs extends StatefulWidget {
   _FAQsState createState() => _FAQsState();
 }
 
+String language = 'Np';
+
 class _FAQsState extends State<FAQs> {
   final CovidFAQs covidFAQs = CovidFAQs();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,7 @@ class _FAQsState extends State<FAQs> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
               child: ToggleSwitch(
-                minWidth: 90.0,
+                minWidth: 100.0,
                 initialLabelIndex: 0,
                 activeBgColor: Colors.red[600],
                 activeTextColor: Colors.white,
@@ -42,7 +43,9 @@ class _FAQsState extends State<FAQs> {
                 inactiveTextColor: Colors.white60,
                 labels: ['Nepali', 'English'],
                 onToggle: (index) {
-                  print('switched to: $index');
+                  setState(() {
+                    (index == 1) ? language = 'En' : language = 'Np';
+                  });
                 },
               ),
             ),
@@ -54,33 +57,9 @@ class _FAQsState extends State<FAQs> {
                       ? ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                            return Card(
-                              elevation: 5.0,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 8.0),
-                              child: ExpansionTile(
-                                leading: CircleAvatar(
-                                    backgroundColor: Colors.red[600],
-                                    child: Center(
-                                      child: Text(
-                                        (index + 1).toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    )),
-                                title: Text(
-                                  snapshot.data[index].questionEn
-                                      .replaceAll("\n", " ")
-                                      .replaceAll(RegExp(' {2,}'), ' '),
-                                ),
-                                children: <Widget>[
-                                  FAQsCardChildren(
-                                    snapshotData: snapshot,
-                                    index: index,
-                                  ),
-                                ],
-                              ),
+                            return FAQsListCard(
+                              snapshotData: snapshot,
+                              index: index,
                             );
                           },
                         )
@@ -101,6 +80,47 @@ class _FAQsState extends State<FAQs> {
   }
 }
 
+class FAQsListCard extends StatelessWidget {
+  FAQsListCard({@required this.snapshotData, @required this.index});
+  final AsyncSnapshot snapshotData;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5.0,
+      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+      child: ExpansionTile(
+        leading: CircleAvatar(
+            backgroundColor: Colors.red[600],
+            child: Center(
+              child: Text(
+                (index + 1).toString(),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            )),
+        title: Text(
+          language == 'Np'
+              ? snapshotData.data[index].questionNp
+                  .replaceAll("\n", " ")
+                  .replaceAll(RegExp(' {2,}'), ' ')
+              : snapshotData.data[index].questionEn
+                  .replaceAll("\n", " ")
+                  .replaceAll(RegExp(' {2,}'), ' '),
+        ),
+        children: <Widget>[
+          FAQsCardChildren(
+            snapshotData: snapshotData,
+            index: index,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class FAQsCardChildren extends StatelessWidget {
   FAQsCardChildren({@required this.snapshotData, @required this.index});
   final AsyncSnapshot snapshotData;
@@ -116,9 +136,13 @@ class FAQsCardChildren extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              snapshotData.data[index].answerEn
-                  .replaceAll("\n", " ")
-                  .replaceAll(RegExp(' {2,}'), ' '),
+              language == 'Np'
+                  ? snapshotData.data[index].answerNp
+                      .replaceAll("\n", " ")
+                      .replaceAll(RegExp(' {2,}'), ' ')
+                  : snapshotData.data[index].answerEn
+                      .replaceAll("\n", " ")
+                      .replaceAll(RegExp(' {2,}'), ' '),
             ),
             Text(
               '\nCategory: ' +
