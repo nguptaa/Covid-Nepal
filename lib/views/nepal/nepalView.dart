@@ -4,6 +4,7 @@ import 'package:covid_nepal/services/getCovidNepal.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class NepalView extends StatefulWidget {
   @override
@@ -23,9 +24,9 @@ class _NepalViewState extends State<NepalView> {
   final List<String> cardText = ['TESTED', 'POSITIVE', 'RECOVERED', 'DEATHS'];
 
   final List<String> cardCount = [
-    'tested_total',
-    'tested_positive',
-    'recovered',
+    'samples_tested',
+    'positive',
+    'extra1',
     'deaths'
   ];
 
@@ -100,7 +101,7 @@ class _NepalViewState extends State<NepalView> {
                   child: GroovinExpansionTile(
                     leading: FaIcon(
                       FontAwesomeIcons.solidCircle,
-                      size: 35,
+                      size: 30,
                       color: Colors.red[600],
                     ),
                     title: Text(
@@ -156,14 +157,10 @@ class LastUpdated extends StatelessWidget {
         elevation: 0,
         color: Colors.transparent,
         child: Text(
-          'Source: ' +
-              snapshotData.data['latest_sit_report']['type'] +
+          'Source: MOHP' +
               '\nLast Updated: ' +
-              DateTime.now()
-                  .difference(DateTime.parse(snapshotData.data['updated_at']))
-                  .inHours
-                  .toString() +
-              ' hrs ago',
+              timeago.format(
+                  DateTime.parse(snapshotData.data['updated_at']).toLocal()),
           style: TextStyle(
             // fontSize: size.height * 0.018,
             fontWeight: FontWeight.w300,

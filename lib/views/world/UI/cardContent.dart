@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class CardContent extends StatelessWidget {
   const CardContent({
@@ -14,9 +15,6 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Duration dateTime =
-        DateTime.now().difference(DateTime.parse(snapshot.data[index].updated));
-
     final cachedFlag = CachedNetworkImage(
       imageUrl: snapshot.data[index].flag,
       placeholder: (context, url) => CircularProgressIndicator(
@@ -77,9 +75,10 @@ class CardContent extends StatelessWidget {
           ),
           CovidStatsText(
             title: 'Updated: ',
-            snapshotData: dateTime.inHours == 0
-                ? dateTime.inMinutes.toString() + ' mins ago'
-                : dateTime.inHours.toString() + ' hrs ago',
+  snapshotData: timeago.format(
+                  DateTime.parse(snapshot.data[index].updated).toLocal()),
+
+            
           ),
         ],
       ),

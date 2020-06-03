@@ -31,13 +31,12 @@ class CardUI extends StatelessWidget {
               ? CardContent(
                   faIcon: cardIcon,
                   cardText: cardText,
-                  cardCount: snapshot.data[cardCount].toString(),
+                  cardCount: snapshot.data[cardCount],
                   cardColor: cardColor,
                 )
               : Center(
                   child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.red[600]),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.red[600]),
                   ),
                 );
         },
