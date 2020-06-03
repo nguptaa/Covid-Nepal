@@ -15,7 +15,7 @@ class CardUI extends StatelessWidget {
     return Card(
       elevation: 5.0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(20.0),
       ),
       child: CardContent(
         snapshot: snapshot,

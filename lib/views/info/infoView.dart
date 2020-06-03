@@ -68,8 +68,7 @@ class _InfoViewState extends State<InfoView> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return snapshot.hasData
                     ? Text(
-                      'Version: '+
-                        snapshot.data[0].version,
+                        'Version: ' + snapshot.data[0].version,
                         textAlign: TextAlign.center,
                       )
                     : Center(
@@ -106,6 +105,9 @@ class InfoCardList extends StatelessWidget {
     return Card(
       elevation: 8.0,
       margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       child: ListTile(
         onTap: () {
           Navigator.pushNamed(context, routeName);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidMyths.dart';
+import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -90,8 +91,11 @@ class MythsListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: ExpansionTile(
+      child: GroovinExpansionTile(
         leading: CircleAvatar(
             backgroundColor: Colors.red[600],
             child: Center(

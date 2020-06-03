@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getHospitalsNp.dart';
+import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:intl/intl.dart';
 
 class HospitalsNep extends StatefulWidget {
@@ -40,9 +41,12 @@ class _HospitalsNepState extends State<HospitalsNep> {
                     itemBuilder: (context, index) {
                       return Card(
                         elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
                         margin: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
-                        child: ExpansionTile(
+                        child: GroovinExpansionTile(
                           leading: CircleAvatar(
                               backgroundColor: Colors.red[600],
                               child: Center(

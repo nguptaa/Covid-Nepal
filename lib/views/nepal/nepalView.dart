@@ -118,13 +118,11 @@ class _NepalViewState extends State<NepalView> {
                     ),
                     children: <Widget>[
                       Container(
-                        constraints: BoxConstraints(
-                          maxHeight: size.height * 0.3,
-                        ),
+                        height: size.height * 0.3,
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(30.0),
-                            bottomRight: Radius.circular(30.0),
+                            bottomLeft: Radius.circular(20.0),
+                            bottomRight: Radius.circular(20.0),
                           ),
                           child: WebView(
                             initialUrl:
