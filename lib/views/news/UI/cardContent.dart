@@ -31,11 +31,11 @@ class CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AutoSizeText(
-            (index + 1).toString() +
+            (index+1).toString() +
                 '. ' +
                 snapshot.data[index].title.toString(),
             style: TextStyle(
-              fontSize: size.longestSide * 0.03,
+              fontSize: size.longestSide * 0.032,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -43,15 +43,15 @@ class CardContent extends StatelessWidget {
             snapshot.data[index].source.toString(),
             textAlign: TextAlign.start,
             style: TextStyle(
-              fontSize: size.longestSide * 0.02,
-              fontWeight: FontWeight.bold,
+              fontSize: size.longestSide * 0.018,
+              fontWeight: FontWeight.w100,
             ),
           ),
           AutoSizeText(
             DateFormat.yMMMMd()
                 .format(snapshot.data[index].dateCreated.toLocal()),
             style: TextStyle(
-              fontSize: size.longestSide * 0.015,
+              fontSize: size.longestSide * 0.012,
             ),
           ),
           Padding(

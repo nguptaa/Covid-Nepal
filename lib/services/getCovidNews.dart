@@ -1,15 +1,15 @@
 import 'package:covid_nepal/apis/networkHelperNepal.dart';
 
 class CovidNews {
-  Future<List<CovidNewsStat>> getCovidNewsStats() async {
+  Future<List<CovidNewsNpStat>> getCovidNewsNpStats() async {
     NetworkHelper networkHelper =
-        NetworkHelper('https://nepalcorona.info/api/v1/news?limit=12');
+        NetworkHelper('https://nepalcorona.info/api/v1/news?limit=10');
 
     var covidData = await networkHelper.getData();
-    List<CovidNewsStat> covidNewsStats = [];
+    List<CovidNewsNpStat> covidNewsNpStats = [];
     for (var i in covidData['data']) {
-      CovidNewsStat covidNewsStat = CovidNewsStat(
-        i['lang'],
+      if(i['lang']=='np'){
+      CovidNewsNpStat covidNewsNpStat = CovidNewsNpStat(
         i['title'],
         i['source'],
         i['image_url'],
@@ -17,14 +17,36 @@ class CovidNews {
         i['url'],
         DateTime.parse(i['created_at']),
       );
-      covidNewsStats.add(covidNewsStat);
+      covidNewsNpStats.add(covidNewsNpStat);
     }
-    return covidNewsStats;
+    }
+    return covidNewsNpStats;
+  }
+
+  Future<List<CovidNewsEnStat>> getCovidNewsEnStats() async {
+    NetworkHelper networkHelper =
+        NetworkHelper('https://nepalcorona.info/api/v1/news?limit=10');
+
+    var covidData = await networkHelper.getData();
+    List<CovidNewsEnStat> covidNewsEnStats = [];
+    for (var i in covidData['data']) {
+      if(i['lang']=='en'){
+      CovidNewsEnStat covidNewsEnStat = CovidNewsEnStat(
+        i['title'],
+        i['source'],
+        i['image_url'],
+        i['summary'],
+        i['url'],
+        DateTime.parse(i['created_at']),
+      );
+      covidNewsEnStats.add(covidNewsEnStat);
+    }
+    }
+    return covidNewsEnStats;
   }
 }
 
-class CovidNewsStat {
-  final String lang;
+class CovidNewsNpStat {
   final String title;
   final String source;
   final String imageUrl;
@@ -32,6 +54,18 @@ class CovidNewsStat {
   final String newsUrl;
   DateTime dateCreated;
 
-  CovidNewsStat(this.lang, this.title, this.source, this.imageUrl, this.summary,
+  CovidNewsNpStat(this.title, this.source, this.imageUrl, this.summary,
+      this.newsUrl, this.dateCreated);
+}
+
+class CovidNewsEnStat {
+  final String title;
+  final String source;
+  final String imageUrl;
+  final String summary;
+  final String newsUrl;
+  DateTime dateCreated;
+
+  CovidNewsEnStat(this.title, this.source, this.imageUrl, this.summary,
       this.newsUrl, this.dateCreated);
 }
