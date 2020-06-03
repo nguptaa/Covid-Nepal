@@ -13,6 +13,16 @@ String language = 'Np';
 class _NewsViewState extends State<NewsView> {
   final CovidNews covidNews = CovidNews();
 
+  Future<List<CovidNewsNpStat>> _futureNp;
+  Future<List<CovidNewsEnStat>> _futureEn;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureNp = covidNews.getCovidNewsNpStats();
+    _futureEn = covidNews.getCovidNewsEnStats();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -30,7 +40,7 @@ class _NewsViewState extends State<NewsView> {
               activeTextColor: Colors.white,
               inactiveBgColor: Colors.grey[600],
               inactiveTextColor: Colors.white60,
-              labels: ['Nepali', 'English'],
+              labels: ['नेपाली', 'English'],
               onToggle: (index) {
                 setState(() {
                   (index == 1) ? language = 'En' : language = 'Np';
@@ -39,49 +49,27 @@ class _NewsViewState extends State<NewsView> {
             ),
           ),
           Expanded(
-            child: (language == 'Np')
-                ? FutureBuilder(
-                    future: covidNews.getCovidNewsNpStats(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      return snapshot.hasData
-                          ? ListView.builder(
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (context, index) {
-                                return CardUI(
-                                  snapshot: snapshot,
-                                  index: index,
-                                );
-                              },
-                            )
-                          : Center(
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.red[600]),
-                              ),
-                            );
-                    },
-                  )
-                : FutureBuilder(
-                    future: covidNews.getCovidNewsEnStats(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      return snapshot.hasData
-                          ? ListView.builder(
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (context, index) {
-                                return CardUI(
-                                  snapshot: snapshot,
-                                  index: index,
-                                );
-                              },
-                            )
-                          : Center(
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.red[600]),
-                              ),
-                            );
-                    },
-                  ),
+            child: FutureBuilder(
+              future: (language == 'Np') ? _futureNp : _futureEn,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return snapshot.hasData
+                    ? ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return CardUI(
+                            snapshot: snapshot,
+                            index: index,
+                          );
+                        },
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.red[600]),
+                        ),
+                      );
+              },
+            ),
           ),
         ],
       ),

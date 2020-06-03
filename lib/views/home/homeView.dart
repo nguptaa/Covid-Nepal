@@ -60,7 +60,10 @@ class _HomeViewState extends State<HomeView> {
               )
             : null,
       ),
-      body: _views[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: _views,
+      ),
       bottomNavigationBar: BubbleBottomBar(
         // hasNotch: true,
         opacity: .3,

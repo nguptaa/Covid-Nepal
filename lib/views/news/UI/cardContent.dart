@@ -35,7 +35,7 @@ class CardContent extends StatelessWidget {
                 '. ' +
                 snapshot.data[index].title.toString(),
             style: TextStyle(
-              fontSize: size.longestSide * 0.032,
+              fontSize: size.longestSide * 0.03,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -67,8 +67,7 @@ class CardContent extends StatelessWidget {
           AutoSizeText(
             snapshot.data[index].summary.toString(),
             style: TextStyle(
-              // color: Colors.grey[700],
-              fontSize: size.longestSide * 0.023,
+              fontSize: size.longestSide * 0.02,
             ),
           ),
         ],
