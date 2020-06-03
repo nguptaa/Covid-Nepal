@@ -14,6 +14,9 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    Duration dateTime =
+        DateTime.now().difference(DateTime.parse(snapshot.data[index].updated));
+
     final cachedFlag = CachedNetworkImage(
       imageUrl: snapshot.data[index].flag,
       placeholder: (context, url) => CircularProgressIndicator(
@@ -74,23 +77,9 @@ class CardContent extends StatelessWidget {
           ),
           CovidStatsText(
             title: 'Updated: ',
-            snapshotData: DateTime.now()
-                        .difference(
-                            DateTime.parse(snapshot.data[index].updated))
-                        .inHours ==
-                    0
-                ? DateTime.now()
-                        .difference(
-                            DateTime.parse(snapshot.data[index].updated))
-                        .inMinutes
-                        .toString() +
-                    ' mins ago'
-                : DateTime.now()
-                        .difference(
-                            DateTime.parse(snapshot.data[index].updated))
-                        .inMinutes
-                        .toString() +
-                    ' hrs ago',
+            snapshotData: dateTime.inHours == 0
+                ? dateTime.inMinutes.toString() + ' mins ago'
+                : dateTime.inHours.toString() + ' hrs ago',
           ),
         ],
       ),

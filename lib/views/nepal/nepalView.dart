@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/nepal/UI/cardUI.dart';
 import 'package:covid_nepal/services/getCovidNepal.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NepalView extends StatefulWidget {
   @override
@@ -11,10 +12,32 @@ class NepalView extends StatefulWidget {
 class _NepalViewState extends State<NepalView> {
   final CovidNepal covidNepal = CovidNepal();
 
+  final List<IconData> cardIcon = [
+    FontAwesomeIcons.search,
+    FontAwesomeIcons.viruses,
+    FontAwesomeIcons.history,
+    FontAwesomeIcons.heartbeat
+  ];
+
+  final List<String> cardText = ['TESTED', 'POSITIVE', 'RECOVERED', 'DEATHS'];
+
+  final List<String> cardCount = [
+    'tested_total',
+    'tested_positive',
+    'recovered',
+    'deaths'
+  ];
+
+  final List<Color> cardColor = [
+    Colors.blue,
+    Colors.orange,
+    Colors.green,
+    Colors.red
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Stack(
       children: <Widget>[
         Container(
@@ -28,94 +51,65 @@ class _NepalViewState extends State<NepalView> {
             color: Colors.red[600],
           ),
         ),
-
         SafeArea(
-          child: GridView(
-            padding: EdgeInsets.all(30),
+          child: ListView(
+            padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
             children: <Widget>[
-              CardUI(
-                cardIcon: FontAwesomeIcons.search,
-                cardText: 'TESTED',
-                cardCount: 'tested_total',
-                cardColor: Colors.blue,
+              FutureBuilder(
+                future: covidNepal.getCovidNepalStats(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return snapshot.hasData
+                      ? Card(
+                          elevation: 0,
+                          color: Colors.transparent,
+                          child: Text(
+                            'Source: ' +
+                                snapshot.data['latest_sit_report']['type'] +
+                                '\nLast Updated: ' +
+                                DateTime.now()
+                                    .difference(DateTime.parse(
+                                        snapshot.data['updated_at']))
+                                    .inHours
+                                    .toString() +
+                                ' hrs ago',
+                            style: TextStyle(
+                              // fontSize: size.height * 0.018,
+                              fontWeight: FontWeight.w300,
+                              fontStyle: FontStyle.italic,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.red[600],
+                            ),
+                          ),
+                        );
+                },
               ),
-              CardUI(
-                cardIcon: FontAwesomeIcons.viruses,
-                cardText: 'POSITIVE',
-                cardCount: 'tested_positive',
-                cardColor: Colors.orange,
-              ),
-              
-              CardUI(
-                cardIcon: FontAwesomeIcons.history,
-                cardText: 'RECOVERED',
-                cardCount: 'recovered',
-                cardColor: Colors.green,
-              ),
-              CardUI(
-                cardIcon: FontAwesomeIcons.heartbeat,
-                cardText: 'DEATHS',
-                cardCount: 'deaths',
-                cardColor: Colors.red,
+              GridView.builder(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return CardUI(
+                    cardIcon: cardIcon[index],
+                    cardText: cardText[index],
+                    cardCount: cardCount[index],
+                    cardColor: cardColor[index],
+                  );
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
               ),
             ],
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-            ),
           ),
         ),
-        // SafeArea(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //     children: <Widget>[
-        //       Column(
-        //         children: <Widget>[
-        //           Text(
-        //             'Covid-19 Nepal',
-        //             style: TextStyle(
-        //               fontSize: size.height * 0.03,
-        //               fontWeight: FontWeight.bold,
-        //             ),
-        //           ),
-        //           FutureBuilder(
-        //             future: covidNepal.getCovidNepalStats(),
-        //             builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //               return snapshot.hasData
-        //                   ? Text(
-        //                       'Last Updated: ' + snapshot.data[0].lastUpdated,
-        //                       style: TextStyle(
-        //                         fontSize: size.height * 0.018,
-        //                         fontWeight: FontWeight.w500,
-        //                         fontStyle: FontStyle.italic,
-        //                       ),
-        //                     )
-        //                   : Center(
-        //                       child: CircularProgressIndicator(
-        //                         valueColor: AlwaysStoppedAnimation<Color>(
-        //                           Colors.white,
-        //                         ),
-        //                       ),
-        //                     );
-        //             },
-        //           ),
-        //         ],
-        //       ),
-
-        //       Row(
-        //         children: <Widget>[
-        //           Expanded(
-        //             child: SvgPicture.asset(
-        //               'assets/images/socialDis.svg',
-        //               height: size.height * 0.35,
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ],
     );
   }

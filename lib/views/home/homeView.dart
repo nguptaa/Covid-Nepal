@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
     NepalView(),
     WorldView(),
     NewsView(),
-    InfoView(),
+    InfoView()
   ];
 
   final List<String> _tabs = [
