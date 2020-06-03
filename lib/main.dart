@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
 
       },
       theme: ThemeData.dark().copyWith(
+        splashColor: Colors.transparent,
         primaryColor: Colors.red[600],
         accentColor: Colors.red[600],
       ),
