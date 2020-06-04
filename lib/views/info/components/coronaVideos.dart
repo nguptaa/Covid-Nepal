@@ -108,11 +108,6 @@ class _CoronaVideosState extends State<CoronaVideos> {
                               print('blocking navigation to $request}');
                               return NavigationDecision.prevent;
                             }
-                            if (request.url
-                                .startsWith('https://flutter.dev/docs')) {
-                              print('blocking navigation to $request}');
-                              return NavigationDecision.prevent;
-                            }
                             print('allowing navigation to $request');
                             return NavigationDecision.navigate;
                           },
