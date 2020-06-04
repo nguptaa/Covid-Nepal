@@ -11,7 +11,7 @@ class CoronaLive extends StatelessWidget {
     @required this.titleText,
     @required this.titleColor,
     @required this.subtitleText,
-    @required this.webviewUrl,
+    @required this.webview,
   });
 
   final Color trailingIconColor;
@@ -20,7 +20,7 @@ class CoronaLive extends StatelessWidget {
   final String titleText;
   final Color titleColor;
   final String subtitleText;
-  final String webviewUrl;
+  final Widget webview;
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +53,7 @@ class CoronaLive extends StatelessWidget {
             ),
           ),
           children: <Widget>[
-            Container(
-              constraints: BoxConstraints(
-                maxHeight: 300,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                child: WebView(
-                    initialUrl: webviewUrl,
-                    javascriptMode: JavascriptMode.unrestricted,
-                  ),
-              ),
-            ),
+            webview,
           ],
         ),
       ),

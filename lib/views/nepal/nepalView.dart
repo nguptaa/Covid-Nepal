@@ -1,4 +1,7 @@
 import 'package:covid_nepal/views/nepal/components/coronaLive/coronaLive.dart';
+import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewFB.dart';
+import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
+import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewTwitter.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/nepal/UI/cardUI.dart';
 import 'package:covid_nepal/services/getCovidNepal.dart';
@@ -97,6 +100,7 @@ class _NepalViewState extends State<NepalView> {
                 titleText: 'Live Update',
                 titleColor: Colors.red[600],
                 subtitleText: 'nepalcorona.info',
+                webview: WebViewLive(),
               ),
               CoronaLive(
                 trailingIconColor: Color(0xFF4267E2),
@@ -105,6 +109,7 @@ class _NepalViewState extends State<NepalView> {
                 titleText: 'Facebook Update',
                 titleColor: Color(0xFF4267E2),
                 subtitleText: 'facebook.com/mohpnep',
+                webview: WebViewFB(),
               ),
               CoronaLive(
                 trailingIconColor: Color(0xFF1DA1F2),
@@ -113,6 +118,7 @@ class _NepalViewState extends State<NepalView> {
                 titleText: 'Twitter Update',
                 titleColor: Color(0xFF1DA1F2),
                 subtitleText: 'twitter.com/mohpnep',
+                webview: WebViewTwitter(),
               ),
             ],
           ),
