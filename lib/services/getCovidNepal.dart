@@ -6,6 +6,6 @@ class CovidNepal {
         NetworkHelper('https://covid19.mohp.gov.np/covid/api/confirmedcases');
 
     var covidData = await networkHelper.getData();
-    return covidData['nepal'];
+    return covidData['nepal'] ?? null;
   }
 }

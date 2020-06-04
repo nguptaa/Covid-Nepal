@@ -23,6 +23,12 @@ class _InfoViewState extends State<InfoView> {
             cardSubtitle: "Hospitals details all over Nepal",
           ),
           InfoCardList(
+            routeName: '/coronaVideos',
+            iconName: FontAwesomeIcons.solidPlayCircle,
+            cardTitle: "Videos on Corona",
+            cardSubtitle: "Suggested by MOHP, Nepal",
+          ),
+          InfoCardList(
             routeName: '/faqs',
             iconName: FontAwesomeIcons.virus,
             cardTitle: "Corona FAQs",
