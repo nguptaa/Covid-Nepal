@@ -27,6 +27,14 @@ class _CoronaVideosState extends State<CoronaVideos> {
     'qA5uggiPOzM?rel=0',
   ];
 
+  num _stackToView = 1;
+
+  void _handleLoad(String value) {
+    setState(() {
+      _stackToView = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
@@ -78,36 +86,43 @@ class _CoronaVideosState extends State<CoronaVideos> {
                   constraints: BoxConstraints(
                     maxHeight: 300,
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    child: WebView(
-                      gestureRecognizers: gestureRecognizers,
-                      initialUrl:
-                          'https://www.youtube.com/embed/' + videoUrl[index],
-                      javascriptMode: JavascriptMode.unrestricted,
-                      onWebViewCreated: (WebViewController webViewController) {
-                        (index + 1) == 1
-                            ? _controller1.complete(webViewController)
-                            : _controller2.complete(webViewController);
-                      },
-                      navigationDelegate: (NavigationRequest request) {
-                        if (request.url
-                            .startsWith('https://www.youtube.com/signin')) {
-                          print('blocking navigation to $request}');
-                          return NavigationDecision.prevent;
-                        }
-                        if (request.url
-                            .startsWith('https://flutter.dev/docs')) {
-                          print('blocking navigation to $request}');
-                          return NavigationDecision.prevent;
-                        }
-                        print('allowing navigation to $request');
-                        return NavigationDecision.navigate;
-                      },
-                      onPageFinished: (String url) {
-                        print('Page finished loading: $url');
-                      },
-                    ),
+                  child: IndexedStack(
+                    index: _stackToView,
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        child: WebView(
+                          gestureRecognizers: gestureRecognizers,
+                          initialUrl: 'https://www.youtube.com/embed/' +
+                              videoUrl[index],
+                          javascriptMode: JavascriptMode.unrestricted,
+                          onWebViewCreated:
+                              (WebViewController webViewController) {
+                            (index + 1) == 1
+                                ? _controller1.complete(webViewController)
+                                : _controller2.complete(webViewController);
+                          },
+                          navigationDelegate: (NavigationRequest request) {
+                            if (request.url
+                                .startsWith('https://www.youtube.com/signin')) {
+                              print('blocking navigation to $request}');
+                              return NavigationDecision.prevent;
+                            }
+                            if (request.url
+                                .startsWith('https://flutter.dev/docs')) {
+                              print('blocking navigation to $request}');
+                              return NavigationDecision.prevent;
+                            }
+                            print('allowing navigation to $request');
+                            return NavigationDecision.navigate;
+                          },
+                          onPageFinished: _handleLoad,
+                        ),
+                      ),
+                      Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
                   ),
                 ),
               ],
