@@ -1,5 +1,5 @@
 import 'package:covid_nepal/views/home/noInternet.dart';
-import 'package:covid_nepal/views/info/components/coronaVideos.dart';
+import 'package:covid_nepal/views/info/components/coronaVideos/coronaVideos.dart';
 import 'package:covid_nepal/views/info/components/faqs.dart';
 import 'package:covid_nepal/views/info/components/hospitalsNep.dart';
 import 'package:covid_nepal/views/info/components/myths.dart';
