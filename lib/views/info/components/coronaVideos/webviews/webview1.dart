@@ -19,11 +19,6 @@ class _WebView1State extends State<WebView1> {
     Factory(() => EagerGestureRecognizer()),
   ].toSet();
 
-  final List<String> videoUrl = [
-    '-sExYoXmhF4?rel=0',
-    'qA5uggiPOzM?rel=0',
-  ];
-
   int _stackToView1 = 1;
 
   void _handleLoad1(String value) {
