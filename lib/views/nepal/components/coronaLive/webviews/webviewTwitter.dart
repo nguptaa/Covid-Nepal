@@ -41,7 +41,7 @@ class _WebViewTwitterState extends State<WebViewTwitter> {
             child: WebView(
               gestureRecognizers: gestureRecognizers,
               initialUrl: Uri.dataFromString(
-                      '<a class="twitter-timeline" href="https://twitter.com/mohpnep?ref_src=twsrc%5Etfw">Tweets by mohpnep</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>',
+                      "<a class='twitter-timeline' href='https://twitter.com/mohpnep?ref_src=twsrc%5Etfw'>Tweets by mohpnep</a> <script async src='https://platform.twitter.com/widgets.js' charset='utf-8'></script>",
                       mimeType: 'text/html')
                   .toString(),
               javascriptMode: JavascriptMode.unrestricted,
@@ -49,7 +49,11 @@ class _WebViewTwitterState extends State<WebViewTwitter> {
                 _controllerTwitter.complete(webViewController);
               },
               navigationDelegate: (NavigationRequest request) {
-                if (request.url.startsWith('https://www.twitter.com')) {
+                if (request.url.startsWith('https://twitter.com/mohp')) {
+                  print('blocking navigation to $request}');
+                  return NavigationDecision.prevent;
+                }
+                if (request.url.startsWith('https://support.twitter.com')) {
                   print('blocking navigation to $request}');
                   return NavigationDecision.prevent;
                 }

@@ -40,13 +40,16 @@ class _WebViewLiveState extends State<WebViewLive> {
             borderRadius: BorderRadius.all(Radius.circular(20)),
             child: WebView(
               gestureRecognizers: gestureRecognizers,
-              initialUrl: 'https://www.nepalcorona.info/embed/nepal-map',
+              initialUrl: Uri.dataFromString(
+                      "<iframe src='https://nepalcorona.info/embed/nepal-map' frameborder='0' style='position:absolute; top:0; left:0; height:100%; width:100%'></iframe>",
+                      mimeType: 'text/html')
+                  .toString(),
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController webViewController) {
                 _controllerLive.complete(webViewController);
               },
               navigationDelegate: (NavigationRequest request) {
-                if (request.url.startsWith('https://nepalcorona.info')) {
+                if (request.url.endsWith('https://nepalcorona.info/')) {
                   print('blocking navigation to $request}');
                   return NavigationDecision.prevent;
                 }
