@@ -1,37 +1,59 @@
 import 'package:covid_nepal/apis/networkHelperNepal.dart';
 
 class CovidFAQs {
-  Future<List<CovidFAQsStat>> getCovidFAQsStats() async {
-    NetworkHelper networkHelper =
-        NetworkHelper('https://nepalcorona.info/api/v1/faqs?limit=10');
+  Future<List<CovidFAQsNpStat>> getCovidFAQsNpStats() async {
+    NetworkHelper networkHelper = NetworkHelper(
+        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaFAQs/coronaFAQs.json');
 
     var covidData = await networkHelper.getData();
     // return covidData;
-    List<CovidFAQsStat> covidFAQsStats = [];
+    List<CovidFAQsNpStat> covidFAQsNpStats = [];
     for (var i in covidData['data']) {
-      CovidFAQsStat covidFAQsStat = CovidFAQsStat(
-        i['lang'],
+      if (i['question_np'] != null) {
+        CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
+          i['question_np'],
+          i['answer_np'],
+          i['category'],
+        );
+
+        covidFAQsNpStats.add(covidFAQsNpStat);
+      }
+    }
+    return covidFAQsNpStats;
+  }
+
+  Future<List<CovidFAQsEnStat>> getCovidFAQsEnStats() async {
+    NetworkHelper networkHelper = NetworkHelper(
+        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaFAQs/coronaFAQs.json');
+
+    var covidData = await networkHelper.getData();
+    // return covidData;
+    List<CovidFAQsEnStat> covidFAQsEnStats = [];
+    for (var i in covidData['data']) {
+      CovidFAQsEnStat covidFAQsEnStat = CovidFAQsEnStat(
         i['question'],
         i['answer'],
-        i['question_np'],
-        i['answer_np'],
         i['category'],
       );
 
-      covidFAQsStats.add(covidFAQsStat);
+      covidFAQsEnStats.add(covidFAQsEnStat);
     }
-    return covidFAQsStats;
+    return covidFAQsEnStats;
   }
 }
 
-class CovidFAQsStat {
-  final String lang;
-  final String questionEn;
-  final String answerEn;
-  final String questionNp;
-  final String answerNp;
+class CovidFAQsNpStat {
+  final String question;
+  final String answer;
   final String questionTag;
 
-  CovidFAQsStat(this.lang, this.questionEn, this.answerEn, this.questionNp,
-      this.answerNp, this.questionTag);
+  CovidFAQsNpStat(this.question, this.answer, this.questionTag);
+}
+
+class CovidFAQsEnStat {
+  final String question;
+  final String answer;
+  final String questionTag;
+
+  CovidFAQsEnStat(this.question, this.answer, this.questionTag);
 }

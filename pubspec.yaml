@@ -26,7 +26,8 @@ dependencies:
   auto_size_text: ^2.1.0
   webview_flutter: ^0.3.22+1
   data_connection_checker: ^0.3.4
-  youtube_player_flutter: ^7.0.0+3
+  lazy_load_scrollview: ^1.1.0
+
 
 dev_dependencies:
   flutter_test:

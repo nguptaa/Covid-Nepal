@@ -10,6 +10,14 @@ class InfoView extends StatefulWidget {
 
 class _InfoViewState extends State<InfoView> {
   final AppInfo appInfo = AppInfo();
+  Future<List<AppDetails>> _futureAppDetails;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureAppDetails = appInfo.getAppInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,12 +31,6 @@ class _InfoViewState extends State<InfoView> {
             cardSubtitle: "Hospitals details all over Nepal",
           ),
           InfoCardList(
-            routeName: '/coronaVideos',
-            iconName: FontAwesomeIcons.solidPlayCircle,
-            cardTitle: "Videos on Corona",
-            cardSubtitle: "Suggested by MOHP, Nepal",
-          ),
-          InfoCardList(
             routeName: '/faqs',
             iconName: FontAwesomeIcons.virus,
             cardTitle: "Corona FAQs",
@@ -39,6 +41,12 @@ class _InfoViewState extends State<InfoView> {
             iconName: FontAwesomeIcons.timesCircle,
             cardTitle: "Corona Myths",
             cardSubtitle: "Myths about Corona",
+          ),
+          InfoCardList(
+            routeName: '/coronaVideos',
+            iconName: FontAwesomeIcons.solidPlayCircle,
+            cardTitle: "Videos on Corona",
+            cardSubtitle: "Suggested by MOHP, Nepal",
           ),
           Card(
             elevation: 0,
@@ -70,7 +78,7 @@ class _InfoViewState extends State<InfoView> {
             color: Colors.transparent,
             margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: FutureBuilder(
-              future: appInfo.getAppInfo(),
+              future: _futureAppDetails,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return snapshot.hasData
                     ? Text(

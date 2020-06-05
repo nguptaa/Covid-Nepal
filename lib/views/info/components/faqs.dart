@@ -13,6 +13,17 @@ String language = 'Np';
 
 class _FAQsState extends State<FAQs> {
   final CovidFAQs covidFAQs = CovidFAQs();
+
+  Future<List<CovidFAQsNpStat>> _futureNp;
+  Future<List<CovidFAQsEnStat>> _futureEn;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureNp = covidFAQs.getCovidFAQsNpStats();
+    _futureEn = covidFAQs.getCovidFAQsEnStats();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +63,7 @@ class _FAQsState extends State<FAQs> {
             ),
             Expanded(
               child: FutureBuilder(
-                future: covidFAQs.getCovidFAQsStats(),
+                future: (language == 'Np') ? _futureNp : _futureEn,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   return snapshot.hasData
                       ? ListView.builder(
@@ -106,13 +117,9 @@ class FAQsListCard extends StatelessWidget {
               ),
             )),
         title: Text(
-          language == 'Np'
-              ? snapshotData.data[index].questionNp
-                  .replaceAll("\n", " ")
-                  .replaceAll(RegExp(' {2,}'), ' ')
-              : snapshotData.data[index].questionEn
-                  .replaceAll("\n", " ")
-                  .replaceAll(RegExp(' {2,}'), ' '),
+          snapshotData.data[index].question
+              .replaceAll("\n", " ")
+              .replaceAll(RegExp(' {2,}'), ' '),
         ),
         children: <Widget>[
           FAQsCardChildren(
@@ -140,13 +147,9 @@ class FAQsCardChildren extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              language == 'Np'
-                  ? snapshotData.data[index].answerNp
-                      .replaceAll("\n", " ")
-                      .replaceAll(RegExp(' {2,}'), ' ')
-                  : snapshotData.data[index].answerEn
-                      .replaceAll("\n", " ")
-                      .replaceAll(RegExp(' {2,}'), ' '),
+              snapshotData.data[index].answer
+                  .replaceAll("\n", " ")
+                  .replaceAll(RegExp(' {2,}'), ' '),
             ),
             Text(
               '\nCategory: ' +

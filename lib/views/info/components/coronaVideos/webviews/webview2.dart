@@ -12,8 +12,13 @@ class WebView2 extends StatefulWidget {
 }
 
 class _WebView2State extends State<WebView2> {
-  final Completer<WebViewController> _controller2 =
-      Completer<WebViewController>();
+  Completer<WebViewController> _controller2;
+
+  @override
+  void initState() {
+    _controller2 = Completer<WebViewController>();
+    super.initState();
+  }
 
   final Set<Factory> gestureRecognizers = [
     Factory(() => EagerGestureRecognizer()),

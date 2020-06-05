@@ -41,8 +41,7 @@ class _WebViewFBState extends State<WebViewFB> {
             child: WebView(
               gestureRecognizers: gestureRecognizers,
               initialUrl: Uri.dataFromString(
-                      // "<iframe src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmohpnep%2F&tabs=timeline&small_header=true&hide_cover=true&show_facepile=false&appId=1436876463029630' frameborder='0' style='position:absolute; top:0; left:0; height:100%; width:100%'></iframe>",
-                     '<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmohpnep%2F&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId=1436876463029630" width=“500” height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>',
+                      "<iframe src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmohpnep%2F&tabs=timeline&small_header=true&hide_cover=true&show_facepile=false&appId=1436876463029630' frameborder='0' style='position:absolute; top:0; left:0; height:100%; width:100%'></iframe>",
                       mimeType: 'text/html')
                   .toString(),
               javascriptMode: JavascriptMode.unrestricted,

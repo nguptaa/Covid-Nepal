@@ -1,8 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidMyths.dart';
-import 'package:groovin_widgets/groovin_expansion_tile.dart';
-import 'package:intl/intl.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class Myths extends StatefulWidget {
   @override
@@ -13,9 +11,17 @@ String language = 'Np';
 
 class _MythsState extends State<Myths> {
   final CovidMyths covidMyths = CovidMyths();
+  Future<List<CovidMythsStat>> _futureMythImage;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureMythImage = covidMyths.getCovidMythsStats();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -32,129 +38,49 @@ class _MythsState extends State<Myths> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-              child: ToggleSwitch(
-                minWidth: 100.0,
-                initialLabelIndex: 0,
-                activeBgColor: Colors.red[600],
-                activeTextColor: Colors.white,
-                inactiveBgColor: Colors.grey[600],
-                inactiveTextColor: Colors.white60,
-                labels: ['नेपाली', 'English'],
-                onToggle: (index) {
-                  setState(() {
-                    (index == 1) ? language = 'En' : language = 'Np';
-                  });
-                },
-              ),
-            ),
-            Expanded(
-              child: FutureBuilder(
-                future: covidMyths.getCovidMythsStats(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return snapshot.hasData
-                      ? ListView.builder(
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            return MythsListCard(
-                              snapshotData: snapshot,
-                              index: index,
-                            );
-                          },
-                        )
-                      : Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.red[600],
+        child: FutureBuilder(
+          future: _futureMythImage,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      print(snapshot.data[index].imageUrl);
+                      return Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 8.0),
+                        child: Container(
+                          alignment: AlignmentDirectional.center,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: CachedNetworkImage(
+                              imageUrl: snapshot.data[index].imageUrl,
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.red[600],
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ),
-                        );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class MythsListCard extends StatelessWidget {
-  MythsListCard({@required this.snapshotData, @required this.index});
-  final AsyncSnapshot snapshotData;
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: GroovinExpansionTile(
-        leading: CircleAvatar(
-            backgroundColor: Colors.red[600],
-            child: Center(
-              child: Text(
-                (index + 1).toString(),
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            )),
-        title: Text(
-          language == 'Np'
-              ? snapshotData.data[index].mythNp
-                  .replaceAll("\n", " ")
-                  .replaceAll(RegExp(' {2,}'), ' ')
-              : snapshotData.data[index].mythEn
-                  .replaceAll("\n", " ")
-                  .replaceAll(RegExp(' {2,}'), ' '),
-        ),
-        children: <Widget>[
-          MythsCardChildren(
-            snapshotData: snapshotData,
-            index: index,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MythsCardChildren extends StatelessWidget {
-  MythsCardChildren({@required this.snapshotData, @required this.index});
-  final AsyncSnapshot snapshotData;
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(15.0),
-      child: Container(
-        alignment: AlignmentDirectional.centerStart,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              language == 'Np'
-                  ? snapshotData.data[index].realityNp
-                      .replaceAll("\n", " ")
-                      .replaceAll(RegExp(' {2,}'), ' ')
-                  : snapshotData.data[index].realityEn
-                      .replaceAll("\n", " ")
-                      .replaceAll(RegExp(' {2,}'), ' '),
-            ),
-            Text(
-              '\nSource: ' +
-                  toBeginningOfSentenceCase(
-                      snapshotData.data[index].sourceName),
-            ),
-          ],
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.red[600],
+                      ),
+                    ),
+                  );
+          },
         ),
       ),
     );
