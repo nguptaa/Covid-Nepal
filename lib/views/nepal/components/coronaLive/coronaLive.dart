@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class CoronaLive extends StatelessWidget {
   CoronaLive({

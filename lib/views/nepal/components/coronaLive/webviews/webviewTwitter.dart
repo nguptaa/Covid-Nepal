@@ -12,8 +12,13 @@ class WebViewTwitter extends StatefulWidget {
 }
 
 class _WebViewTwitterState extends State<WebViewTwitter> {
-  final Completer<WebViewController> _controllerTwitter =
-      Completer<WebViewController>();
+  Completer<WebViewController> _controllerTwitter;
+
+  @override
+  void initState() {
+    _controllerTwitter = Completer<WebViewController>();
+    super.initState();
+  }
 
   final Set<Factory> gestureRecognizers = [
     Factory(() => EagerGestureRecognizer()),
