@@ -16,6 +16,14 @@ class NepalView extends StatefulWidget {
 class _NepalViewState extends State<NepalView> {
   final CovidNepal covidNepal = CovidNepal();
 
+  Future<List<CovidNepal>> _futureCovidNepal;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureCovidNepal = covidNepal.getCovidNepalStats();
+  }
+
   final List<IconData> cardIcon = [
     FontAwesomeIcons.search,
     FontAwesomeIcons.viruses,
@@ -59,7 +67,7 @@ class _NepalViewState extends State<NepalView> {
           child: ListView(
             children: <Widget>[
               FutureBuilder(
-                future: covidNepal.getCovidNepalStats(),
+                future: _futureCovidNepal,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   return snapshot.hasData
                       ? LastUpdated(
