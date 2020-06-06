@@ -1,4 +1,4 @@
-import 'package:covid_nepal/apis/networkHelperNepal.dart';
+import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
 
 class CovidNepal {
   Future<dynamic> getCovidNepalStats() async {
@@ -6,6 +6,6 @@ class CovidNepal {
         NetworkHelper('https://covid19.mohp.gov.np/covid/api/confirmedcases');
 
     var covidData = await networkHelper.getData();
-    return covidData['nepal'] ?? null;
+    return covidData != null ? covidData['nepal'] : 'somethingWentWrong';
   }
 }

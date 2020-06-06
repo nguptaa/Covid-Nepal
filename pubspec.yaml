@@ -20,19 +20,17 @@ dependencies:
   toggle_switch: "^0.1.4"
   device_preview: ^0.4.5
   bubble_bottom_bar: ^1.2.0
-  http: ^0.12.1
   font_awesome_flutter: ^8.8.1
   flutter_svg: ^0.17.4
   auto_size_text: ^2.1.0
   webview_flutter: ^0.3.22+1
-  data_connection_checker: ^0.3.4
-  lazy_load_scrollview: ^1.1.0
-
+  connectivity: ^0.4.8+6
+  flappy_search_bar: ^1.7.2
+  dio: ^3.0.9
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 flutter:
   uses-material-design: true

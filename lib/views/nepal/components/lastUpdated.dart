@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-
 class LastUpdated extends StatelessWidget {
   LastUpdated({@required this.snapshotData});
 

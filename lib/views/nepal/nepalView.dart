@@ -16,7 +16,7 @@ class NepalView extends StatefulWidget {
 class _NepalViewState extends State<NepalView> {
   final CovidNepal covidNepal = CovidNepal();
 
-  Future<List<CovidNepal>> _futureCovidNepal;
+  Future<dynamic> _futureCovidNepal;
 
   @override
   void initState() {
@@ -69,17 +69,29 @@ class _NepalViewState extends State<NepalView> {
               FutureBuilder(
                 future: _futureCovidNepal,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return snapshot.hasData
-                      ? LastUpdated(
-                          snapshotData: snapshot,
-                        )
-                      : Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white,
-                            ),
-                          ),
-                        );
+                  if (snapshot.hasData) {
+                    if (snapshot.data == 'somethingWentWrong') {
+                      return Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.exclamationTriangle,
+                          // color: cardColor,
+                          size: size.height * 0.035,
+                        ),
+                      );
+                    } else {
+                      return LastUpdated(
+                        snapshotData: snapshot,
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.white,
+                        ),
+                      ),
+                    );
+                  }
                 },
               ),
               GridView.builder(
@@ -93,6 +105,7 @@ class _NepalViewState extends State<NepalView> {
                     cardText: cardText[index],
                     cardCount: cardCount[index],
                     cardColor: cardColor[index],
+                    futureCovidNepal: _futureCovidNepal,
                   );
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

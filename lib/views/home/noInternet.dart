@@ -28,6 +28,7 @@ class _NoInternetState extends State<NoInternet> {
       ),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SvgPicture.asset(
               'assets/images/socialDis.svg',
@@ -40,7 +41,7 @@ class _NoInternetState extends State<NoInternet> {
                 ),
               ),
             ),
-            Text('Retry!')
+            Text('No Internet!')
           ],
         ),
       ),

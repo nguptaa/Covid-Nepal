@@ -1,4 +1,6 @@
+import 'package:covid_nepal/views/home/somthingWentWrong.dart';
 import 'package:covid_nepal/views/world/UI/cardUI.dart';
+import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidWorld.dart';
 
@@ -20,34 +22,55 @@ class _WorldViewState extends State<WorldView> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: FutureBuilder(
-        future: _futureCovidWorld,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return snapshot.hasData
-              ? GridView.builder(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 12.0),
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return CardUI(
-                      snapshot: snapshot,
-                      index: index,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: size.height * 0.05,
+            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+            // child: SearchBar(
+            // onSearch: _futureCovidWorld.country,
+            child: Text('lol'),
+            // ),
+          ),
+          Expanded(
+            child: FutureBuilder(
+              future: _futureCovidWorld,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data[0].flag == 'somethingWentWrong') {
+                    return SomethingWentWrong();
+                  } else {
+                    return GridView.builder(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 12.0),
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return CardUI(
+                          snapshot: snapshot,
+                          index: index,
+                        );
+                      },
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                      ),
                     );
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
-                  ),
-                )
-              : Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.red[600]),
-                  ),
-                );
-        },
+                  }
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(Colors.red[600]),
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

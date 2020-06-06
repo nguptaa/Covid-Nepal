@@ -1,4 +1,4 @@
-import 'package:covid_nepal/apis/networkHelperNepal.dart';
+import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
 
 class CovidMyths {
   Future<List<CovidMythsStat>> getCovidMythsStats() async {
