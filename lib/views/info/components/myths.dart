@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:covid_nepal/views/home/somthingWentWrong.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidMyths.dart';
 
@@ -42,50 +41,44 @@ class _MythsState extends State<Myths> {
         child: FutureBuilder(
           future: _futureMythImage,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data[0].imageUrl == 'somethingWentWrong') {
-                return SomethingWentWrong();
-              } else {
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-                      child: Container(
-                        alignment: AlignmentDirectional.center,
-                        child: ClipRRect(
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
-                          child: CachedNetworkImage(
-                            imageUrl: snapshot.data[index].imageUrl,
-                            placeholder: (context, url) =>
-                                CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.red[600],
+                        ),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 8.0),
+                        child: Container(
+                          alignment: AlignmentDirectional.center,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: CachedNetworkImage(
+                              imageUrl: snapshot.data[index].imageUrl,
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.red[600],
+                                ),
                               ),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
                           ),
                         ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.red[600],
                       ),
-                    );
-                  },
-                );
-              }
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.red[600],
-                  ),
-                ),
-              );
-            }
+                    ),
+                  );
           },
         ),
       ),

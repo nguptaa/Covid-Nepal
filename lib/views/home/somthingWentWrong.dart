@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SomethingWentWrong extends StatefulWidget {
   @override
@@ -12,20 +12,37 @@ class _SomethingWentWrongState extends State<SomethingWentWrong> {
     Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SvgPicture.asset(
-          'assets/images/socialDis.svg',
-          height: size.height * 0.30,
-          placeholderBuilder: (BuildContext context) => Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                Colors.red[600],
-              ),
+        Center(
+          child: FaIcon(
+            FontAwesomeIcons.exclamationTriangle,
+            size: size.longestSide * 0.1,
+          ),
+        ),
+        SizedBox(
+          height: size.longestSide * 0.01,
+        ),
+        Center(
+          child: Text(
+            'Something went Wrong!',
+            style: TextStyle(
+              fontSize: size.longestSide * 0.02,
             ),
           ),
         ),
-        Text('Something went wrong!')
+        SizedBox(
+          height: size.longestSide * 0.015,
+        ),
+        Center(
+          child: RaisedButton(
+            color: Colors.red[600],
+            onPressed: () {},
+            child: Text(
+              'Retry',
+              style: TextStyle(fontSize: size.width * 0.05),
+            ),
+          ),
+        )
       ],
     );
   }

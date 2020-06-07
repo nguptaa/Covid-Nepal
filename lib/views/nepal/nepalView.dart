@@ -21,7 +21,7 @@ class _NepalViewState extends State<NepalView> {
   @override
   void initState() {
     super.initState();
-    _futureCovidNepal = covidNepal.getCovidNepalStats();
+    _futureCovidNepal = covidNepal.getCovidNepalStatsMOHP();
   }
 
   final List<IconData> cardIcon = [
@@ -123,15 +123,15 @@ class _NepalViewState extends State<NepalView> {
                 subtitleText: 'nepalcorona.info',
                 webview: WebViewLive(),
               ),
-              // CoronaLive(
-              //   trailingIconColor: Color(0xFF4267E2),
-              //   leadingIcon: FontAwesomeIcons.facebook,
-              //   leadingIconColor: Color(0xFF4267E2),
-              //   titleText: 'Facebook Update',
-              //   titleColor: Color(0xFF4267E2),
-              //   subtitleText: 'facebook.com/mohpnep',
-              //   webview: WebViewFB(),
-              // ),
+              CoronaLive(
+                trailingIconColor: Color(0xFF4267E2),
+                leadingIcon: FontAwesomeIcons.facebook,
+                leadingIconColor: Color(0xFF4267E2),
+                titleText: 'Facebook Update',
+                titleColor: Color(0xFF4267E2),
+                subtitleText: 'facebook.com/mohpnep',
+                webview: WebViewFB(),
+              ),
               CoronaLive(
                 trailingIconColor: Color(0xFF1DA1F2),
                 leadingIcon: FontAwesomeIcons.twitter,

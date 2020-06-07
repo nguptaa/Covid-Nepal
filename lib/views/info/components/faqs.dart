@@ -1,4 +1,3 @@
-import 'package:covid_nepal/views/home/somthingWentWrong.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
@@ -66,29 +65,23 @@ class _FAQsState extends State<FAQs> {
               child: FutureBuilder(
                 future: (language == 'Np') ? _futureFAQsNp : _futureFAQsEn,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    if (snapshot.data[0].question == 'somethingWentWrong') {
-                      return SomethingWentWrong();
-                    } else {
-                      return ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, index) {
-                          return FAQsListCard(
-                            snapshotData: snapshot,
-                            index: index,
-                          );
-                        },
-                      );
-                    }
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.red[600],
-                        ),
-                      ),
-                    );
-                  }
+                  return snapshot.hasData
+                      ? ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return FAQsListCard(
+                              snapshotData: snapshot,
+                              index: index,
+                            );
+                          },
+                        )
+                      : Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.red[600],
+                            ),
+                          ),
+                        );
                 },
               ),
             ),

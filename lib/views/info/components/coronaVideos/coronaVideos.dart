@@ -1,12 +1,8 @@
-import 'dart:async';
 import 'package:covid_nepal/views/info/components/coronaVideos/webviews/webview1.dart';
 import 'package:covid_nepal/views/info/components/coronaVideos/webviews/webview2.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class CoronaVideos extends StatefulWidget {
   @override

@@ -1,51 +1,31 @@
-import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class HospitalsNp {
   Future<List<HospitalsNpStat>> getHospitalsNpStats() async {
-    NetworkHelper networkHelper = NetworkHelper(
-        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/HospitalsNp/hospitalsNp.json?callback=?');
-
-    var covidData = await networkHelper.getData();
+    String response =
+        await rootBundle.loadString("assets/json/coronaFAQs.json");
+    final covidData = jsonDecode(response);
     List<HospitalsNpStat> hospitalsNpStats = [];
-    if (covidData != null) {
-      for (var i in covidData['data']) {
-        HospitalsNpStat hospitalsNpStat = HospitalsNpStat(
-          i['name'],
-          i['contact_person'],
-          i['contact_person_number'],
-          i['address'],
-          i['phone'],
-          i['state'],
-          i['capacity']['beds'],
-          i['capacity']['ventilators'],
-          i['capacity']['isolation_beds'],
-          i['capacity']['occupied_beds'],
-          i['capacity']['doctors'],
-          i['capacity']['nurses'],
-        );
-
-        hospitalsNpStats.add(hospitalsNpStat);
-      }
-      return hospitalsNpStats;
-    } else {
+    for (var i in covidData['data']) {
       HospitalsNpStat hospitalsNpStat = HospitalsNpStat(
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
+        i['name'],
+        i['contact_person'],
+        i['contact_person_number'],
+        i['address'],
+        i['phone'],
+        i['state'],
+        i['capacity']['beds'],
+        i['capacity']['ventilators'],
+        i['capacity']['isolation_beds'],
+        i['capacity']['occupied_beds'],
+        i['capacity']['doctors'],
+        i['capacity']['nurses'],
       );
 
       hospitalsNpStats.add(hospitalsNpStat);
-      return hospitalsNpStats;
     }
+    return hospitalsNpStats;
   }
 }
 

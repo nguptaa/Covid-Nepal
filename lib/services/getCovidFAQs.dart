@@ -1,64 +1,41 @@
-import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class CovidFAQs {
   Future<List<CovidFAQsNpStat>> getCovidFAQsNpStats() async {
-    NetworkHelper networkHelper = NetworkHelper(
-        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaFAQs/coronaFAQs.json');
-
-    var covidData = await networkHelper.getData();
+    String response =
+        await rootBundle.loadString("assets/json/coronaFAQs.json");
+    final covidData = jsonDecode(response);
     List<CovidFAQsNpStat> covidFAQsNpStats = [];
-    if (covidData != null) {
-      for (var i in covidData['data']) {
-        if (i['question_np'] != null) {
-          CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
-            i['question_np'],
-            i['answer_np'],
-            i['category'],
-          );
-          covidFAQsNpStats.add(covidFAQsNpStat);
-        }
+    for (var i in covidData['data']) {
+      if (i['question_np'] != null) {
+        CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
+          i['question_np'],
+          i['answer_np'],
+          i['category'],
+        );
+        covidFAQsNpStats.add(covidFAQsNpStat);
       }
-
-      return covidFAQsNpStats;
-    } else {
-      CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
-      );
-
-      covidFAQsNpStats.add(covidFAQsNpStat);
-      return covidFAQsNpStats;
     }
+
+    return covidFAQsNpStats;
   }
 
   Future<List<CovidFAQsEnStat>> getCovidFAQsEnStats() async {
-    NetworkHelper networkHelper = NetworkHelper(
-        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaFAQs/coronaFAQs.json');
-
-    var covidData = await networkHelper.getData();
+    String response =
+        await rootBundle.loadString("assets/json/coronaFAQs.json");
+    final covidData = jsonDecode(response);
     List<CovidFAQsEnStat> covidFAQsEnStats = [];
-    if (covidData != null) {
-      for (var i in covidData['data']) {
-        CovidFAQsEnStat covidFAQsEnStat = CovidFAQsEnStat(
-          i['question'],
-          i['answer'],
-          i['category'],
-        );
-
-        covidFAQsEnStats.add(covidFAQsEnStat);
-      }
-      return covidFAQsEnStats;
-    } else {
+    for (var i in covidData['data']) {
       CovidFAQsEnStat covidFAQsEnStat = CovidFAQsEnStat(
-        'somethingWentWrong',
-        'somethingWentWrong',
-        'somethingWentWrong',
+        i['question'],
+        i['answer'],
+        i['category'],
       );
 
       covidFAQsEnStats.add(covidFAQsEnStat);
-      return covidFAQsEnStats;
     }
+    return covidFAQsEnStats;
   }
 }
 

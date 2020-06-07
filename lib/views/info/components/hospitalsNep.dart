@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:covid_nepal/views/home/somthingWentWrong.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getHospitalsNp.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
@@ -42,54 +41,48 @@ class _HospitalsNepState extends State<HospitalsNep> {
         child: FutureBuilder(
           future: _futureHospitalsNp,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data[0].imageUrl == 'somethingWentWrong') {
-                return SomethingWentWrong();
-              } else {
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-                      child: GroovinExpansionTile(
-                        leading: CircleAvatar(
-                            backgroundColor: Colors.red[600],
-                            child: Center(
-                              child: Text(
-                                (index + 1).toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            )),
-                        title: AutoSizeText(
-                          snapshot.data[index].name,
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
-                        children: <Widget>[
-                          HospitalsNepCardChildren(
-                            snapshotData: snapshot,
-                            index: index,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 8.0),
+                        child: GroovinExpansionTile(
+                          leading: CircleAvatar(
+                              backgroundColor: Colors.red[600],
+                              child: Center(
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )),
+                          title: AutoSizeText(
+                            snapshot.data[index].name,
                           ),
-                        ],
+                          children: <Widget>[
+                            HospitalsNepCardChildren(
+                              snapshotData: snapshot,
+                              index: index,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.red[600],
                       ),
-                    );
-                  },
-                );
-              }
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.red[600],
-                  ),
-                ),
-              );
-            }
+                    ),
+                  );
           },
         ),
       ),
