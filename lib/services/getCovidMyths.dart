@@ -6,16 +6,24 @@ class CovidMyths {
         'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaMyths/coronaMyths.json');
 
     var covidData = await networkHelper.getData();
-    // return covidData;
     List<CovidMythsStat> covidMythsStats = [];
-    for (var i in covidData['data']) {
+    if (covidData != null) {
+      for (var i in covidData['data']) {
+        CovidMythsStat covidMythsStat = CovidMythsStat(
+          i['image_url'],
+        );
+
+        covidMythsStats.add(covidMythsStat);
+      }
+      return covidMythsStats;
+    } else {
       CovidMythsStat covidMythsStat = CovidMythsStat(
-        i['image_url'],
+        'somethingWentWrong',
       );
 
       covidMythsStats.add(covidMythsStat);
+      return covidMythsStats;
     }
-    return covidMythsStats;
   }
 }
 

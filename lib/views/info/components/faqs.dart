@@ -15,14 +15,14 @@ String language = 'Np';
 class _FAQsState extends State<FAQs> {
   final CovidFAQs covidFAQs = CovidFAQs();
 
-  Future<List<CovidFAQsNpStat>> _futureNp;
-  Future<List<CovidFAQsEnStat>> _futureEn;
+  Future<List<CovidFAQsNpStat>> _futureFAQsNp;
+  Future<List<CovidFAQsEnStat>> _futureFAQsEn;
 
   @override
   void initState() {
     super.initState();
-    _futureNp = covidFAQs.getCovidFAQsNpStats();
-    _futureEn = covidFAQs.getCovidFAQsEnStats();
+    _futureFAQsNp = covidFAQs.getCovidFAQsNpStats();
+    _futureFAQsEn = covidFAQs.getCovidFAQsEnStats();
   }
 
   @override
@@ -64,7 +64,7 @@ class _FAQsState extends State<FAQs> {
             ),
             Expanded(
               child: FutureBuilder(
-                future: (language == 'Np') ? _futureNp : _futureEn,
+                future: (language == 'Np') ? _futureFAQsNp : _futureFAQsEn,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data[0].question == 'somethingWentWrong') {

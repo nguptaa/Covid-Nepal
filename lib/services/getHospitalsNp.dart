@@ -6,27 +6,46 @@ class HospitalsNp {
         'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/HospitalsNp/hospitalsNp.json?callback=?');
 
     var covidData = await networkHelper.getData();
-    // return covidData;
     List<HospitalsNpStat> hospitalsNpStats = [];
-    for (var i in covidData['data']) {
+    if (covidData != null) {
+      for (var i in covidData['data']) {
+        HospitalsNpStat hospitalsNpStat = HospitalsNpStat(
+          i['name'],
+          i['contact_person'],
+          i['contact_person_number'],
+          i['address'],
+          i['phone'],
+          i['state'],
+          i['capacity']['beds'],
+          i['capacity']['ventilators'],
+          i['capacity']['isolation_beds'],
+          i['capacity']['occupied_beds'],
+          i['capacity']['doctors'],
+          i['capacity']['nurses'],
+        );
+
+        hospitalsNpStats.add(hospitalsNpStat);
+      }
+      return hospitalsNpStats;
+    } else {
       HospitalsNpStat hospitalsNpStat = HospitalsNpStat(
-        i['name'],
-        i['contact_person'],
-        i['contact_person_number'],
-        i['address'],
-        i['phone'],
-        i['state'],
-        i['capacity']['beds'],
-        i['capacity']['ventilators'],
-        i['capacity']['isolation_beds'],
-        i['capacity']['occupied_beds'],
-        i['capacity']['doctors'],
-        i['capacity']['nurses'],
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
       );
 
       hospitalsNpStats.add(hospitalsNpStat);
+      return hospitalsNpStats;
     }
-    return hospitalsNpStats;
   }
 }
 
