@@ -3,7 +3,7 @@ import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
 class HospitalsNp {
   Future<List<HospitalsNpStat>> getHospitalsNpStats() async {
     NetworkHelper networkHelper = NetworkHelper(
-        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/HospitalsNp/hospitalsNp.json');
+        'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/HospitalsNp/hospitalsNp.json?callback=?');
 
     var covidData = await networkHelper.getData();
     // return covidData;

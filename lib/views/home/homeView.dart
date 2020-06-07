@@ -29,15 +29,15 @@ class _HomeViewState extends State<HomeView> {
   final List<Widget> _views = [
     NepalView(),
     WorldView(),
-    // NewsView(),
-    // InfoView()
+    NewsView(),
+    InfoView()
   ];
 
   final List<String> _tabs = [
     "Covid Nepal",
     "Covid World",
-    // "Covid News",
-    // "Covid Info"
+    "Covid News",
+    "Covid Info"
   ];
 
   @override
@@ -72,9 +72,8 @@ class _HomeViewState extends State<HomeView> {
         onTap: changePage,
         iconSize: size.height * 0.03,
         borderRadius: BorderRadius.vertical(
-            top: Radius.circular(
-                18),
-                ), //border radius doesn't work when the notch is enabled.
+          top: Radius.circular(18),
+        ), //border radius doesn't work when the notch is enabled.
         elevation: 8,
         items: <BubbleBottomBarItem>[
           BubbleBottomBarItem(
@@ -99,28 +98,28 @@ class _HomeViewState extends State<HomeView> {
                 color: Colors.red[600],
               ),
               title: Text("World")),
-          // BubbleBottomBarItem(
-          //     backgroundColor: Colors.red[600],
-          //     icon: FaIcon(
-          //       FontAwesomeIcons.newspaper,
-          //       color: Colors.black,
-          //     ),
-          //     activeIcon: FaIcon(
-          //       FontAwesomeIcons.newspaper,
-          //       color: Colors.red[600],
-          //     ),
-          //     title: Text("News")),
-          // BubbleBottomBarItem(
-          //     backgroundColor: Colors.red[600],
-          //     icon: FaIcon(
-          //       FontAwesomeIcons.infoCircle,
-          //       color: Colors.black,
-          //     ),
-          //     activeIcon: FaIcon(
-          //       FontAwesomeIcons.infoCircle,
-          //       color: Colors.red[600],
-          //     ),
-          //     title: Text("Info")),
+          BubbleBottomBarItem(
+              backgroundColor: Colors.red[600],
+              icon: FaIcon(
+                FontAwesomeIcons.newspaper,
+                color: Colors.black,
+              ),
+              activeIcon: FaIcon(
+                FontAwesomeIcons.newspaper,
+                color: Colors.red[600],
+              ),
+              title: Text("News")),
+          BubbleBottomBarItem(
+              backgroundColor: Colors.red[600],
+              icon: FaIcon(
+                FontAwesomeIcons.infoCircle,
+                color: Colors.black,
+              ),
+              activeIcon: FaIcon(
+                FontAwesomeIcons.infoCircle,
+                color: Colors.red[600],
+              ),
+              title: Text("Info")),
         ],
       ),
     );

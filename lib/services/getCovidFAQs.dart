@@ -6,20 +6,30 @@ class CovidFAQs {
         'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaFAQs/coronaFAQs.json');
 
     var covidData = await networkHelper.getData();
-    // return covidData;
     List<CovidFAQsNpStat> covidFAQsNpStats = [];
-    for (var i in covidData['data']) {
-      if (i['question_np'] != null) {
-        CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
-          i['question_np'],
-          i['answer_np'],
-          i['category'],
-        );
-
-        covidFAQsNpStats.add(covidFAQsNpStat);
+    if (covidData != null) {
+      for (var i in covidData['data']) {
+        if (i['question_np'] != null) {
+          CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
+            i['question_np'],
+            i['answer_np'],
+            i['category'],
+          );
+          covidFAQsNpStats.add(covidFAQsNpStat);
+        }
       }
+
+      return covidFAQsNpStats;
+    } else {
+      CovidFAQsNpStat covidFAQsNpStat = CovidFAQsNpStat(
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+      );
+
+      covidFAQsNpStats.add(covidFAQsNpStat);
+      return covidFAQsNpStats;
     }
-    return covidFAQsNpStats;
   }
 
   Future<List<CovidFAQsEnStat>> getCovidFAQsEnStats() async {
@@ -27,18 +37,28 @@ class CovidFAQs {
         'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/CoronaFAQs/coronaFAQs.json');
 
     var covidData = await networkHelper.getData();
-    // return covidData;
     List<CovidFAQsEnStat> covidFAQsEnStats = [];
-    for (var i in covidData['data']) {
+    if (covidData != null) {
+      for (var i in covidData['data']) {
+        CovidFAQsEnStat covidFAQsEnStat = CovidFAQsEnStat(
+          i['question'],
+          i['answer'],
+          i['category'],
+        );
+
+        covidFAQsEnStats.add(covidFAQsEnStat);
+      }
+      return covidFAQsEnStats;
+    } else {
       CovidFAQsEnStat covidFAQsEnStat = CovidFAQsEnStat(
-        i['question'],
-        i['answer'],
-        i['category'],
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
       );
 
       covidFAQsEnStats.add(covidFAQsEnStat);
+      return covidFAQsEnStats;
     }
-    return covidFAQsEnStats;
   }
 }
 

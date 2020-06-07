@@ -13,7 +13,6 @@ class _WorldViewState extends State<WorldView> {
   final CovidWorld covidWorld = CovidWorld();
 
   Future<List<CovidWorldStat>> _futureCovidWorld;
-
   @override
   void initState() {
     super.initState();
@@ -31,7 +30,7 @@ class _WorldViewState extends State<WorldView> {
             margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
             // child: SearchBar(
             // onSearch: _futureCovidWorld.country,
-            child: Text('lol'),
+            // child: Text('lol'),
             // ),
           ),
           Expanded(

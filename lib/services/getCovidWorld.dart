@@ -1,9 +1,9 @@
 import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
 
 class CovidWorld {
-  Future<List<dynamic>> getCovidWorldStats() async {
+  Future<List<CovidWorldStat>> getCovidWorldStats() async {
     NetworkHelper networkHelper =
-        NetworkHelper('https://nepalcorona.info/api/v1/data/lol');
+        NetworkHelper('https://nepalcorona.info/api/v1/data/world');
 
     var covidData = await networkHelper.getData();
     List<CovidWorldStat> covidWorldStats = [];

@@ -1,4 +1,3 @@
-import 'package:covid_nepal/views/home/somthingWentWrong.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'cardContent.dart';

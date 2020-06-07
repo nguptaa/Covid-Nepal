@@ -12,6 +12,7 @@ class _SomethingWentWrongState extends State<SomethingWentWrong> {
     Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         SvgPicture.asset(
           'assets/images/socialDis.svg',

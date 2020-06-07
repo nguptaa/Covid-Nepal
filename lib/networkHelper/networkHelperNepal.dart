@@ -1,4 +1,5 @@
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class NetworkHelper {
   NetworkHelper(this.url);
@@ -7,10 +8,10 @@ class NetworkHelper {
 
   Future getData() async {
     try {
-      var dio = Dio();
-      Response response = await dio.get(url);
+      http.Response response = await http.get(url);
       if (response.statusCode == 200) {
-        return response.data;
+        String data = response.body;
+        return jsonDecode(data);
       } else {
         return null;
       }

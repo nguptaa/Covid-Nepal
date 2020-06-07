@@ -7,20 +7,34 @@ class CovidNews {
 
     var covidData = await networkHelper.getData();
     List<CovidNewsNpStat> covidNewsNpStats = [];
-    for (var i in covidData['data']) {
-      if (i['lang'] == 'np') {
-        CovidNewsNpStat covidNewsNpStat = CovidNewsNpStat(
-          i['title'],
-          i['source'],
-          i['image_url'],
-          i['summary'],
-          i['url'],
-          DateTime.parse(i['created_at']),
-        );
-        covidNewsNpStats.add(covidNewsNpStat);
+    if (covidData != null) {
+      for (var i in covidData['data']) {
+        if (i['lang'] == 'np') {
+          CovidNewsNpStat covidNewsNpStat = CovidNewsNpStat(
+            i['title'],
+            i['source'],
+            i['image_url'],
+            i['summary'],
+            i['url'],
+            DateTime.parse(i['created_at']),
+          );
+          covidNewsNpStats.add(covidNewsNpStat);
+        }
       }
+      return covidNewsNpStats;
+    } else {
+      CovidNewsNpStat covidNewsNpStat = CovidNewsNpStat(
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        DateTime.parse('2020-01-01T14:35:10.306Z'),
+      );
+      covidNewsNpStats.add(covidNewsNpStat);
+
+      return covidNewsNpStats;
     }
-    return covidNewsNpStats;
   }
 
   Future<List<CovidNewsEnStat>> getCovidNewsEnStats() async {
@@ -29,20 +43,34 @@ class CovidNews {
 
     var covidData = await networkHelper.getData();
     List<CovidNewsEnStat> covidNewsEnStats = [];
-    for (var i in covidData['data']) {
-      if (i['lang'] == 'en') {
-        CovidNewsEnStat covidNewsEnStat = CovidNewsEnStat(
-          i['title'],
-          i['source'],
-          i['image_url'],
-          i['summary'],
-          i['url'],
-          DateTime.parse(i['created_at']),
-        );
-        covidNewsEnStats.add(covidNewsEnStat);
+    if (covidData != null) {
+      for (var i in covidData['data']) {
+        if (i['lang'] == 'en') {
+          CovidNewsEnStat covidNewsEnStat = CovidNewsEnStat(
+            i['title'],
+            i['source'],
+            i['image_url'],
+            i['summary'],
+            i['url'],
+            DateTime.parse(i['created_at']),
+          );
+          covidNewsEnStats.add(covidNewsEnStat);
+        }
       }
+      return covidNewsEnStats;
+    } else {
+      CovidNewsEnStat covidNewsEnStat = CovidNewsEnStat(
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        'somethingWentWrong',
+        DateTime.parse('2020-01-01T14:35:10.306Z'),
+      );
+      covidNewsEnStats.add(covidNewsEnStat);
+
+      return covidNewsEnStats;
     }
-    return covidNewsEnStats;
   }
 }
 
