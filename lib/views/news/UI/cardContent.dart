@@ -35,7 +35,7 @@ class CardContent extends StatelessWidget {
                 '. ' +
                 snapshot.data[index].title.toString(),
             style: TextStyle(
-              fontSize: size.longestSide * 0.03,
+              fontSize: size.longestSide * 0.025,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -43,7 +43,7 @@ class CardContent extends StatelessWidget {
             snapshot.data[index].source.toString(),
             textAlign: TextAlign.start,
             style: TextStyle(
-              fontSize: size.longestSide * 0.018,
+              fontSize: size.longestSide * 0.015,
               fontWeight: FontWeight.w100,
             ),
           ),
@@ -51,7 +51,7 @@ class CardContent extends StatelessWidget {
             DateFormat.yMMMMd()
                 .format(snapshot.data[index].dateCreated.toLocal()),
             style: TextStyle(
-              fontSize: size.longestSide * 0.012,
+              fontSize: size.longestSide * 0.01,
             ),
           ),
           Padding(
@@ -67,7 +67,7 @@ class CardContent extends StatelessWidget {
           AutoSizeText(
             snapshot.data[index].summary.toString(),
             style: TextStyle(
-              fontSize: size.longestSide * 0.02,
+              fontSize: size.longestSide * 0.016,
             ),
           ),
         ],

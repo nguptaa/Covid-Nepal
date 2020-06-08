@@ -1,5 +1,4 @@
 import 'package:covid_nepal/views/nepal/components/coronaLive/coronaLive.dart';
-import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewFB.dart';
 import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
 import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewTwitter.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _NepalViewState extends State<NepalView> {
   final CovidNepal covidNepal = CovidNepal();
 
   Future<dynamic> _futureCovidNepal;
-  final String _phone = '1133';
+  final String _phone = 'tel:1133';
 
   _makePhoneCall() async {
     if (await canLaunch(_phone)) {
@@ -63,7 +62,7 @@ class _NepalViewState extends State<NepalView> {
     return Stack(
       children: <Widget>[
         Container(
-          height: size.height * 0.16,
+          height: size.longestSide * 0.16,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -137,7 +136,7 @@ class _NepalViewState extends State<NepalView> {
                       Text(
                         'Are you feeling sick?',
                         style: TextStyle(
-                          fontSize: size.height * 0.025,
+                          fontSize: size.longestSide * 0.025,
                           fontWeight: FontWeight.bold,
                           color: Colors.red[600],
                         ),
@@ -148,7 +147,7 @@ class _NepalViewState extends State<NepalView> {
                       Text(
                         'If you feel sick with any Covid-19 symptoms, feel free to contact',
                         style: TextStyle(
-                          fontSize: size.height * 0.015,
+                          fontSize: size.longestSide * 0.015,
                         ),
                       ),
                       SizedBox(
@@ -164,7 +163,12 @@ class _NepalViewState extends State<NepalView> {
                               icon: FaIcon(
                                 FontAwesomeIcons.phoneAlt,
                               ),
-                              label: Text('1133'),
+                              label: Text(
+                                '1133',
+                                style: TextStyle(
+                                  fontSize: size.longestSide * 0.02,
+                                ),
+                              ),
                               color: Colors.red[400],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -181,7 +185,12 @@ class _NepalViewState extends State<NepalView> {
                               icon: FaIcon(
                                 FontAwesomeIcons.viber,
                               ),
-                              label: Text('Viber'),
+                              label: Text(
+                                'Viber',
+                                style: TextStyle(
+                                  fontSize: size.longestSide * 0.02,
+                                ),
+                              ),
                               color: Color(0xFF665CAC),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -202,15 +211,6 @@ class _NepalViewState extends State<NepalView> {
                 titleColor: Colors.red[600],
                 subtitleText: 'nepalcorona.info',
                 webview: WebViewLive(),
-              ),
-              CoronaLive(
-                trailingIconColor: Color(0xFF4267E2),
-                leadingIcon: FontAwesomeIcons.facebook,
-                leadingIconColor: Color(0xFF4267E2),
-                titleText: 'Facebook Update',
-                titleColor: Color(0xFF4267E2),
-                subtitleText: 'facebook.com/mohpnep',
-                webview: WebViewFB(),
               ),
               CoronaLive(
                 trailingIconColor: Color(0xFF1DA1F2),

@@ -27,7 +27,6 @@ class _NewsViewState extends State<NewsView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return SafeArea(
       child: Column(
         children: <Widget>[

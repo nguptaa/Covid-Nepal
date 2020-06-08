@@ -8,12 +8,4 @@ class CovidNepal {
     var covidData = await networkHelper.getData();
     return covidData != null ? covidData['nepal'] : 'somethingWentWrong';
   }
-  Future<dynamic> getCovidNepalStatsFB() async {
-    NetworkHelper networkHelper =
-        NetworkHelper('https://nepalcorona.info/api/v1/data/nepal');
-
-    var covidData = await networkHelper.getData();
-    return covidData != null ? covidData : 'somethingWentWrong';
-  }
 }
-

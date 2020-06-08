@@ -54,7 +54,7 @@ class _InfoViewState extends State<InfoView> {
             margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: SvgPicture.asset(
               'assets/images/socialDis.svg',
-              height: size.height * 0.30,
+              height: size.longestSide * 0.30,
               placeholderBuilder: (BuildContext context) => Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
@@ -71,6 +71,9 @@ class _InfoViewState extends State<InfoView> {
             child: Text(
               'Made with ❤️ in Nepal',
               textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: size.longestSide * 0.018,
+              ),
             ),
           ),
           Card(
@@ -84,6 +87,9 @@ class _InfoViewState extends State<InfoView> {
                     ? Text(
                         'Version: ' + snapshot.data[0].version,
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: size.longestSide * 0.015,
+                        ),
                       )
                     : Center(
                         child: CircularProgressIndicator(

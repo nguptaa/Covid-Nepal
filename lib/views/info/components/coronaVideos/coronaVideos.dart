@@ -28,40 +28,42 @@ class _CoronaVideosState extends State<CoronaVideos> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return Card(
-            elevation: 8.0,
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: GroovinExpansionTile(
-              leading: FaIcon(
-                FontAwesomeIcons.youtube,
-                size: 30,
-                color: Colors.red[600],
+      body: SafeArea(
+        child: ListView.builder(
+          itemCount: 2,
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 8.0,
+              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              title: Text(
-                'नोभल कोरोना भाइरसको खतरालाई कसरी कम गर्ने?',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              child: GroovinExpansionTile(
+                leading: FaIcon(
+                  FontAwesomeIcons.youtube,
+                  size: 30,
+                  color: Colors.red[600],
                 ),
-              ),
-              subtitle: Text(
-                'UNICEF Nepal',
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontStyle: FontStyle.italic,
+                title: Text(
+                  'नोभल कोरोना भाइरसको खतरालाई कसरी कम गर्ने?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                subtitle: Text(
+                  'UNICEF Nepal',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                children: <Widget>[
+                  (index + 1) == 1 ? WebView1() : WebView2(),
+                ],
               ),
-              children: <Widget>[
-                (index + 1) == 1 ? WebView1() : WebView2(),
-              ],
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

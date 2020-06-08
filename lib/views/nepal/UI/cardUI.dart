@@ -34,7 +34,7 @@ class CardUI extends StatelessWidget {
                 child: FaIcon(
                   FontAwesomeIcons.exclamationTriangle,
                   color: cardColor,
-                  size: size.height * 0.035,
+                  size: size.longestSide * 0.035,
                 ),
               );
             } else {

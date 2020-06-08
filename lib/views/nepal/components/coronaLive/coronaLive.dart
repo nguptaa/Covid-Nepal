@@ -23,6 +23,7 @@ class CoronaLive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
       child: Card(
@@ -42,6 +43,7 @@ class CoronaLive extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: titleColor,
+              fontSize: size.longestSide * 0.021,
             ),
           ),
           subtitle: Text(
@@ -49,6 +51,7 @@ class CoronaLive extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontStyle: FontStyle.italic,
+              fontSize: size.longestSide * 0.015,
             ),
           ),
           children: <Widget>[

@@ -20,7 +20,7 @@ class LastUpdated extends StatelessWidget {
               timeago.format(
                   DateTime.parse(snapshotData.data['updated_at']).toLocal()),
           style: TextStyle(
-            fontSize: size.height * 0.015,
+            fontSize: size.longestSide * 0.012,
             fontWeight: FontWeight.w300,
             fontStyle: FontStyle.italic,
             color: Colors.white,

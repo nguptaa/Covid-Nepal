@@ -70,7 +70,7 @@ class _HomeViewState extends State<HomeView> {
         opacity: .3,
         currentIndex: currentIndex,
         onTap: changePage,
-        iconSize: size.height * 0.03,
+        iconSize: size.longestSide * 0.03,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(18),
         ), //border radius doesn't work when the notch is enabled.
