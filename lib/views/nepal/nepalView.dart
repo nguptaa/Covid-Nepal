@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/nepal/UI/cardUI.dart';
 import 'package:covid_nepal/services/getCovidNepal.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'components/lastUpdated.dart';
 
 class NepalView extends StatefulWidget {
@@ -17,6 +18,15 @@ class _NepalViewState extends State<NepalView> {
   final CovidNepal covidNepal = CovidNepal();
 
   Future<dynamic> _futureCovidNepal;
+  final String _phone = '1133';
+
+  _makePhoneCall() async {
+    if (await canLaunch(_phone)) {
+      await launch(_phone);
+    } else {
+      throw 'Could not launch $_phone';
+    }
+  }
 
   @override
   void initState() {
@@ -53,7 +63,7 @@ class _NepalViewState extends State<NepalView> {
     return Stack(
       children: <Widget>[
         Container(
-          height: size.height * 0.13,
+          height: size.height * 0.16,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -74,7 +84,6 @@ class _NepalViewState extends State<NepalView> {
                       return Center(
                         child: FaIcon(
                           FontAwesomeIcons.exclamationTriangle,
-                          // color: cardColor,
                           size: size.height * 0.035,
                         ),
                       );
@@ -112,6 +121,77 @@ class _NepalViewState extends State<NepalView> {
                   crossAxisCount: 2,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 5),
+                child: Card(
+                  color: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Are you feeling sick?',
+                        style: TextStyle(
+                          fontSize: size.height * 0.025,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red[600],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        'If you feel sick with any Covid-19 symptoms, feel free to contact',
+                        style: TextStyle(
+                          fontSize: size.height * 0.015,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Expanded(
+                            child: RaisedButton.icon(
+                              onPressed: () => _makePhoneCall,
+                              elevation: 5,
+                              icon: FaIcon(
+                                FontAwesomeIcons.phoneAlt,
+                              ),
+                              label: Text('1133'),
+                              color: Colors.red[400],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: size.width * 0.05,
+                          ),
+                          Expanded(
+                            child: RaisedButton.icon(
+                              onPressed: () {},
+                              elevation: 5,
+                              icon: FaIcon(
+                                FontAwesomeIcons.viber,
+                              ),
+                              label: Text('Viber'),
+                              color: Color(0xFF665CAC),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
               CoronaLive(

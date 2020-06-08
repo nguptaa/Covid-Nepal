@@ -8,6 +8,7 @@ class LastUpdated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
       child: Card(
@@ -19,7 +20,7 @@ class LastUpdated extends StatelessWidget {
               timeago.format(
                   DateTime.parse(snapshotData.data['updated_at']).toLocal()),
           style: TextStyle(
-            // fontSize: size.height * 0.018,
+            fontSize: size.height * 0.015,
             fontWeight: FontWeight.w300,
             fontStyle: FontStyle.italic,
             color: Colors.white,

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 class HospitalsNp {
   Future<List<HospitalsNpStat>> getHospitalsNpStats() async {
     String response =
-        await rootBundle.loadString("assets/json/coronaFAQs.json");
+        await rootBundle.loadString("assets/json/hospitalsNp.json");
     final covidData = jsonDecode(response);
     List<HospitalsNpStat> hospitalsNpStats = [];
     for (var i in covidData['data']) {

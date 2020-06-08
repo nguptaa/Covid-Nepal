@@ -71,26 +71,17 @@ class _WebViewFBState extends State<WebViewFB> {
                           _controllerFB.complete(webViewController);
                         },
                         navigationDelegate: (NavigationRequest request) {
-                          if (request.url.startsWith(
-                              'https://www.facebook.com/plugins/error/confirm/')) {
+                          if (request.url
+                              .startsWith('https://www.facebook.com/mohpnep')) {
                             print('blocking navigation to $request}');
                             return NavigationDecision.prevent;
                           }
                           if (request.url
-                              .startsWith('https://www.facebook.com/watch/')) {
+                              .startsWith('https://m.facebook.com/mohpnep')) {
                             print('blocking navigation to $request}');
                             return NavigationDecision.prevent;
                           }
-                          if (request.url.startsWith(
-                              'https://www.facebook.com/mohpnep/videos')) {
-                            print('blocking navigation to $request}');
-                            return NavigationDecision.prevent;
-                          }
-                          if (request.url
-                              .startsWith('https://www.facebook.com/sharer/')) {
-                            print('blocking navigation to $request}');
-                            return NavigationDecision.prevent;
-                          }
+
                           print('allowing navigation to $request');
                           return NavigationDecision.navigate;
                         },
