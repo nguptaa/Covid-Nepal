@@ -26,8 +26,8 @@ class _WorldViewState extends State<WorldView> {
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.05,
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+            // height: size.height * 0.05,
+            // margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
             // child: SearchBar(
             // onSearch: _futureCovidWorld.country,
             // child: Text('lol'),

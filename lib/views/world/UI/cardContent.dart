@@ -56,7 +56,7 @@ class CardContent extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: size.height * 0.008),
+          SizedBox(height: size.longestSide * 0.008),
           CovidStatsText(
             title: 'Total: ',
             snapshotData: snapshot.data[index].totCases.toString(),

@@ -221,6 +221,9 @@ class _NepalViewState extends State<NepalView> {
                 subtitleText: 'twitter.com/mohpnep',
                 webview: WebViewTwitter(),
               ),
+              SizedBox(
+                height: size.longestSide * 0.015,
+              ),
             ],
           ),
         ),
