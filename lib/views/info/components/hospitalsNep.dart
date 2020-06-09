@@ -19,7 +19,7 @@ class _HospitalsNepState extends State<HospitalsNep> {
 
   Future<Null> refresh() async {
     _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(seconds: 2));
 
     setState(() {
       hospitalsNp.getHospitalsNpStats();

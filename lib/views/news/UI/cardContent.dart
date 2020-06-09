@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:intl/intl.dart';
@@ -18,11 +19,7 @@ class CardContent extends StatelessWidget {
     final cachedImage = CachedNetworkImage(
       imageUrl: snapshot.data[index].imageUrl,
       height: size.longestSide * 0.20,
-      placeholder: (context, url) => CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(
-          Colors.red[600],
-        ),
-      ),
+      placeholder: (context, url) => CupertinoActivityIndicator(),
       errorWidget: (context, url, error) => Icon(Icons.error),
     );
     return Padding(
@@ -31,7 +28,7 @@ class CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AutoSizeText(
-            (index+1).toString() +
+            (index + 1).toString() +
                 '. ' +
                 snapshot.data[index].title.toString(),
             style: TextStyle(

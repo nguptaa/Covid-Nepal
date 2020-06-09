@@ -19,7 +19,7 @@ class _MythsState extends State<Myths> {
 
   Future<Null> refresh() async {
     _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(seconds: 2));
 
     setState(() {
       covidMyths.getCovidMythsStats();
@@ -78,11 +78,7 @@ class _MythsState extends State<Myths> {
                               child: CachedNetworkImage(
                                 imageUrl: snapshot.data[index].imageUrl,
                                 placeholder: (context, url) =>
-                                    CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.red[600],
-                                  ),
-                                ),
+                                    CupertinoActivityIndicator(),
                                 errorWidget: (context, url, error) =>
                                     Icon(Icons.error),
                               ),

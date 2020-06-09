@@ -24,7 +24,7 @@ class _NepalViewState extends State<NepalView> {
 
   Future<Null> refresh() async {
     _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(seconds: 2));
 
     setState(() {
       covidNepal.getCovidNepalStatsMOHP();
@@ -33,13 +33,12 @@ class _NepalViewState extends State<NepalView> {
     return null;
   }
 
-  final String _phone = 'tel:1133';
-
-  _makePhoneCall() async {
-    if (await canLaunch(_phone)) {
-      await launch(_phone);
+  void _makePhoneCall(int number) async {
+    var url = "tel:${number.toString()}";
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
-      throw 'Could not launch $_phone';
+      throw 'Could not launch $url';
     }
   }
 
@@ -174,7 +173,9 @@ class _NepalViewState extends State<NepalView> {
                           children: <Widget>[
                             Expanded(
                               child: RaisedButton.icon(
-                                onPressed: () => _makePhoneCall,
+                                onPressed: () {
+                                  _makePhoneCall(1133);
+                                },
                                 elevation: 5,
                                 icon: FaIcon(
                                   FontAwesomeIcons.phoneAlt,

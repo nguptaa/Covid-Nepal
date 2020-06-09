@@ -20,7 +20,7 @@ class _NewsViewState extends State<NewsView> {
 
   Future<Null> refresh() async {
     _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(seconds: 2));
 
     setState(() {
       covidNews.getCovidNewsNpStats();
