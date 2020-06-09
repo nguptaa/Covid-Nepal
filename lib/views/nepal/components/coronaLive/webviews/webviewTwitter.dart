@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _WebViewTwitterState extends State<WebViewTwitter> {
             ),
           ),
           Center(
-            child: CircularProgressIndicator(),
+            child: CupertinoActivityIndicator(),
           ),
         ],
       ),

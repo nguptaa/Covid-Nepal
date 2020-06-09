@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'cardContent.dart';
@@ -47,9 +48,7 @@ class CardUI extends StatelessWidget {
             }
           } else {
             return Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.red[600]),
-              ),
+              child: CupertinoActivityIndicator(),
             );
           }
         },

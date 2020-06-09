@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getHospitalsNp.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
@@ -95,11 +96,7 @@ class _HospitalsNepState extends State<HospitalsNep> {
                       },
                     )
                   : Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.red[600],
-                        ),
-                      ),
+                      child: CupertinoActivityIndicator(),
                     );
             },
           ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _WebView2State extends State<WebView2> {
             ),
           ),
           Center(
-            child: CircularProgressIndicator(),
+            child: CupertinoActivityIndicator(),
           ),
         ],
       ),

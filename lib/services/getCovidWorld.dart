@@ -8,20 +8,21 @@ class CovidWorld {
     var covidData = await networkHelper.getData();
     List<CovidWorldStat> covidWorldStats = [];
     if (covidData != null) {
+      covidData.removeAt(0);
       for (var i in covidData) {
-        if (i['countryInfo'] != null) {
-          CovidWorldStat covidWorldStat = CovidWorldStat(
-            i['country'],
-            i['totalCases'],
-            i['activeCases'],
-            i['totalDeaths'],
-            i['totalRecovered'],
-            i['countryInfo']['flag'],
-            i['updated'],
-          );
+        CovidWorldStat covidWorldStat = CovidWorldStat(
+          i['country'],
+          i['totalCases'],
+          i['activeCases'],
+          i['totalDeaths'],
+          i['totalRecovered'],
+          (i['countryInfo'] != null)
+              ? i['countryInfo']['flag']
+              : 'https://raw.githubusercontent.com/nguptaa/Covid-Nepal-JSONs/master/assets/images/globeRect.png',
+          i['updated'],
+        );
 
-          covidWorldStats.add(covidWorldStat);
-        }
+        covidWorldStats.add(covidWorldStat);
       }
       return covidWorldStats;
     } else {

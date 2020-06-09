@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
@@ -95,11 +96,7 @@ class _FAQsState extends State<FAQs> {
                             },
                           )
                         : Center(
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.red[600],
-                              ),
-                            ),
+                            child: CupertinoActivityIndicator(),
                           );
                   },
                 ),

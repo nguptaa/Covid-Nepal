@@ -1,4 +1,5 @@
 import 'package:covid_nepal/views/home/somthingWentWrong.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/news/UI/cardUI.dart';
 import 'package:covid_nepal/services/getCovidNews.dart';
@@ -86,10 +87,7 @@ class _NewsViewState extends State<NewsView> {
                     }
                   } else {
                     return Center(
-                      child: CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.red[600]),
-                      ),
+                      child: CupertinoActivityIndicator(),
                     );
                   }
                 },

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidMyths.dart';
 
@@ -91,11 +92,7 @@ class _MythsState extends State<Myths> {
                       },
                     )
                   : Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.red[600],
-                        ),
-                      ),
+                      child: CupertinoActivityIndicator(),
                     );
             },
           ),

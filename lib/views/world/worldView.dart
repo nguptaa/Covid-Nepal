@@ -78,10 +78,7 @@ class _WorldViewState extends State<WorldView> {
                     }
                   } else {
                     return Center(
-                      child: CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.red[600]),
-                      ),
+                      child: CupertinoActivityIndicator(),
                     );
                   }
                 },
