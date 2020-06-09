@@ -15,10 +15,6 @@ void main() => runApp(
     );
 
 class MyApp extends StatelessWidget {
-  // Future _onRefresh() async {
-  //   await Future.delayed(Duration(milliseconds: 1000));
-  //   print("hello");
-  // }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -21,6 +21,7 @@ class _CoronaVideosState extends State<CoronaVideos> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30.0),

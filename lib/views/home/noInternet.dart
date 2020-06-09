@@ -1,50 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class NoInternet extends StatefulWidget {
+class SomethingWentWrong extends StatefulWidget {
   @override
-  _NoInternetState createState() => _NoInternetState();
+  _SomethingWentWrongState createState() => _SomethingWentWrongState();
 }
 
-class _NoInternetState extends State<NoInternet> {
+class _SomethingWentWrongState extends State<SomethingWentWrong> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Covid Nepal',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Center(
+          child: FaIcon(
+            FontAwesomeIcons.exclamationTriangle,
+            size: size.longestSide * 0.1,
           ),
         ),
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30.0),
-            bottomRight: Radius.circular(30.0),
-          ),
+        SizedBox(
+          height: size.longestSide * 0.01,
         ),
-      ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SvgPicture.asset(
-              'assets/images/socialDis.svg',
-              height: size.height * 0.30,
-              placeholderBuilder: (BuildContext context) => Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.red[600],
-                  ),
-                ),
-              ),
+        Center(
+          child: Text(
+            'No Internet!',
+            style: TextStyle(
+              fontSize: size.longestSide * 0.02,
             ),
-            Text('No Internet!')
-          ],
+          ),
         ),
-      ),
+        SizedBox(
+          height: size.longestSide * 0.015,
+        ),
+        Center(
+          child: RaisedButton(
+            color: Colors.red[600],
+            onPressed: () {},
+            child: Text(
+              'Retry',
+              style: TextStyle(fontSize: size.width * 0.05),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

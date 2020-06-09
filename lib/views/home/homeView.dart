@@ -51,6 +51,7 @@ class _HomeViewState extends State<HomeView> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
         elevation: 0,
         shape: currentIndex != 0
             ? RoundedRectangleBorder(

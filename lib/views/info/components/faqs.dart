@@ -14,6 +14,21 @@ String language = 'Np';
 class _FAQsState extends State<FAQs> {
   final CovidFAQs covidFAQs = CovidFAQs();
 
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+
+  Future<Null> refresh() async {
+    _refreshIndicatorKey.currentState?.show(atTop: false);
+    await Future.delayed(Duration(milliseconds: 1000));
+
+    setState(() {
+      covidFAQs.getCovidFAQsNpStats();
+      covidFAQs.getCovidFAQsEnStats();
+    });
+
+    return null;
+  }
+
   Future<List<CovidFAQsNpStat>> _futureFAQsNp;
   Future<List<CovidFAQsEnStat>> _futureFAQsEn;
 
@@ -34,6 +49,7 @@ class _FAQsState extends State<FAQs> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30.0),
@@ -62,27 +78,31 @@ class _FAQsState extends State<FAQs> {
               ),
             ),
             Expanded(
-              child: FutureBuilder(
-                future: (language == 'Np') ? _futureFAQsNp : _futureFAQsEn,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return snapshot.hasData
-                      ? ListView.builder(
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            return FAQsListCard(
-                              snapshotData: snapshot,
-                              index: index,
-                            );
-                          },
-                        )
-                      : Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.red[600],
+              child: RefreshIndicator(
+                key: _refreshIndicatorKey,
+                onRefresh: refresh,
+                child: FutureBuilder(
+                  future: (language == 'Np') ? _futureFAQsNp : _futureFAQsEn,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    return snapshot.hasData
+                        ? ListView.builder(
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              return FAQsListCard(
+                                snapshotData: snapshot,
+                                index: index,
+                              );
+                            },
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.red[600],
+                              ),
                             ),
-                          ),
-                        );
-                },
+                          );
+                  },
+                ),
               ),
             ),
           ],

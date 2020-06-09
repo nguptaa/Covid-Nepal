@@ -14,6 +14,21 @@ String language = 'Np';
 class _NewsViewState extends State<NewsView> {
   final CovidNews covidNews = CovidNews();
 
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+
+  Future<Null> refresh() async {
+    _refreshIndicatorKey.currentState?.show(atTop: false);
+    await Future.delayed(Duration(milliseconds: 1000));
+
+    setState(() {
+      covidNews.getCovidNewsNpStats();
+      covidNews.getCovidNewsEnStats();
+    });
+
+    return null;
+  }
+
   Future<List<CovidNewsNpStat>> _futureNp;
   Future<List<CovidNewsEnStat>> _futureEn;
 
@@ -49,32 +64,36 @@ class _NewsViewState extends State<NewsView> {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
-              future: (language == 'Np') ? _futureNp : _futureEn,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  if (snapshot.data[0].title == 'somethingWentWrong') {
-                    return SomethingWentWrong();
+            child: RefreshIndicator(
+              key: _refreshIndicatorKey,
+              onRefresh: refresh,
+              child: FutureBuilder(
+                future: (language == 'Np') ? _futureNp : _futureEn,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    if (snapshot.data[0].title == 'somethingWentWrong') {
+                      return SomethingWentWrong();
+                    } else {
+                      return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return CardUI(
+                            snapshot: snapshot,
+                            index: index,
+                          );
+                        },
+                      );
+                    }
                   } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return CardUI(
-                          snapshot: snapshot,
-                          index: index,
-                        );
-                      },
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.red[600]),
+                      ),
                     );
                   }
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.red[600]),
-                    ),
-                  );
-                }
-              },
+                },
+              ),
             ),
           ),
         ],

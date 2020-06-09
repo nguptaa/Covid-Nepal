@@ -75,10 +75,8 @@ class CardContent extends StatelessWidget {
           ),
           CovidStatsText(
             title: 'Updated: ',
-  snapshotData: timeago.format(
-                  DateTime.parse(snapshot.data[index].updated).toLocal()),
-
-            
+            snapshotData: timeago
+                .format(DateTime.parse(snapshot.data[index].updated).toLocal()),
           ),
         ],
       ),

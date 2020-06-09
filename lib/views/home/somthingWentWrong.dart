@@ -36,7 +36,9 @@ class _SomethingWentWrongState extends State<SomethingWentWrong> {
         Center(
           child: RaisedButton(
             color: Colors.red[600],
-            onPressed: () {},
+            onPressed: () {
+              setState(() {});
+            },
             child: Text(
               'Retry',
               style: TextStyle(fontSize: size.width * 0.05),
