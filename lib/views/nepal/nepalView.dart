@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:covid_nepal/views/nepal/components/coronaLive/coronaLive.dart';
 import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
 import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewTwitter.dart';
@@ -24,10 +25,10 @@ class _NepalViewState extends State<NepalView> {
 
   Future<Null> refresh() async {
     _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      covidNepal.getCovidNepalStatsMOHP();
+      _futureCovidNepal = covidNepal.getCovidNepalStatsMOHP();
     });
 
     return null;
@@ -45,7 +46,6 @@ class _NepalViewState extends State<NepalView> {
   @override
   void initState() {
     super.initState();
-    _futureCovidNepal = covidNepal.getCovidNepalStatsMOHP();
     refresh();
   }
 
@@ -93,6 +93,10 @@ class _NepalViewState extends State<NepalView> {
             key: _refreshIndicatorKey,
             onRefresh: refresh,
             child: ListView(
+              padding: EdgeInsets.symmetric(
+                horizontal: size.shortestSide * 0.06,
+                vertical: 5,
+              ),
               children: <Widget>[
                 FutureBuilder(
                   future: _futureCovidNepal,
@@ -100,9 +104,15 @@ class _NepalViewState extends State<NepalView> {
                     if (snapshot.hasData) {
                       if (snapshot.data == 'somethingWentWrong') {
                         return Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.exclamationTriangle,
-                            size: size.height * 0.035,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            child: GestureDetector(
+                              onTap: refresh,
+                              child: FaIcon(
+                                FontAwesomeIcons.syncAlt,
+                                size: size.longestSide * 0.04,
+                              ),
+                            ),
                           ),
                         );
                       } else {
@@ -118,7 +128,6 @@ class _NepalViewState extends State<NepalView> {
                   },
                 ),
                 GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
                   shrinkWrap: true,
                   physics: ScrollPhysics(),
                   itemCount: 4,
@@ -138,7 +147,10 @@ class _NepalViewState extends State<NepalView> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 5),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.shortestSide * 0.06,
+                    vertical: size.shortestSide * 0.02,
+                  ),
                   child: Card(
                     color: Colors.transparent,
                     elevation: 0,
@@ -166,7 +178,7 @@ class _NepalViewState extends State<NepalView> {
                           ),
                         ),
                         SizedBox(
-                          height: 8,
+                          height: size.longestSide * 0.02,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -180,6 +192,7 @@ class _NepalViewState extends State<NepalView> {
                                 icon: FaIcon(
                                   FontAwesomeIcons.phoneAlt,
                                   color: Colors.white,
+                                  size: size.longestSide * 0.02,
                                 ),
                                 label: Text(
                                   '1133',
@@ -195,7 +208,7 @@ class _NepalViewState extends State<NepalView> {
                               ),
                             ),
                             SizedBox(
-                              width: size.width * 0.05,
+                              width: size.shortestSide * 0.05,
                             ),
                             Expanded(
                               child: RaisedButton.icon(
@@ -204,6 +217,7 @@ class _NepalViewState extends State<NepalView> {
                                 icon: FaIcon(
                                   FontAwesomeIcons.viber,
                                   color: Colors.white,
+                                  size: size.longestSide * 0.02,
                                 ),
                                 label: Text(
                                   'Viber',
@@ -219,7 +233,7 @@ class _NepalViewState extends State<NepalView> {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -232,6 +246,9 @@ class _NepalViewState extends State<NepalView> {
                   titleColor: Colors.red[600],
                   subtitleText: 'nepalcorona.info',
                   webview: WebViewLive(),
+                ),
+                SizedBox(
+                  height: size.longestSide * 0.015,
                 ),
                 CoronaLive(
                   trailingIconColor: Color(0xFF1DA1F2),

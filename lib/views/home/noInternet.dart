@@ -16,7 +16,7 @@ class _SomethingWentWrongState extends State<SomethingWentWrong> {
         Center(
           child: FaIcon(
             FontAwesomeIcons.exclamationTriangle,
-            size: size.longestSide * 0.1,
+            size: size.longestSide * 0.08,
           ),
         ),
         SizedBox(

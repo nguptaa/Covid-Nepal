@@ -63,6 +63,10 @@ class _WebViewTwitterState extends State<WebViewTwitter> {
                   print('blocking navigation to $request}');
                   return NavigationDecision.prevent;
                 }
+                if (request.url.startsWith('https://t.co')) {
+                  print('blocking navigation to $request}');
+                  return NavigationDecision.prevent;
+                }
                 print('allowing navigation to $request');
                 return NavigationDecision.navigate;
               },

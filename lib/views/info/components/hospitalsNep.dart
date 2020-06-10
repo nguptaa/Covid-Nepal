@@ -14,20 +14,6 @@ class _HospitalsNepState extends State<HospitalsNep> {
 
   Future<List<HospitalsNpStat>> _futureHospitalsNp;
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
-
-  Future<Null> refresh() async {
-    _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      hospitalsNp.getHospitalsNpStats();
-    });
-
-    return null;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -36,7 +22,7 @@ class _HospitalsNepState extends State<HospitalsNep> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,52 +40,51 @@ class _HospitalsNepState extends State<HospitalsNep> {
         ),
       ),
       body: SafeArea(
-        child: RefreshIndicator(
-          key: _refreshIndicatorKey,
-          onRefresh: refresh,
-          child: FutureBuilder(
-            future: _futureHospitalsNp,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return snapshot.hasData
-                  ? ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 8.0),
-                          child: GroovinExpansionTile(
-                            leading: CircleAvatar(
-                                backgroundColor: Colors.red[600],
-                                child: Center(
-                                  child: Text(
-                                    (index + 1).toString(),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
+        child: FutureBuilder(
+          future: _futureHospitalsNp,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return snapshot.hasData
+                ? ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.shortestSide * 0.06,
+                      vertical: 5,
+                    ),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        child: GroovinExpansionTile(
+                          leading: CircleAvatar(
+                              backgroundColor: Colors.red[600],
+                              child: Center(
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
                                   ),
-                                )),
-                            title: AutoSizeText(
-                              snapshot.data[index].name,
-                            ),
-                            children: <Widget>[
-                              HospitalsNepCardChildren(
-                                snapshotData: snapshot,
-                                index: index,
-                              ),
-                            ],
+                                ),
+                              )),
+                          title: AutoSizeText(
+                            snapshot.data[index].name,
                           ),
-                        );
-                      },
-                    )
-                  : Center(
-                      child: CupertinoActivityIndicator(),
-                    );
-            },
-          ),
+                          children: <Widget>[
+                            HospitalsNepCardChildren(
+                              snapshotData: snapshot,
+                              index: index,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+          },
         ),
       ),
     );

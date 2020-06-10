@@ -14,7 +14,7 @@ class CardUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5.0,
-      margin: EdgeInsets.symmetric(horizontal: 25.0, vertical: 12.0),
+      margin: EdgeInsets.symmetric(vertical: 8.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),

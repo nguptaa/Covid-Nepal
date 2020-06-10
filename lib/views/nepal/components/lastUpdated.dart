@@ -10,7 +10,7 @@ class LastUpdated extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
+      padding: EdgeInsets.symmetric(vertical: 5),
       child: Card(
         elevation: 0,
         color: Colors.transparent,

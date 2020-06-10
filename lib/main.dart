@@ -1,4 +1,3 @@
-import 'package:covid_nepal/views/home/noInternet.dart';
 import 'package:covid_nepal/views/info/components/coronaVideos/coronaVideos.dart';
 import 'package:covid_nepal/views/info/components/faqs.dart';
 import 'package:covid_nepal/views/info/components/hospitalsNep.dart';
@@ -9,7 +8,7 @@ import 'package:covid_nepal/views/home/homeView.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: false,
+        enabled: true,
         builder: (context) => MyApp(),
       ),
     );

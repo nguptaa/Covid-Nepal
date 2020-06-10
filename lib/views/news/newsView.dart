@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_nepal/views/news/UI/cardUI.dart';
 import 'package:covid_nepal/services/getCovidNews.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class NewsView extends StatefulWidget {
   @override
@@ -15,67 +15,116 @@ String language = 'Np';
 class _NewsViewState extends State<NewsView> {
   final CovidNews covidNews = CovidNews();
 
+  Future<List<CovidNewsNpStat>> _futureNp;
+  Future<List<CovidNewsEnStat>> _futureEn;
+
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
 
   Future<Null> refresh() async {
     _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      covidNews.getCovidNewsNpStats();
-      covidNews.getCovidNewsEnStats();
+      _futureNp = covidNews.getCovidNewsNpStats();
+      _futureEn = covidNews.getCovidNewsEnStats();
     });
 
     return null;
   }
 
-  Future<List<CovidNewsNpStat>> _futureNp;
-  Future<List<CovidNewsEnStat>> _futureEn;
-
   @override
   void initState() {
     super.initState();
-    _futureNp = covidNews.getCovidNewsNpStats();
-    _futureEn = covidNews.getCovidNewsEnStats();
+    refresh();
   }
+
+  int segmentedControlGroupValue = 0;
+  final Map<int, Widget> myTabs = const <int, Widget>{
+    0: Text("नेपाली"),
+    1: Text("English"),
+  };
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: size.height * 0.05,
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-            child: ToggleSwitch(
-              minWidth: size.width * 0.25,
-              initialLabelIndex: 0,
-              activeBgColor: Colors.red[600],
-              activeTextColor: Colors.white,
-              inactiveBgColor: Colors.grey[600],
-              inactiveTextColor: Colors.white60,
-              labels: ['नेपाली', 'English'],
-              onToggle: (index) {
-                setState(() {
-                  (index == 1) ? language = 'En' : language = 'Np';
-                });
-              },
-            ),
-          ),
-          Expanded(
-            child: RefreshIndicator(
-              key: _refreshIndicatorKey,
-              onRefresh: refresh,
-              child: FutureBuilder(
-                future: (language == 'Np') ? _futureNp : _futureEn,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    if (snapshot.data[0].title == 'somethingWentWrong') {
-                      return SomethingWentWrong();
-                    } else {
-                      return ListView.builder(
+      child: RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: refresh,
+        child: FutureBuilder(
+          future: (language == 'Np') ? _futureNp : _futureEn,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data[0].title == 'somethingWentWrong') {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: SvgPicture.asset(
+                          'assets/images/somethingWentWrong.svg',
+                          height: size.longestSide * 0.2,
+                          placeholderBuilder: (BuildContext context) => Center(
+                            child: CupertinoActivityIndicator(),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.longestSide * 0.02,
+                      ),
+                      Flexible(
+                        child: Text(
+                          'Something went Wrong!',
+                          style: TextStyle(
+                            fontSize: size.longestSide * 0.02,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.longestSide * 0.015,
+                      ),
+                      Flexible(
+                        child: RaisedButton(
+                          color: Colors.red[600],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          onPressed: () {
+                            refresh();
+                          },
+                          child: Text(
+                            'Retry',
+                            style: TextStyle(fontSize: size.longestSide * 0.02),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                return Column(
+                  children: <Widget>[
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+                      child: CupertinoSlidingSegmentedControl(
+                          thumbColor: Colors.red[600],
+                          groupValue: segmentedControlGroupValue,
+                          children: myTabs,
+                          onValueChanged: (i) {
+                            setState(() {
+                              segmentedControlGroupValue = i;
+                              (i == 1) ? language = 'En' : language = 'Np';
+                            });
+                          }),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.shortestSide * 0.06,
+                          vertical: 5,
+                        ),
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
                           return CardUI(
@@ -83,18 +132,18 @@ class _NewsViewState extends State<NewsView> {
                             index: index,
                           );
                         },
-                      );
-                    }
-                  } else {
-                    return Center(
-                      child: CupertinoActivityIndicator(),
-                    );
-                  }
-                },
-              ),
-            ),
-          ),
-        ],
+                      ),
+                    ),
+                  ],
+                );
+              }
+            } else {
+              return Center(
+                child: CupertinoActivityIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }

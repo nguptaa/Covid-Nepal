@@ -12,21 +12,8 @@ String language = 'Np';
 
 class _MythsState extends State<Myths> {
   final CovidMyths covidMyths = CovidMyths();
+
   Future<List<CovidMythsStat>> _futureMythImage;
-
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
-
-  Future<Null> refresh() async {
-    _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      covidMyths.getCovidMythsStats();
-    });
-
-    return null;
-  }
 
   @override
   void initState() {
@@ -36,7 +23,7 @@ class _MythsState extends State<Myths> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,44 +41,43 @@ class _MythsState extends State<Myths> {
         ),
       ),
       body: SafeArea(
-        child: RefreshIndicator(
-          key: _refreshIndicatorKey,
-          onRefresh: refresh,
-          child: FutureBuilder(
-            future: _futureMythImage,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return snapshot.hasData
-                  ? ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
+        child: FutureBuilder(
+          future: _futureMythImage,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return snapshot.hasData
+                ? ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.shortestSide * 0.06,
+                      vertical: 5,
+                    ),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container(
+                          alignment: AlignmentDirectional.center,
+                          child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 8.0),
-                          child: Container(
-                            alignment: AlignmentDirectional.center,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: CachedNetworkImage(
-                                imageUrl: snapshot.data[index].imageUrl,
-                                placeholder: (context, url) =>
-                                    CupertinoActivityIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
+                            child: CachedNetworkImage(
+                              imageUrl: snapshot.data[index].imageUrl,
+                              placeholder: (context, url) =>
+                                  CupertinoActivityIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ),
-                        );
-                      },
-                    )
-                  : Center(
-                      child: CupertinoActivityIndicator(),
-                    );
-            },
-          ),
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+          },
         ),
       ),
     );

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:covid_nepal/services/getCovidFAQs.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:intl/intl.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class FAQs extends StatefulWidget {
   @override
@@ -15,21 +14,6 @@ String language = 'Np';
 class _FAQsState extends State<FAQs> {
   final CovidFAQs covidFAQs = CovidFAQs();
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
-
-  Future<Null> refresh() async {
-    _refreshIndicatorKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      covidFAQs.getCovidFAQsNpStats();
-      covidFAQs.getCovidFAQsEnStats();
-    });
-
-    return null;
-  }
-
   Future<List<CovidFAQsNpStat>> _futureFAQsNp;
   Future<List<CovidFAQsEnStat>> _futureFAQsEn;
 
@@ -40,8 +24,15 @@ class _FAQsState extends State<FAQs> {
     _futureFAQsEn = covidFAQs.getCovidFAQsEnStats();
   }
 
+  int segmentedControlGroupValue = 0;
+  final Map<int, Widget> myTabs = const <int, Widget>{
+    0: Text("नेपाली"),
+    1: Text("English"),
+  };
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -62,44 +53,40 @@ class _FAQsState extends State<FAQs> {
         child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-              child: ToggleSwitch(
-                minWidth: 100.0,
-                initialLabelIndex: 0,
-                activeBgColor: Colors.red[600],
-                activeTextColor: Colors.white,
-                inactiveBgColor: Colors.grey[600],
-                inactiveTextColor: Colors.white60,
-                labels: ['नेपाली', 'English'],
-                onToggle: (index) {
-                  setState(() {
-                    (index == 1) ? language = 'En' : language = 'Np';
-                  });
-                },
-              ),
+              margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+              child: CupertinoSlidingSegmentedControl(
+                  thumbColor: Colors.red[600],
+                  groupValue: segmentedControlGroupValue,
+                  children: myTabs,
+                  onValueChanged: (i) {
+                    setState(() {
+                      segmentedControlGroupValue = i;
+                      (i == 1) ? language = 'En' : language = 'Np';
+                    });
+                  }),
             ),
             Expanded(
-              child: RefreshIndicator(
-                key: _refreshIndicatorKey,
-                onRefresh: refresh,
-                child: FutureBuilder(
-                  future: (language == 'Np') ? _futureFAQsNp : _futureFAQsEn,
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    return snapshot.hasData
-                        ? ListView.builder(
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, index) {
-                              return FAQsListCard(
-                                snapshotData: snapshot,
-                                index: index,
-                              );
-                            },
-                          )
-                        : Center(
-                            child: CupertinoActivityIndicator(),
-                          );
-                  },
-                ),
+              child: FutureBuilder(
+                future: (language == 'Np') ? _futureFAQsNp : _futureFAQsEn,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return snapshot.hasData
+                      ? ListView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.shortestSide * 0.06,
+                            vertical: 5,
+                          ),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return FAQsListCard(
+                              snapshotData: snapshot,
+                              index: index,
+                            );
+                          },
+                        )
+                      : Center(
+                          child: CupertinoActivityIndicator(),
+                        );
+                },
               ),
             ),
           ],
@@ -121,7 +108,7 @@ class FAQsListCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+      margin: EdgeInsets.symmetric(vertical: 8.0),
       child: GroovinExpansionTile(
         leading: CircleAvatar(
             backgroundColor: Colors.red[600],

@@ -24,40 +24,37 @@ class CoronaLive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
-      child: Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: GroovinExpansionTile(
+        defaultTrailingIconColor: trailingIconColor,
+        leading: FaIcon(
+          leadingIcon,
+          size: 30,
+          color: leadingIconColor,
         ),
-        child: GroovinExpansionTile(
-          defaultTrailingIconColor: trailingIconColor,
-          leading: FaIcon(
-            leadingIcon,
-            size: 30,
-            color: leadingIconColor,
+        title: Text(
+          titleText,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: titleColor,
+            fontSize: size.longestSide * 0.021,
           ),
-          title: Text(
-            titleText,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: titleColor,
-              fontSize: size.longestSide * 0.021,
-            ),
-          ),
-          subtitle: Text(
-            subtitleText,
-            style: TextStyle(
-              fontWeight: FontWeight.w300,
-              fontStyle: FontStyle.italic,
-              fontSize: size.longestSide * 0.015,
-            ),
-          ),
-          children: <Widget>[
-            webview,
-          ],
         ),
+        subtitle: Text(
+          subtitleText,
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontStyle: FontStyle.italic,
+            fontSize: size.longestSide * 0.015,
+          ),
+        ),
+        children: <Widget>[
+          webview,
+        ],
       ),
     );
   }

@@ -12,7 +12,7 @@ class CoronaVideos extends StatefulWidget {
 class _CoronaVideosState extends State<CoronaVideos> {
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -31,11 +31,15 @@ class _CoronaVideosState extends State<CoronaVideos> {
       ),
       body: SafeArea(
         child: ListView.builder(
+          padding: EdgeInsets.symmetric(
+            horizontal: size.shortestSide * 0.06,
+            vertical: 5,
+          ),
           itemCount: 2,
           itemBuilder: (context, index) {
             return Card(
               elevation: 8.0,
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              margin: EdgeInsets.symmetric(vertical: 8.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),

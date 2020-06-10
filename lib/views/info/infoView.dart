@@ -1,4 +1,5 @@
 import 'package:covid_nepal/services/getPackageInfo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,7 +24,14 @@ class _InfoViewState extends State<InfoView> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: size.shortestSide * 0.06,
+          vertical: 5,
+        ),
         children: <Widget>[
+          Container(
+            child: CupertinoSwitch(value: true, onChanged: null),
+          ),
           InfoCardList(
             routeName: '/hospitalsNep',
             iconName: FontAwesomeIcons.hospitalSymbol,
@@ -49,25 +57,20 @@ class _InfoViewState extends State<InfoView> {
             cardSubtitle: "Suggested by MOHP, Nepal",
           ),
           Card(
+            margin: EdgeInsets.symmetric(vertical: 8),
             elevation: 0,
             color: Colors.transparent,
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: SvgPicture.asset(
               'assets/images/socialDis.svg',
               height: size.longestSide * 0.30,
               placeholderBuilder: (BuildContext context) => Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.red[600],
-                  ),
-                ),
+                child: CupertinoActivityIndicator(),
               ),
             ),
           ),
           Card(
             elevation: 0,
             color: Colors.transparent,
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: Text(
               'Made with ❤️ in Nepal',
               textAlign: TextAlign.center,
@@ -79,7 +82,6 @@ class _InfoViewState extends State<InfoView> {
           Card(
             elevation: 0,
             color: Colors.transparent,
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             child: FutureBuilder(
               future: _futureAppDetails,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -123,8 +125,8 @@ class InfoCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.symmetric(vertical: 8),
       elevation: 8.0,
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
