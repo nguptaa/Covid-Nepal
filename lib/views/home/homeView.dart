@@ -1,4 +1,3 @@
-import 'package:covid_nepal/views/home/noInternet.dart';
 import 'package:covid_nepal/views/info/infoView.dart';
 import 'package:covid_nepal/views/nepal/nepalView.dart';
 import 'package:covid_nepal/views/news/newsView.dart';
