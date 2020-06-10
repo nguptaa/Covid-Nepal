@@ -43,6 +43,14 @@ class _NepalViewState extends State<NepalView> {
     }
   }
 
+  void _launchViber(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -212,7 +220,10 @@ class _NepalViewState extends State<NepalView> {
                             ),
                             Expanded(
                               child: RaisedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _launchViber(
+                                      'https://invite.viber.com/?g2=AQAmvXtYaOXJSktBo5ZGUatVwyaa1K7KXkDWLWdMyKJfMs8GbSnY5IplkYNTC3iu&lang=en');
+                                },
                                 elevation: 5,
                                 icon: FaIcon(
                                   FontAwesomeIcons.viber,
