@@ -159,9 +159,11 @@ class _NepalViewState extends State<NepalView> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.shortestSide * 0.065,
-                    vertical: size.shortestSide * 0.02,
+                  padding: EdgeInsets.fromLTRB(
+                    size.shortestSide * 0.065,
+                    size.shortestSide * 0.01,
+                    size.shortestSide * 0.065,
+                    size.shortestSide * 0.025,
                   ),
                   child: Card(
                     color: Colors.transparent,
