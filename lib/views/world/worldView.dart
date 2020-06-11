@@ -1,7 +1,7 @@
-import 'package:covid_nepal/views/world/UI/cardUI.dart';
+import 'package:covidnepal/views/world/UI/cardUI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/services/getCovidWorld.dart';
+import 'package:covidnepal/services/getCovidWorld.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class WorldView extends StatefulWidget {

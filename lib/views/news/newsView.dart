@@ -1,8 +1,8 @@
-import 'package:covid_nepal/views/home/somthingWentWrong.dart';
+import 'package:covidnepal/views/home/somthingWentWrong.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/views/news/UI/cardUI.dart';
-import 'package:covid_nepal/services/getCovidNews.dart';
+import 'package:covidnepal/views/news/UI/cardUI.dart';
+import 'package:covidnepal/services/getCovidNews.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NewsView extends StatefulWidget {

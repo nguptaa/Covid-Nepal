@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:covid_nepal/views/nepal/components/coronaLive/coronaLive.dart';
-import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
-import 'package:covid_nepal/views/nepal/components/coronaLive/webviews/webviewTwitter.dart';
+import 'package:covidnepal/views/nepal/components/coronaLive/coronaLive.dart';
+import 'package:covidnepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
+import 'package:covidnepal/views/nepal/components/coronaLive/webviews/webviewTwitter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/views/nepal/UI/cardUI.dart';
-import 'package:covid_nepal/services/getCovidNepal.dart';
+import 'package:covidnepal/views/nepal/UI/cardUI.dart';
+import 'package:covidnepal/services/getCovidNepal.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'components/lastUpdated.dart';

@@ -1,4 +1,4 @@
-import 'package:covid_nepal/networkHelper/networkHelperNepal.dart';
+import 'package:covidnepal/networkHelper/networkHelperNepal.dart';
 
 class CovidWorld {
   Future<List<CovidWorldStat>> getCovidWorldStats() async {

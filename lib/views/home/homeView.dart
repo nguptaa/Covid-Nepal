@@ -1,7 +1,7 @@
-import 'package:covid_nepal/views/info/infoView.dart';
-import 'package:covid_nepal/views/nepal/nepalView.dart';
-import 'package:covid_nepal/views/news/newsView.dart';
-import 'package:covid_nepal/views/world/worldView.dart';
+import 'package:covidnepal/views/info/infoView.dart';
+import 'package:covidnepal/views/nepal/nepalView.dart';
+import 'package:covidnepal/views/news/newsView.dart';
+import 'package:covidnepal/views/world/worldView.dart';
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

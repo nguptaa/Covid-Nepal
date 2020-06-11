@@ -1,5 +1,5 @@
-import 'package:covid_nepal/views/info/components/coronaVideos/webviews/webview1.dart';
-import 'package:covid_nepal/views/info/components/coronaVideos/webviews/webview2.dart';
+import 'package:covidnepal/views/info/components/coronaVideos/webviews/webview1.dart';
+import 'package:covidnepal/views/info/components/coronaVideos/webviews/webview2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';

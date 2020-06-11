@@ -1,11 +1,11 @@
-import 'package:covid_nepal/theme.dart';
-import 'package:covid_nepal/views/info/components/coronaVideos/coronaVideos.dart';
-import 'package:covid_nepal/views/info/components/faqs.dart';
-import 'package:covid_nepal/views/info/components/hospitalsNep.dart';
-import 'package:covid_nepal/views/info/components/myths.dart';
+import 'package:covidnepal/theme.dart';
+import 'package:covidnepal/views/info/components/coronaVideos/coronaVideos.dart';
+import 'package:covidnepal/views/info/components/faqs.dart';
+import 'package:covidnepal/views/info/components/hospitalsNep.dart';
+import 'package:covidnepal/views/info/components/myths.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/views/home/homeView.dart';
+import 'package:covidnepal/views/home/homeView.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(

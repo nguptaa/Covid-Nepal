@@ -1,5 +1,5 @@
-import 'package:covid_nepal/services/getPackageInfo.dart';
-import 'package:covid_nepal/theme.dart';
+import 'package:covidnepal/services/getPackageInfo.dart';
+import 'package:covidnepal/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

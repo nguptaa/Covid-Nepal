@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:covid_nepal/services/getCovidFAQs.dart';
+import 'package:covidnepal/services/getCovidFAQs.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:intl/intl.dart';
 
