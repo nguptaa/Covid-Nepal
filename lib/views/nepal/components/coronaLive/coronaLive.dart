@@ -25,6 +25,9 @@ class CoronaLive extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Card(
+      margin: EdgeInsets.symmetric(
+        horizontal: size.shortestSide * 0.01,
+      ),
       elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),

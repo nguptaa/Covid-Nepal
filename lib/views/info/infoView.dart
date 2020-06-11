@@ -1,10 +1,8 @@
 import 'package:covid_nepal/services/getPackageInfo.dart';
-import 'package:covid_nepal/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class InfoView extends StatefulWidget {
   @override
@@ -21,126 +19,85 @@ class _InfoViewState extends State<InfoView> {
     _futureAppDetails = appInfo.getAppInfo();
   }
 
-  bool _lights = true;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Column(
+      child: ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: size.shortestSide * 0.06,
+          vertical: 5,
+        ),
         children: <Widget>[
+          InfoCardList(
+            routeName: '/hospitalsNep',
+            iconName: FontAwesomeIcons.hospitalSymbol,
+            cardTitle: "Hospitals in Nepal",
+            cardSubtitle: "Hospitals details all over Nepal",
+          ),
+          InfoCardList(
+            routeName: '/faqs',
+            iconName: FontAwesomeIcons.virus,
+            cardTitle: "Corona FAQs",
+            cardSubtitle: "Frequently Asked Questions on Corona",
+          ),
+          InfoCardList(
+            routeName: '/myths',
+            iconName: FontAwesomeIcons.timesCircle,
+            cardTitle: "Corona Myths",
+            cardSubtitle: "Myths about Corona",
+          ),
+          InfoCardList(
+            routeName: '/coronaVideos',
+            iconName: FontAwesomeIcons.solidPlayCircle,
+            cardTitle: "Videos on Corona",
+            cardSubtitle: "Suggested by MOHP, Nepal",
+          ),
           Card(
-            margin: EdgeInsets.symmetric(horizontal: size.shortestSide * 0.06),
+            margin: EdgeInsets.symmetric(vertical: 8),
             elevation: 0,
             color: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: ListTile(
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
-              leading: Container(
-                padding: EdgeInsets.only(right: 12.0),
-                child: Icon(
-                  Icons.brightness_6,
-                  size: 35,
-                  color: Colors.red[600],
-                ),
-              ),
-              title: Text('Dark Mode'),
-              subtitle: Text('Changes the app theme'),
-              trailing: CupertinoSwitch(
-                activeColor: Colors.red[600],
-                value: _lights,
-                onChanged: (bool value) {
-                  Provider.of<ThemeProvider>(context, listen: false)
-                      .swapTheme();
-                  setState(() {
-                    _lights = value;
-                  });
-                },
+            child: SvgPicture.asset(
+              'assets/images/socialDis.svg',
+              height: size.longestSide * 0.30,
+              placeholderBuilder: (BuildContext context) => Center(
+                child: CupertinoActivityIndicator(),
               ),
             ),
           ),
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.symmetric(
-                horizontal: size.shortestSide * 0.06,
-                vertical: 5,
+          Card(
+            elevation: 0,
+            color: Colors.transparent,
+            child: Text(
+              'Made with ❤️ in Nepal',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: size.longestSide * 0.018,
               ),
-              children: <Widget>[
-                InfoCardList(
-                  routeName: '/hospitalsNep',
-                  iconName: FontAwesomeIcons.hospitalSymbol,
-                  cardTitle: "Hospitals in Nepal",
-                  cardSubtitle: "Hospitals details all over Nepal",
-                ),
-                InfoCardList(
-                  routeName: '/faqs',
-                  iconName: FontAwesomeIcons.virus,
-                  cardTitle: "Corona FAQs",
-                  cardSubtitle: "Frequently Asked Questions on Corona",
-                ),
-                InfoCardList(
-                  routeName: '/myths',
-                  iconName: FontAwesomeIcons.timesCircle,
-                  cardTitle: "Corona Myths",
-                  cardSubtitle: "Myths about Corona",
-                ),
-                InfoCardList(
-                  routeName: '/coronaVideos',
-                  iconName: FontAwesomeIcons.solidPlayCircle,
-                  cardTitle: "Videos on Corona",
-                  cardSubtitle: "Suggested by MOHP, Nepal",
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(vertical: 8),
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: SvgPicture.asset(
-                    'assets/images/socialDis.svg',
-                    height: size.longestSide * 0.30,
-                    placeholderBuilder: (BuildContext context) => Center(
-                      child: CupertinoActivityIndicator(),
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: Text(
-                    'Made with ❤️ in Nepal',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: size.longestSide * 0.018,
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: FutureBuilder(
-                    future: _futureAppDetails,
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      return snapshot.hasData
-                          ? Text(
-                              'Version: ' + snapshot.data[0].version,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: size.longestSide * 0.015,
-                              ),
-                            )
-                          : Center(
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.red[600],
-                                ),
-                              ),
-                            );
-                    },
-                  ),
-                ),
-              ],
+            ),
+          ),
+          Card(
+            elevation: 0,
+            color: Colors.transparent,
+            child: FutureBuilder(
+              future: _futureAppDetails,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return snapshot.hasData
+                    ? Text(
+                        'Version: ' + snapshot.data[0].version,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: size.longestSide * 0.015,
+                        ),
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.red[600],
+                          ),
+                        ),
+                      );
+              },
             ),
           ),
         ],

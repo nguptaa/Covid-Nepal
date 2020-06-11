@@ -136,6 +136,10 @@ class _NepalViewState extends State<NepalView> {
                   },
                 ),
                 GridView.builder(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.shortestSide * 0.01,
+                    vertical: size.shortestSide * 0.02,
+                  ),
                   shrinkWrap: true,
                   physics: ScrollPhysics(),
                   itemCount: 4,
@@ -156,7 +160,7 @@ class _NepalViewState extends State<NepalView> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: size.shortestSide * 0.06,
+                    horizontal: size.shortestSide * 0.065,
                     vertical: size.shortestSide * 0.02,
                   ),
                   child: Card(
@@ -180,7 +184,7 @@ class _NepalViewState extends State<NepalView> {
                           height: 8,
                         ),
                         Text(
-                          'If you feel sick with any Covid-19 symptoms, feel free to contact',
+                          'If you feel sick with any Covid-19 symptoms, feel free to contact.',
                           style: TextStyle(
                             fontSize: size.longestSide * 0.015,
                           ),
