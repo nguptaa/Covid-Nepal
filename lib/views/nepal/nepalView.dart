@@ -119,6 +119,7 @@ class _NepalViewState extends State<NepalView> {
                               child: FaIcon(
                                 FontAwesomeIcons.syncAlt,
                                 size: size.longestSide * 0.04,
+                                color: Colors.white,
                               ),
                             ),
                           ),

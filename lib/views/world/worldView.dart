@@ -84,7 +84,10 @@ class _WorldViewState extends State<WorldView> {
                           },
                           child: Text(
                             'Retry',
-                            style: TextStyle(fontSize: size.longestSide * 0.02),
+                            style: TextStyle(
+                              fontSize: size.longestSide * 0.02,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       )
@@ -99,10 +102,10 @@ class _WorldViewState extends State<WorldView> {
                         ),
                     Expanded(
                       child: GridView.builder(
-                         padding: EdgeInsets.symmetric(
-                horizontal: size.shortestSide * 0.06,
-                vertical: 10,
-              ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.shortestSide * 0.06,
+                          vertical: 10,
+                        ),
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
                           return CardUI(

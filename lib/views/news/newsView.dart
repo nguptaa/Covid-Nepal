@@ -95,7 +95,7 @@ class _NewsViewState extends State<NewsView> {
                           },
                           child: Text(
                             'Retry',
-                            style: TextStyle(fontSize: size.longestSide * 0.02),
+                            style: TextStyle(fontSize: size.longestSide * 0.02, color: Colors.white,),
                           ),
                         ),
                       )
