@@ -99,7 +99,7 @@ class HospitalsNepCardChildren extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(15.0),
       child: Container(
         alignment: AlignmentDirectional.centerStart,
         child: Text(

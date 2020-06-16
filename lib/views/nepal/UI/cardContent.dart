@@ -6,10 +6,12 @@ class CardContent extends StatelessWidget {
       {@required this.faIcon,
       @required this.cardText,
       @required this.cardCount,
+      @required this.cardIncrease,
       @required this.cardColor});
   final IconData faIcon;
   final String cardText;
   final String cardCount;
+  final String cardIncrease;
   final Color cardColor;
 
   @override
@@ -40,6 +42,17 @@ class CardContent extends StatelessWidget {
           style: TextStyle(
             fontSize: size.longestSide * 0.03,
             fontWeight: FontWeight.bold,
+            color: cardColor,
+          ),
+        ),
+        SizedBox(
+          height: size.longestSide * 0.01,
+        ),
+         Text(
+          '+' + cardIncrease,
+          style: TextStyle(
+            fontSize: size.longestSide * 0.018,
+            fontWeight: FontWeight.w300,
             color: cardColor,
           ),
         ),

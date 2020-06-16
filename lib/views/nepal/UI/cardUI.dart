@@ -8,6 +8,7 @@ class CardUI extends StatelessWidget {
     @required this.cardIcon,
     @required this.cardText,
     @required this.cardCount,
+    @required this.cardIncrease,
     @required this.cardColor,
     @required this.futureCovidNepal,
   });
@@ -15,6 +16,7 @@ class CardUI extends StatelessWidget {
   final IconData cardIcon;
   final String cardText;
   final String cardCount;
+  final String cardIncrease;
   final Color cardColor;
   final Future futureCovidNepal;
 
@@ -43,6 +45,11 @@ class CardUI extends StatelessWidget {
                 faIcon: cardIcon,
                 cardText: cardText,
                 cardCount: snapshot.data[cardCount],
+                cardIncrease: (cardIncrease == 'today_tested')
+                    ? (int.parse(snapshot.data['today_pcr']) +
+                            int.parse(snapshot.data['today_rdt']))
+                        .toString()
+                    : snapshot.data[cardIncrease],
                 cardColor: cardColor,
               );
             }

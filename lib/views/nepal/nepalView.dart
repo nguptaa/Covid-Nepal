@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:covidnepal/views/nepal/components/coronaLive/coronaLive.dart';
 import 'package:covidnepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,6 +71,13 @@ class _NepalViewState extends State<NepalView> {
     'positive',
     'extra1',
     'deaths'
+  ];
+
+  final List<String> cardIncrease = [
+    'today_tested',
+    'today_newcase',
+    'today_recovered',
+    'today_death'
   ];
 
   final List<Color> cardColor = [
@@ -148,6 +156,7 @@ class _NepalViewState extends State<NepalView> {
                       cardIcon: cardIcon[index],
                       cardText: cardText[index],
                       cardCount: cardCount[index],
+                      cardIncrease: cardIncrease[index],
                       cardColor: cardColor[index],
                       futureCovidNepal: _futureCovidNepal,
                     );
@@ -263,9 +272,6 @@ class _NepalViewState extends State<NepalView> {
                   titleColor: Colors.red[600],
                   subtitleText: 'nepalcorona.info',
                   webview: WebViewLive(),
-                ),
-                SizedBox(
-                  height: size.longestSide * 0.015,
                 ),
                 SizedBox(
                   height: size.longestSide * 0.015,
