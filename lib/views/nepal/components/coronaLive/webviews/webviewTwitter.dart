@@ -67,8 +67,12 @@ class _WebViewTwitterState extends State<WebViewTwitter> {
                   print('blocking navigation to $request}');
                   return NavigationDecision.prevent;
                 }
+                if (request.url.startsWith('https://twitter.com/intent')) {
+                  print('blocking navigation to $request}');
+                  return NavigationDecision.prevent;
+                }
                 print('allowing navigation to $request');
-                return NavigationDecision.prevent;
+                return NavigationDecision.navigate;
               },
               onPageFinished: _handleLoadTwitter,
             ),

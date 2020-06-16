@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:covidnepal/views/nepal/components/coronaLive/coronaLive.dart';
 import 'package:covidnepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
-import 'package:covidnepal/views/nepal/components/coronaLive/webviews/webviewTwitter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covidnepal/views/nepal/UI/cardUI.dart';
@@ -267,15 +266,6 @@ class _NepalViewState extends State<NepalView> {
                 ),
                 SizedBox(
                   height: size.longestSide * 0.015,
-                ),
-                CoronaLive(
-                  trailingIconColor: Color(0xFF1DA1F2),
-                  leadingIcon: FontAwesomeIcons.twitter,
-                  leadingIconColor: Color(0xFF1DA1F2),
-                  titleText: 'Twitter Update',
-                  titleColor: Color(0xFF1DA1F2),
-                  subtitleText: 'twitter.com/mohpnep',
-                  webview: WebViewTwitter(),
                 ),
                 SizedBox(
                   height: size.longestSide * 0.015,
