@@ -1,0 +1,253 @@
+{
+  "hospital_hub": [
+    {
+      "name": "Dhaulagiri Hospital",
+      "address": "Baglung Nagarpalika",
+      "district": "Baglung",
+      "contact": "068-520188"
+    },
+    {
+      "name": "Bheri Hospital",
+      "address": "Nepalgunj Upamahanagarpalika",
+      "district": "Banke",
+      "contact": "081-520120"
+    },
+    {
+      "name": "Janakpur Hospital",
+      "address": "Janakpur Upamahanagarpalika",
+      "district": "Dhanusha",
+      "contact": "041-520133"
+    },
+    {
+      "name": "Rapti Sub-Regional Hospital",
+      "address": "Ghorahi Upamahanagarpalika",
+      "district": "Dang",
+      "contact": "00"
+    },
+    {
+      "name": "Rapti Hospital",
+      "address": "Tulsipur Upamahanagarpalika",
+      "district": "Dang",
+      "contact": "082-521624"
+    },
+    {
+      "name": "Far-west Sub Regional Hospital",
+      "address": "Amargadhi Nagarpalika",
+      "district": "Dadeldhura",
+      "contact": "00"
+    },
+    {
+      "name": "Dhulikhel Hospital",
+      "address": "Dhulikhel Nagarpalika",
+      "district": "Kabhrepalanchok",
+      "contact": "011-490497"
+    },
+    {
+      "name": "Karnali Academy of Health Science",
+      "address": "Chandannath Nagarpalika",
+      "district": "Jumla",
+      "contact": "01-5525322"
+    },
+    {
+      "name": "Seti Hospital",
+      "address": "Dhangadhi Upamahanagarpalika",
+      "district": "Kailali",
+      "contact": "091-524281"
+    },
+    {
+      "name": "Patan Academy of Health Science",
+      "address": "Lalitpur Mahanagarpalika",
+      "district": "Lalitpur",
+      "contact": "01-5522295"
+    },
+    {
+      "name": "Tribhuwan University Teaching Hospital",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu",
+      "contact": "01-4412303"
+    },
+    {
+      "name": "Bir Hospital",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu",
+      "contact": "01-4221119"
+    },
+    {
+      "name": "Shree Birendra Hospital",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu",
+      "contact": "023-541235"
+    },
+    {
+      "name": "Civil Service Hospital",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu",
+      "contact": "01-4107000"
+    },
+    {
+      "name": "Pokhara Health Science Academy",
+      "address": "Pokhara Lekhnath Mahanagarpalika",
+      "district": "Kaski",
+      "contact": "061-522674"
+    },
+    {
+      "name": "Mahakali Hospital",
+      "address": "Bhimdatta Nagarpalika",
+      "district": "Kanchanpur",
+      "contact": "099-521111"
+    },
+    {
+      "name": "Narayani Sub Regional Hospital",
+      "address": "Birgunj Mahanagarpalika",
+      "district": "Parsa",
+      "contact": "051-521993"
+    },
+    {
+      "name": "Koshi Hospital",
+      "address": "Biratnagar Mahanagarpalika",
+      "district": "Morang",
+      "contact": "021-530103"
+    },
+    {
+      "name": "Lumbini Hospital",
+      "address": "Butwal Upamahanagarpalika",
+      "district": "Rupandehi",
+      "contact": "071-540200"
+    },
+    {
+      "name": "Gajendra Narayan Singh Sagarmatha Hospital",
+      "address": "Rajbiraj Nagarpalika",
+      "district": "Saptari",
+      "contact": "031-520155"
+    },
+    {
+      "name": "Mid-Western Regional Hospital",
+      "address": "Birendranagar Nagarpalika",
+      "district": "Surkhet",
+      "contact": "083-520200"
+    },
+    {
+      "name": "Mechi Hospital",
+      "address": "Bhadrapur Nagarpalika",
+      "district": "Jhapa",
+      "contact": "023-520172"
+    },
+    {
+      "name": "Bhaktapur Hospital",
+      "address": "Bhaktapur Nagarpalika",
+      "district": "Bhaktapur",
+      "contact": "01-6610798"
+    },
+    {
+      "name": "Bharatpur Hospital",
+      "address": "Bharatpur Mahanagarpalika",
+      "district": "Chitawan",
+      "contact": "056-527959"
+    },
+    {
+      "name": "B.P Koirala Institute of Health Sciences",
+      "address": "Dharan Upamahanagarpalika",
+      "district": "Sunsari",
+      "contact": "025-525555"
+    }
+  ],
+
+  "test_labs": [
+    {
+      "name": "Bheri Hospital",
+      "address": "Nepalgunj Upamahanagarpalika",
+      "district": "Banke",
+      "contact": "081-520120"
+    },
+    {
+      "name": "Janakpur Hospital",
+      "address": "Janakpur Upamahanagarpalika",
+      "district": "Dhanusha",
+      "contact": "041-520133"
+    },
+    {
+      "name": "Rapti Academy of Health Sciences",
+      "address": "Ghorahi Upamahanagarpalika",
+      "district": "Dang",
+      "contact": "082-562365"
+    },
+    {
+      "name": "Dhulikhel Hospital",
+      "address": "Dhulikhel Nagarpalika",
+      "district": "Kabhrepalanchok",
+      "contact": "011-490497"
+    },
+    {
+      "name": "Seti Hospital",
+      "address": "Dhangadhi Upamahanagarpalika",
+      "district": "Kailali",
+      "contact": "091-524281"
+    },
+    {
+      "name": "Patan Academy of Health Science",
+      "address": "Lalitpur Mahanagarpalika",
+      "district": "Lalitpur",
+      "contact": "01-5522295"
+    },
+    {
+      "name": "Sukraraj Tropical And Infectious Disease Hospital",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu",
+      "contact": "01-4253396"
+    },
+    {
+      "name": "Bir Hospital",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu",
+      "contact": "01-4221119"
+    },
+    {
+      "name": "National Public Health Laboratory",
+      "address": "Kathmandu Mahanagarpalika",
+      "district": "Kathmandu ",
+      "contact": "01-4240217"
+    },
+    {
+      "name": "Vector Borne Disease Research and Training Center",
+      "address": "Hetauda Upamahanagarpalika",
+      "district": "Makawanpur",
+      "contact": "057-521826"
+    },
+    {
+      "name": "Pokhara Health Science Academy",
+      "address": "Pokhara Lekhnath Mahanagarpalika",
+      "district": "Kaski",
+      "contact": "061-522674"
+    },
+    {
+      "name": "Koshi Hospital",
+      "address": "Biratnagar Mahanagarpalika",
+      "district": "Morang",
+      "contact": "021-530103"
+    },
+    {
+      "name": "Mid-Western Regional Hospital",
+      "address": "Birendranagar Nagarpalika",
+      "district": "Surkhet",
+      "contact": "083-520200"
+    },
+    {
+      "name": "National Avian Disease Investigation Laboratory",
+      "address": "Bharatpur Mahanagarpalika",
+      "district": "Chitawan",
+      "contact": "00"
+    },
+    {
+      "name": "B.P Koirala Institute of Health Sciences",
+      "address": "Dharan Upamahanagarpalika",
+      "district": "Sunsari",
+      "contact": "025-525555"
+    },
+    {
+      "name": "National Wheat Research Center",
+      "address": "Omsatiya Gaunpalika",
+      "district": "Rupandehi",
+      "contact": "00"
+    }
+  ]
+}

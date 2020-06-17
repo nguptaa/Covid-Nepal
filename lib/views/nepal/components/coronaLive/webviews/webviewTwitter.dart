@@ -71,7 +71,7 @@ class _WebViewTwitterState extends State<WebViewTwitter> {
                   print('blocking navigation to $request}');
                   return NavigationDecision.prevent;
                 }
-                print('allowing navigation to $request');
+                print('Allowing navigation to $request');
                 return NavigationDecision.navigate;
               },
               onPageFinished: _handleLoadTwitter,

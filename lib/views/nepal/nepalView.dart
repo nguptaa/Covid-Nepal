@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:covidnepal/services/getHospitalsHub.dart';
 import 'package:covidnepal/views/nepal/components/coronaLive/coronaLive.dart';
 import 'package:covidnepal/views/nepal/components/coronaLive/webviews/webviewLive.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,8 +17,12 @@ class NepalView extends StatefulWidget {
 
 class _NepalViewState extends State<NepalView> {
   final CovidNepal covidNepal = CovidNepal();
+  final CovidHealthInstitutions covidHealthInstitutions =
+      CovidHealthInstitutions();
 
   Future<dynamic> _futureCovidNepal;
+  Future<dynamic> _futureCovidHealthHubStat;
+  Future<dynamic> _futureCovidHealthTestsStat;
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -29,6 +33,10 @@ class _NepalViewState extends State<NepalView> {
 
     setState(() {
       _futureCovidNepal = covidNepal.getCovidNepalStatsMOHP();
+      _futureCovidHealthHubStat =
+          covidHealthInstitutions.getCovidHealthHubStats();
+      _futureCovidHealthTestsStat =
+          covidHealthInstitutions.getCovidHealthTestStats();
     });
 
     return null;
@@ -86,6 +94,14 @@ class _NepalViewState extends State<NepalView> {
     Colors.green,
     Colors.red
   ];
+
+  String language = 'Hub';
+
+  int segmentedControlGroupValue = 0;
+  final Map<int, Widget> myTabs = const <int, Widget>{
+    0: Text("Hub Hospitals", style: TextStyle(color: Colors.white)),
+    1: Text("Testing Labs", style: TextStyle(color: Colors.white)),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -272,6 +288,110 @@ class _NepalViewState extends State<NepalView> {
                   titleColor: Colors.red[600],
                   subtitleText: 'nepalcorona.info',
                   webview: WebViewLive(),
+                ),
+                SizedBox(
+                  height: size.longestSide * 0.015,
+                ),
+                CoronaLive(
+                  trailingIconColor: Colors.grey[500],
+                  leadingIcon: FontAwesomeIcons.hospitalUser,
+                  leadingIconColor: Colors.grey[500],
+                  titleText: 'Health Institutions',
+                  titleColor: Colors.grey[500],
+                  subtitleText: 'covid19.mohp.gov.np',
+                  webview: Card(
+                    elevation: 5.0,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: size.shortestSide * 0.01,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: size.shortestSide * 0.05,
+                          vertical: size.shortestSide * 0.01,),
+                          child: CupertinoSlidingSegmentedControl(
+                              thumbColor: Colors.red[600],
+                              groupValue: segmentedControlGroupValue,
+                              children: myTabs,
+                              onValueChanged: (i) {
+                                setState(() {
+                                  segmentedControlGroupValue = i;
+                                  (i == 1)
+                                      ? language = 'Lab'
+                                      : language = 'Hub';
+                                });
+                              }),
+                        ),
+                        FutureBuilder(
+                          future: (language == 'Hub')
+                              ? _futureCovidHealthHubStat
+                              : _futureCovidHealthTestsStat,
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            return snapshot.hasData
+                                ? ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      minHeight: 35.0,
+                                      maxHeight: 160.0,
+                                    ),
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: ScrollPhysics(),
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: size.shortestSide * 0.06,
+                                        vertical: 5,
+                                      ),
+                                      itemCount: snapshot.data.length,
+                                      itemBuilder: (context, index) {
+                                        return Card(
+                                          elevation: 0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(
+                                                snapshot.data[index].name,
+                                                style: TextStyle(
+                                                  color: Colors.red[600],
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize:
+                                                      size.longestSide * 0.02,
+                                                ),
+                                              ),
+                                              Text(
+                                                snapshot.data[index].address +
+                                                    ', ' +
+                                                    snapshot
+                                                        .data[index].district,
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      size.longestSide * 0.015,
+                                                ),
+                                              ),
+                                              Text(
+                                                snapshot.data[index].contact,
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      size.longestSide * 0.015,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                : Center(
+                                    child: CupertinoActivityIndicator(),
+                                  );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: size.longestSide * 0.015,
