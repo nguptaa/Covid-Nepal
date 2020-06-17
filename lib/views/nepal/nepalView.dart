@@ -99,8 +99,8 @@ class _NepalViewState extends State<NepalView> {
 
   int segmentedControlGroupValue = 0;
   final Map<int, Widget> myTabs = const <int, Widget>{
-    0: Text("Hub Hospitals", style: TextStyle(color: Colors.white)),
-    1: Text("Testing Labs", style: TextStyle(color: Colors.white)),
+    0: Text("Hub Hospitals"),
+    1: Text("Testing Labs"),
   };
 
   @override
@@ -300,7 +300,7 @@ class _NepalViewState extends State<NepalView> {
                   titleColor: Colors.grey[500],
                   subtitleText: 'covid19.mohp.gov.np',
                   webview: Card(
-                    elevation: 5.0,
+                    elevation: 0.0,
                     margin: EdgeInsets.symmetric(
                       horizontal: size.shortestSide * 0.01,
                     ),
@@ -310,8 +310,10 @@ class _NepalViewState extends State<NepalView> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: size.shortestSide * 0.05,
-                          vertical: size.shortestSide * 0.01,),
+                          margin: EdgeInsets.symmetric(
+                            horizontal: size.shortestSide * 0.05,
+                            vertical: size.shortestSide * 0.01,
+                          ),
                           child: CupertinoSlidingSegmentedControl(
                               thumbColor: Colors.red[600],
                               groupValue: segmentedControlGroupValue,
@@ -334,8 +336,8 @@ class _NepalViewState extends State<NepalView> {
                             return snapshot.hasData
                                 ? ConstrainedBox(
                                     constraints: BoxConstraints(
-                                      minHeight: 35.0,
-                                      maxHeight: 160.0,
+                                      minHeight: size.longestSide * 0.2,
+                                      maxHeight: size.longestSide * 0.3,
                                     ),
                                     child: ListView.builder(
                                       shrinkWrap: true,
