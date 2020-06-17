@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoView extends StatefulWidget {
   @override
@@ -19,6 +20,15 @@ class _InfoViewState extends State<InfoView> {
   void initState() {
     super.initState();
     _futureAppDetails = appInfo.getAppInfo();
+  }
+
+  void _launchEmail(String emailId) async {
+    var url = "mailto:$emailId?subject=Regarding Covid Nepal App";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -112,6 +122,23 @@ class _InfoViewState extends State<InfoView> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: size.longestSide * 0.018,
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 0,
+                  color: Colors.transparent,
+                  child: GestureDetector(
+                    onTap: () {
+                      _launchEmail("dev@ngupta.me");
+                    },
+                    child: Text(
+                      'Contact: dev@ngupta.me',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: size.longestSide * 0.015,
+                        color: Colors.red[600],
+                      ),
                     ),
                   ),
                 ),
