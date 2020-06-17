@@ -23,7 +23,8 @@ class _InfoViewState extends State<InfoView> {
   }
 
   void _launchEmail(String emailId) async {
-    var url = "mailto:$emailId?subject=Regarding Covid Nepal App";
+    var url =
+        "mailto:$emailId?subject=${Uri.encodeComponent('Regarding Covid Nepal App')}";
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -133,7 +134,7 @@ class _InfoViewState extends State<InfoView> {
                       _launchEmail("dev@ngupta.me");
                     },
                     child: Text(
-                      'Contact: dev@ngupta.me',
+                      'dev@ngupta.me',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: size.longestSide * 0.015,
