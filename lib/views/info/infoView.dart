@@ -24,7 +24,7 @@ class _InfoViewState extends State<InfoView> {
 
   void _launchEmail(String emailId) async {
     var url =
-        "mailto:$emailId?subject=${Uri.encodeComponent('Regarding Covid Nepal App')}";
+        "mailto:$emailId?subject=${Uri.encodeFull('Regarding Covid Nepal App')}";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

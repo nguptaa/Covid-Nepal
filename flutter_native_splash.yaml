@@ -1,3 +1,4 @@
 flutter_native_splash:
   image: assets/images/CovidNepal.png
   color: "ffffff"
+  android_disable_fullscreen: true
