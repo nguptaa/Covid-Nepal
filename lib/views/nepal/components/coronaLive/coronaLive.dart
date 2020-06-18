@@ -4,20 +4,16 @@ import 'package:groovin_widgets/groovin_expansion_tile.dart';
 
 class CoronaLive extends StatelessWidget {
   CoronaLive({
-    @required this.trailingIconColor,
+@required this.coronaLiveColor,
     @required this.leadingIcon,
-    @required this.leadingIconColor,
     @required this.titleText,
-    @required this.titleColor,
     @required this.subtitleText,
     @required this.webview,
   });
 
-  final Color trailingIconColor;
+  final Color coronaLiveColor;
   final IconData leadingIcon;
-  final Color leadingIconColor;
   final String titleText;
-  final Color titleColor;
   final String subtitleText;
   final Widget webview;
 
@@ -33,17 +29,17 @@ class CoronaLive extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: GroovinExpansionTile(
-        defaultTrailingIconColor: trailingIconColor,
+        defaultTrailingIconColor: coronaLiveColor,
         leading: FaIcon(
           leadingIcon,
           size: 30,
-          color: leadingIconColor,
+          color: coronaLiveColor,
         ),
         title: Text(
           titleText,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: titleColor,
+            color: coronaLiveColor,
             fontSize: size.longestSide * 0.021,
           ),
         ),
@@ -51,7 +47,8 @@ class CoronaLive extends StatelessWidget {
           subtitleText,
           style: TextStyle(
             fontWeight: FontWeight.w300,
-            fontStyle: FontStyle.italic,
+            // fontStyle: FontStyle.italic,
+            color: coronaLiveColor,
             fontSize: size.longestSide * 0.015,
           ),
         ),

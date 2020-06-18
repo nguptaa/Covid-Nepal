@@ -281,11 +281,9 @@ class _NepalViewState extends State<NepalView> {
                   ),
                 ),
                 CoronaLive(
-                  trailingIconColor: Colors.red[600],
+                  coronaLiveColor: Colors.red[600],
                   leadingIcon: FontAwesomeIcons.solidCircle,
-                  leadingIconColor: Colors.red[600],
                   titleText: 'Live Update',
-                  titleColor: Colors.red[600],
                   subtitleText: 'nepalcorona.info',
                   webview: WebViewLive(),
                 ),
@@ -293,11 +291,9 @@ class _NepalViewState extends State<NepalView> {
                   height: size.longestSide * 0.015,
                 ),
                 CoronaLive(
-                  trailingIconColor: Colors.grey[500],
+                  coronaLiveColor: Colors.grey[500],
                   leadingIcon: FontAwesomeIcons.hospitalUser,
-                  leadingIconColor: Colors.grey[500],
                   titleText: 'Health Institutions',
-                  titleColor: Colors.grey[500],
                   subtitleText: 'covid19.mohp.gov.np',
                   webview: Card(
                     elevation: 0.0,
