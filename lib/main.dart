@@ -6,7 +6,6 @@ import 'package:covidnepal/views/info/components/myths.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:covidnepal/views/home/homeView.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(
