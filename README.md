@@ -4,4 +4,4 @@ An app that helps users get detailed statistics of Covid-19 in Nepal and around 
 
 ## App Screenshots
 
-![Nepal](assets/AppScreenshots/AppScreenshots.jpg)
+![Nepal](assets/AppScreenshots/AppScreenshotsLow.jp2)
