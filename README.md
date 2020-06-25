@@ -1,6 +1,6 @@
 # covidnepal
 
-An app that helps users get detailed statistics of Covid-19 in Nepal and around the world along with the news.
+A cross-platform app that helps users get detailed statistics of Covid-19 in Nepal and around the world along with the news.
 
 ## App Screenshots
 
