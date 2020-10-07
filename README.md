@@ -4,4 +4,4 @@ A cross-platform app that helps users get detailed statistics of Covid-19 in Nep
 
 ## App Screenshots
 
-![Nepal](assets/AppScreenshots/AppScreenshotsLow.jp2)
+![Nepal](assets/AppScreenshots/AppScreenshots.jpg)
